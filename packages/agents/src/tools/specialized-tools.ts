@@ -1,0 +1,520 @@
+// Specialized advanced tools for complex tasks
+import { BaseTool, ToolConfig } from '../types'
+
+// PDF Generator Tool
+export class PDFGenerator extends BaseTool {
+  constructor() {
+    super({
+      name: 'pdf_generator',
+      description: 'Generate PDF documents from HTML/Markdown content',
+      category: 'document',
+      inputs: [
+        { name: 'content', type: 'string', description: 'HTML or Markdown content' },
+        { name: 'format', type: 'string', description: 'Content format (html/markdown)', default: 'html' },
+        { name: 'options', type: 'object', description: 'PDF generation options' }
+      ],
+      outputs: [
+        { name: 'pdf', type: 'buffer', description: 'Generated PDF buffer' },
+        { name: 'url', type: 'string', description: 'PDF download URL' }
+      ]
+    })
+  }
+
+  async execute(inputs: any): Promise<any> {
+    const { content, format = 'html', options = {} } = inputs
+
+    try {
+      // Convert markdown to HTML if needed
+      let htmlContent = content
+      if (format === 'markdown') {
+        htmlContent = this.markdownToHtml(content)
+      }
+
+      // Generate PDF with options
+      const pdfBuffer = await this.generatePDF(htmlContent, options)
+      const downloadUrl = await this.uploadPDF(pdfBuffer)
+
+      return {
+        success: true,
+        data: {
+          pdf: pdfBuffer,
+          url: downloadUrl,
+          size: pdfBuffer.length,
+          pages: await this.countPages(pdfBuffer)
+        }
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: `PDF generation failed: ${error.message}`
+      }
+    }
+  }
+
+  private markdownToHtml(markdown: string): string {
+    // Basic markdown to HTML conversion
+    return markdown
+      .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+      .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+      .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+      .replace(/\*(.*)\*/gim, '<em>$1</em>')
+      .replace(/\n/g, '<br>')
+  }
+
+  private async generatePDF(html: string, options: any): Promise<Buffer> {
+    // Mock PDF generation (in real implementation use puppeteer or similar)
+    const mockPDF = Buffer.from(`PDF Content: ${html}`)
+    return mockPDF
+  }
+
+  private async uploadPDF(buffer: Buffer): Promise<string> {
+    // Mock upload (in real implementation upload to cloud storage)
+    return `https://storage.example.com/pdfs/${Date.now()}.pdf`
+  }
+
+  private async countPages(buffer: Buffer): Promise<number> {
+    // Mock page counting
+    return Math.ceil(buffer.length / 2000)
+  }
+}
+
+// QR Code Generator Tool
+export class QRCodeGenerator extends BaseTool {
+  constructor() {
+    super({
+      name: 'qr_generator',
+      description: 'Generate QR codes for various data types',
+      category: 'utility',
+      inputs: [
+        { name: 'data', type: 'string', description: 'Data to encode in QR code', required: true },
+        { name: 'type', type: 'string', description: 'QR code type (url/text/vcard/wifi)', default: 'text' },
+        { name: 'size', type: 'number', description: 'QR code size in pixels', default: 200 },
+        { name: 'options', type: 'object', description: 'Additional QR code options' }
+      ],
+      outputs: [
+        { name: 'qr_code', type: 'string', description: 'Base64 encoded QR code image' },
+        { name: 'url', type: 'string', description: 'QR code image URL' }
+      ]
+    })
+  }
+
+  async execute(inputs: any): Promise<any> {
+    const { data, type = 'text', size = 200, options = {} } = inputs
+
+    try {
+      // Format data based on type
+      const formattedData = this.formatData(data, type)
+      
+      // Generate QR code
+      const qrCode = await this.generateQRCode(formattedData, size, options)
+      const imageUrl = await this.uploadImage(qrCode)
+
+      return {
+        success: true,
+        data: {
+          qr_code: qrCode,
+          url: imageUrl,
+          type,
+          size,
+          data_length: formattedData.length
+        }
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: `QR code generation failed: ${error.message}`
+      }
+    }
+  }
+
+  private formatData(data: string, type: string): string {
+    switch (type) {
+      case 'url':
+        return data.startsWith('http') ? data : `https://${data}`
+      case 'vcard':
+        return `BEGIN:VCARD\nVERSION:3.0\nFN:${data}\nEND:VCARD`
+      case 'wifi':
+        const [ssid, password, security = 'WPA'] = data.split('|')
+        return `WIFI:T:${security};S:${ssid};P:${password};;`
+      default:
+        return data
+    }
+  }
+
+  private async generateQRCode(data: string, size: number, options: any): Promise<string> {
+    // Mock QR code generation (in real implementation use qrcode library)
+    const mockQR = Buffer.from(`QR-${data}-${size}`).toString('base64')
+    return `data:image/png;base64,${mockQR}`
+  }
+
+  private async uploadImage(base64Image: string): Promise<string> {
+    // Mock upload
+    return `https://storage.example.com/qr/${Date.now()}.png`
+  }
+}
+
+// Barcode Scanner Tool
+export class BarcodeScanner extends BaseTool {
+  constructor() {
+    super({
+      name: 'barcode_scanner',
+      description: 'Scan and decode barcodes from images',
+      category: 'vision',
+      inputs: [
+        { name: 'image', type: 'string', description: 'Image URL or base64 string', required: true },
+        { name: 'types', type: 'array', description: 'Barcode types to scan for', default: ['code128', 'ean13', 'qr'] }
+      ],
+      outputs: [
+        { name: 'codes', type: 'array', description: 'Detected barcodes' },
+        { name: 'count', type: 'number', description: 'Number of codes found' }
+      ]
+    })
+  }
+
+  async execute(inputs: any): Promise<any> {
+    const { image, types = ['code128', 'ean13', 'qr'] } = inputs
+
+    try {
+      // Load and process image
+      const imageBuffer = await this.loadImage(image)
+      
+      // Scan for barcodes
+      const detectedCodes = await this.scanBarcodes(imageBuffer, types)
+
+      return {
+        success: true,
+        data: {
+          codes: detectedCodes,
+          count: detectedCodes.length,
+          types_scanned: types,
+          image_processed: true
+        }
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: `Barcode scanning failed: ${error.message}`
+      }
+    }
+  }
+
+  private async loadImage(image: string): Promise<Buffer> {
+    if (image.startsWith('data:image')) {
+      // Base64 image
+      const base64Data = image.split(',')[1]
+      return Buffer.from(base64Data, 'base64')
+    } else {
+      // Image URL - mock fetch
+      return Buffer.from(`Image data from ${image}`)
+    }
+  }
+
+  private async scanBarcodes(imageBuffer: Buffer, types: string[]): Promise<any[]> {
+    // Mock barcode detection (in real implementation use zxing or similar)
+    return [
+      {
+        type: 'qr',
+        data: 'https://example.com/product/123',
+        format: 'QR_CODE',
+        position: { x: 100, y: 50, width: 200, height: 200 }
+      },
+      {
+        type: 'ean13',
+        data: '1234567890123',
+        format: 'EAN_13',
+        position: { x: 50, y: 300, width: 150, height: 50 }
+      }
+    ]
+  }
+}
+
+// Color Palette Extractor Tool
+export class ColorPaletteExtractor extends BaseTool {
+  constructor() {
+    super({
+      name: 'color_palette',
+      description: 'Extract color palettes from images',
+      category: 'design',
+      inputs: [
+        { name: 'image', type: 'string', description: 'Image URL or base64 string', required: true },
+        { name: 'colors', type: 'number', description: 'Number of colors to extract', default: 5 },
+        { name: 'format', type: 'string', description: 'Color format (hex/rgb/hsl)', default: 'hex' }
+      ],
+      outputs: [
+        { name: 'palette', type: 'array', description: 'Extracted color palette' },
+        { name: 'dominant_color', type: 'string', description: 'Most dominant color' },
+        { name: 'color_analysis', type: 'object', description: 'Color analysis data' }
+      ]
+    })
+  }
+
+  async execute(inputs: any): Promise<any> {
+    const { image, colors = 5, format = 'hex' } = inputs
+
+    try {
+      // Load image
+      const imageBuffer = await this.loadImage(image)
+      
+      // Extract colors
+      const palette = await this.extractColors(imageBuffer, colors)
+      const analysis = this.analyzeColors(palette)
+
+      // Format colors
+      const formattedPalette = palette.map(color => this.formatColor(color, format))
+
+      return {
+        success: true,
+        data: {
+          palette: formattedPalette,
+          dominant_color: formattedPalette[0],
+          color_analysis: analysis,
+          format,
+          colors_extracted: palette.length
+        }
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: `Color extraction failed: ${error.message}`
+      }
+    }
+  }
+
+  private async loadImage(image: string): Promise<Buffer> {
+    if (image.startsWith('data:image')) {
+      const base64Data = image.split(',')[1]
+      return Buffer.from(base64Data, 'base64')
+    } else {
+      return Buffer.from(`Image data from ${image}`)
+    }
+  }
+
+  private async extractColors(imageBuffer: Buffer, count: number): Promise<any[]> {
+    // Mock color extraction (in real implementation use sharp + color-thief)
+    return [
+      { r: 74, g: 144, b: 226, frequency: 0.35 },
+      { r: 245, g: 245, b: 245, frequency: 0.25 },
+      { r: 52, g: 73, b: 94, frequency: 0.20 },
+      { r: 231, g: 76, b: 60, frequency: 0.15 },
+      { r: 46, g: 204, b: 113, frequency: 0.05 }
+    ].slice(0, count)
+  }
+
+  private analyzeColors(palette: any[]): any {
+    const brightness = palette.reduce((sum, color) => {
+      return sum + (color.r * 0.299 + color.g * 0.587 + color.b * 0.114)
+    }, 0) / palette.length
+
+    return {
+      average_brightness: Math.round(brightness),
+      color_temperature: brightness > 128 ? 'warm' : 'cool',
+      contrast_ratio: this.calculateContrast(palette[0], palette[1] || palette[0]),
+      harmony: this.analyzeHarmony(palette)
+    }
+  }
+
+  private formatColor(color: any, format: string): string {
+    const { r, g, b } = color
+    
+    switch (format) {
+      case 'rgb':
+        return `rgb(${r}, ${g}, ${b})`
+      case 'hsl':
+        const hsl = this.rgbToHsl(r, g, b)
+        return `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`
+      default:
+        return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`
+    }
+  }
+
+  private rgbToHsl(r: number, g: number, b: number): { h: number, s: number, l: number } {
+    r /= 255; g /= 255; b /= 255
+    const max = Math.max(r, g, b), min = Math.min(r, g, b)
+    let h = 0, s = 0, l = (max + min) / 2
+
+    if (max !== min) {
+      const d = max - min
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+      switch (max) {
+        case r: h = (g - b) / d + (g < b ? 6 : 0); break
+        case g: h = (b - r) / d + 2; break
+        case b: h = (r - g) / d + 4; break
+      }
+      h /= 6
+    }
+
+    return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) }
+  }
+
+  private calculateContrast(color1: any, color2: any): number {
+    const l1 = this.getLuminance(color1)
+    const l2 = this.getLuminance(color2)
+    return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05)
+  }
+
+  private getLuminance(color: any): number {
+    const { r, g, b } = color
+    return 0.299 * r + 0.587 * g + 0.114 * b
+  }
+
+  private analyzeHarmony(palette: any[]): string {
+    // Simple harmony analysis
+    if (palette.length < 2) return 'monochrome'
+    
+    const hues = palette.map(color => this.rgbToHsl(color.r, color.g, color.b).h)
+    const hueRange = Math.max(...hues) - Math.min(...hues)
+    
+    if (hueRange < 30) return 'monochromatic'
+    if (hueRange < 90) return 'analogous'
+    if (hueRange > 150) return 'complementary'
+    return 'triadic'
+  }
+}
+
+// Font Identifier Tool
+export class FontIdentifier extends BaseTool {
+  constructor() {
+    super({
+      name: 'font_identifier',
+      description: 'Identify fonts from images or text samples',
+      category: 'design',
+      inputs: [
+        { name: 'image', type: 'string', description: 'Image containing text', required: true },
+        { name: 'text_region', type: 'object', description: 'Specific text region to analyze' }
+      ],
+      outputs: [
+        { name: 'fonts', type: 'array', description: 'Identified font matches' },
+        { name: 'confidence', type: 'number', description: 'Overall confidence score' },
+        { name: 'characteristics', type: 'object', description: 'Font characteristics' }
+      ]
+    })
+  }
+
+  async execute(inputs: any): Promise<any> {
+    const { image, text_region } = inputs
+
+    try {
+      // Load and process image
+      const imageBuffer = await this.loadImage(image)
+      
+      // Extract text characteristics
+      const characteristics = await this.analyzeTextCharacteristics(imageBuffer, text_region)
+      
+      // Match against font database
+      const fontMatches = await this.matchFonts(characteristics)
+
+      return {
+        success: true,
+        data: {
+          fonts: fontMatches,
+          confidence: this.calculateOverallConfidence(fontMatches),
+          characteristics,
+          region_analyzed: text_region || 'full_image'
+        }
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: `Font identification failed: ${error.message}`
+      }
+    }
+  }
+
+  private async loadImage(image: string): Promise<Buffer> {
+    if (image.startsWith('data:image')) {
+      const base64Data = image.split(',')[1]
+      return Buffer.from(base64Data, 'base64')
+    } else {
+      return Buffer.from(`Image data from ${image}`)
+    }
+  }
+
+  private async analyzeTextCharacteristics(imageBuffer: Buffer, region?: any): Promise<any> {
+    // Mock font analysis (in real implementation use OCR + font analysis)
+    return {
+      serif: false,
+      weight: 'normal',
+      style: 'normal',
+      x_height_ratio: 0.5,
+      ascender_ratio: 0.75,
+      descender_ratio: 0.25,
+      character_width: 'normal',
+      contrast: 'medium',
+      stroke_variation: 'low'
+    }
+  }
+
+  private async matchFonts(characteristics: any): Promise<any[]> {
+    // Mock font matching (in real implementation use font database)
+    const mockFonts = [
+      {
+        name: 'Helvetica Neue',
+        family: 'sans-serif',
+        confidence: 0.89,
+        similarity_score: 0.92,
+        source: 'system',
+        variations: ['Light', 'Regular', 'Medium', 'Bold']
+      },
+      {
+        name: 'Arial',
+        family: 'sans-serif',
+        confidence: 0.85,
+        similarity_score: 0.88,
+        source: 'system',
+        variations: ['Regular', 'Bold', 'Italic']
+      },
+      {
+        name: 'Roboto',
+        family: 'sans-serif',
+        confidence: 0.78,
+        similarity_score: 0.81,
+        source: 'google-fonts',
+        variations: ['Thin', 'Light', 'Regular', 'Medium', 'Bold', 'Black']
+      }
+    ]
+
+    return mockFonts.filter(font => 
+      characteristics.serif ? font.family === 'serif' : font.family === 'sans-serif'
+    )
+  }
+
+  private calculateOverallConfidence(matches: any[]): number {
+    if (matches.length === 0) return 0
+    return matches.reduce((sum, match) => sum + match.confidence, 0) / matches.length
+  }
+}
+
+// Export all specialized tools
+export const specializedTools: ToolConfig[] = [
+  {
+    name: 'pdf_generator',
+    description: 'Generate PDF documents from HTML/Markdown content',
+    category: 'document',
+    tool: PDFGenerator
+  },
+  {
+    name: 'qr_generator',
+    description: 'Generate QR codes for various data types',
+    category: 'utility',
+    tool: QRCodeGenerator
+  },
+  {
+    name: 'barcode_scanner',
+    description: 'Scan and decode barcodes from images',
+    category: 'vision',
+    tool: BarcodeScanner
+  },
+  {
+    name: 'color_palette',
+    description: 'Extract color palettes from images',
+    category: 'design',
+    tool: ColorPaletteExtractor
+  },
+  {
+    name: 'font_identifier',
+    description: 'Identify fonts from images or text samples',
+    category: 'design',
+    tool: FontIdentifier
+  }
+]
