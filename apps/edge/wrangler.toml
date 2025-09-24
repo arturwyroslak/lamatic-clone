@@ -1,0 +1,58 @@
+[env.production]
+name = "lamatic-clone-edge"
+compatibility_date = "2023-10-30"
+compatibility_flags = ["nodejs_compat"]
+node_compat = true
+
+[env.production.vars]
+ENVIRONMENT = "production"
+GRAPHQL_ENDPOINT = "https://api.lamatic-clone.com/graphql"
+
+[env.staging]
+name = "lamatic-clone-edge-staging"
+compatibility_date = "2023-10-30"
+compatibility_flags = ["nodejs_compat"]
+node_compat = true
+
+[env.staging.vars]
+ENVIRONMENT = "staging"
+GRAPHQL_ENDPOINT = "https://staging-api.lamatic-clone.com/graphql"
+
+[env.development]
+name = "lamatic-clone-edge-dev"
+compatibility_date = "2023-10-30"
+compatibility_flags = ["nodejs_compat"]
+node_compat = true
+
+[env.development.vars]
+ENVIRONMENT = "development"
+GRAPHQL_ENDPOINT = "http://localhost:4000/graphql"
+
+# KV Namespaces for caching
+[[env.production.kv_namespaces]]
+binding = "CACHE"
+id = "your-production-kv-namespace-id"
+
+[[env.staging.kv_namespaces]]
+binding = "CACHE"
+id = "your-staging-kv-namespace-id"
+
+[[env.development.kv_namespaces]]
+binding = "CACHE"
+id = "your-development-kv-namespace-id"
+
+# D1 Database for edge storage
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "lamatic-clone-prod"
+database_id = "your-production-d1-database-id"
+
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "lamatic-clone-staging"
+database_id = "your-staging-d1-database-id"
+
+[[env.development.d1_databases]]
+binding = "DB"
+database_name = "lamatic-clone-dev"
+database_id = "your-development-d1-database-id"

@@ -1,0 +1,25 @@
+{
+  "name": "@lamatic/edge",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "build": "tsc && esbuild src/index.ts --bundle --format=esm --outfile=dist/worker.js --target=es2020",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20231025.0",
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
+    "itty-router": "^4.0.13",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "esbuild": "^0.19.5",
+    "typescript": "^5.2.2",
+    "wrangler": "^3.15.0"
+  }
+}
