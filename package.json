@@ -1,0 +1,65 @@
+{
+  "name": "lamatic-clone",
+  "version": "1.0.0",
+  "description": "Full-featured clone of Lamatic.ai platform - AI Agent workflow builder and deployment platform with edge hosting, GraphQL APIs, and visual flow builder",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "dev:web": "npm run dev --workspace=@lamatic/web",
+    "dev:api": "npm run dev --workspace=@lamatic/api",
+    "dev:all": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean",
+    "db:generate": "npm run db:generate --workspace=@lamatic/database",
+    "db:migrate": "npm run db:migrate --workspace=@lamatic/database",
+    "db:studio": "npm run db:studio --workspace=@lamatic/database",
+    "deploy": "npm run build && npm run deploy:edge",
+    "deploy:edge": "npm run deploy --workspace=@lamatic/edge",
+    "docker:build": "docker-compose -f docker/docker-compose.yml build",
+    "docker:up": "docker-compose -f docker/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f docker/docker-compose.yml down"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.51.0",
+    "prettier": "^3.0.3",
+    "turbo": "^1.10.16",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.6",
+    "graphql": "^16.8.1"
+  },
+  "engines": {
+    "node": ">=18.17.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arturwyroslak/lamatic-clone.git"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "workflow",
+    "automation",
+    "graphql",
+    "edge-computing",
+    "no-code",
+    "integration",
+    "vector-database",
+    "lamatic"
+  ],
+  "author": "Artur Wyrosłak",
+  "license": "MIT",
+  "packageManager": "npm@9.8.1"
+}
