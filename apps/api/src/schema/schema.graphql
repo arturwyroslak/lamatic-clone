@@ -1,0 +1,503 @@
+scalar DateTime
+scalar JSON
+
+type Query {
+  # User queries
+  me: User
+  user(id: ID!): User
+  
+  # Workspace queries
+  workspace(id: ID!): Workspace
+  workspaces: [Workspace!]!
+  
+  # Workflow queries
+  workflow(id: ID!): Workflow
+  workflows(workspaceId: ID, limit: Int, offset: Int): WorkflowConnection!
+  
+  # Deployment queries
+  deployment(id: ID!): Deployment
+  deployments(workspaceId: ID, limit: Int, offset: Int): DeploymentConnection!
+  
+  # Integration queries
+  integration(id: ID!): Integration
+  integrations(workspaceId: ID, category: String): [Integration!]!
+  availableIntegrations: [IntegrationType!]!
+  
+  # Template queries
+  template(id: ID!): Template
+  templates(category: String, featured: Boolean): [Template!]!
+  
+  # Execution queries
+  execution(id: ID!): Execution
+  executions(workflowId: ID, deploymentId: ID, limit: Int, offset: Int): ExecutionConnection!
+  
+  # Analytics queries
+  analytics(workspaceId: ID!, timeRange: TimeRange!): Analytics
+}
+
+type Mutation {
+  # Auth mutations
+  login(email: String!, password: String!): AuthPayload!
+  register(input: RegisterInput!): AuthPayload!
+  logout: Boolean!
+  
+  # Workspace mutations
+  createWorkspace(input: CreateWorkspaceInput!): Workspace!
+  updateWorkspace(id: ID!, input: UpdateWorkspaceInput!): Workspace!
+  deleteWorkspace(id: ID!): Boolean!
+  
+  # Workflow mutations
+  createWorkflow(input: CreateWorkflowInput!): Workflow!
+  updateWorkflow(id: ID!, input: UpdateWorkflowInput!): Workflow!
+  deleteWorkflow(id: ID!): Boolean!
+  publishWorkflow(id: ID!): Workflow!
+  
+  # Deployment mutations
+  createDeployment(input: CreateDeploymentInput!): Deployment!
+  updateDeployment(id: ID!, input: UpdateDeploymentInput!): Deployment!
+  deleteDeployment(id: ID!): Boolean!
+  deployWorkflow(workflowId: ID!, environment: Environment!): Deployment!
+  
+  # Integration mutations
+  createIntegration(input: CreateIntegrationInput!): Integration!
+  updateIntegration(id: ID!, input: UpdateIntegrationInput!): Integration!
+  deleteIntegration(id: ID!): Boolean!
+  testIntegration(id: ID!): IntegrationTestResult!
+  
+  # Execution mutations
+  executeWorkflow(workflowId: ID!, input: JSON): Execution!
+  cancelExecution(id: ID!): Execution!
+}
+
+type Subscription {
+  # Execution subscriptions
+  executionUpdated(executionId: ID!): Execution!
+  workflowExecutions(workflowId: ID!): Execution!
+  
+  # Deployment subscriptions
+  deploymentUpdated(deploymentId: ID!): Deployment!
+}
+
+# Types
+type User {
+  id: ID!
+  email: String!
+  name: String
+  avatar: String
+  role: Role!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  workspaces: [WorkspaceMember!]!
+}
+
+type Workspace {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String
+  avatar: String
+  plan: Plan!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  members: [WorkspaceMember!]!
+  workflows: [Workflow!]!
+  deployments: [Deployment!]!
+  integrations: [Integration!]!
+}
+
+type WorkspaceMember {
+  id: ID!
+  user: User!
+  workspace: Workspace!
+  role: WorkspaceRole!
+  permissions: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Workflow {
+  id: ID!
+  name: String!
+  description: String
+  version: String!
+  status: WorkflowStatus!
+  definition: JSON!
+  metadata: JSON
+  tags: [String!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  publishedAt: DateTime
+  user: User!
+  workspace: Workspace!
+  deployments: [Deployment!]!
+  executions: [Execution!]!
+  versions: [WorkflowVersion!]!
+}
+
+type WorkflowVersion {
+  id: ID!
+  workflow: Workflow!
+  version: String!
+  definition: JSON!
+  changelog: String
+  createdAt: DateTime!
+}
+
+type Deployment {
+  id: ID!
+  name: String!
+  workflow: Workflow!
+  environment: Environment!
+  status: DeploymentStatus!
+  endpoint: String
+  region: String!
+  config: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deployedAt: DateTime
+  user: User!
+  workspace: Workspace!
+  executions: [Execution!]!
+  logs: [DeploymentLog!]!
+}
+
+type Execution {
+  id: ID!
+  workflow: Workflow!
+  deployment: Deployment
+  status: ExecutionStatus!
+  input: JSON
+  output: JSON
+  error: String
+  duration: Int
+  startedAt: DateTime!
+  completedAt: DateTime
+  metadata: JSON
+  steps: [ExecutionStep!]!
+  logs: [ExecutionLog!]!
+}
+
+type ExecutionStep {
+  id: ID!
+  execution: Execution!
+  stepId: String!
+  name: String!
+  status: ExecutionStatus!
+  input: JSON
+  output: JSON
+  error: String
+  duration: Int
+  startedAt: DateTime!
+  completedAt: DateTime
+}
+
+type ExecutionLog {
+  id: ID!
+  execution: Execution!
+  level: LogLevel!
+  message: String!
+  metadata: JSON
+  timestamp: DateTime!
+}
+
+type DeploymentLog {
+  id: ID!
+  deployment: Deployment!
+  level: LogLevel!
+  message: String!
+  metadata: JSON
+  timestamp: DateTime!
+}
+
+type Integration {
+  id: ID!
+  name: String!
+  slug: String!
+  type: IntegrationType!
+  category: String!
+  description: String
+  icon: String
+  status: IntegrationStatus!
+  config: JSON!
+  credentials: JSON
+  metadata: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  workspace: Workspace!
+}
+
+type IntegrationType {
+  id: ID!
+  name: String!
+  slug: String!
+  category: String!
+  description: String
+  icon: String
+  configSchema: JSON!
+  credentialsSchema: JSON
+  capabilities: [String!]!
+}
+
+type Template {
+  id: ID!
+  name: String!
+  description: String
+  category: String!
+  tags: [String!]!
+  definition: JSON!
+  preview: String
+  featured: Boolean!
+  public: Boolean!
+  downloads: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  workspace: Workspace
+}
+
+type Analytics {
+  executions: ExecutionAnalytics!
+  deployments: DeploymentAnalytics!
+  performance: PerformanceAnalytics!
+  costs: CostAnalytics!
+}
+
+type ExecutionAnalytics {
+  total: Int!
+  successful: Int!
+  failed: Int!
+  avgDuration: Float!
+  throughput: Float!
+  timeline: [TimelinePoint!]!
+}
+
+type DeploymentAnalytics {
+  total: Int!
+  active: Int!
+  regions: [RegionStats!]!
+  environments: [EnvironmentStats!]!
+}
+
+type PerformanceAnalytics {
+  avgLatency: Float!
+  p95Latency: Float!
+  p99Latency: Float!
+  errorRate: Float!
+  uptime: Float!
+}
+
+type CostAnalytics {
+  total: Float!
+  compute: Float!
+  storage: Float!
+  bandwidth: Float!
+  timeline: [CostTimelinePoint!]!
+}
+
+type TimelinePoint {
+  timestamp: DateTime!
+  value: Float!
+}
+
+type CostTimelinePoint {
+  timestamp: DateTime!
+  compute: Float!
+  storage: Float!
+  bandwidth: Float!
+  total: Float!
+}
+
+type RegionStats {
+  region: String!
+  count: Int!
+  percentage: Float!
+}
+
+type EnvironmentStats {
+  environment: Environment!
+  count: Int!
+  percentage: Float!
+}
+
+type IntegrationTestResult {
+  success: Boolean!
+  message: String
+  details: JSON
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+# Connection types for pagination
+type WorkflowConnection {
+  edges: [WorkflowEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type WorkflowEdge {
+  node: Workflow!
+  cursor: String!
+}
+
+type DeploymentConnection {
+  edges: [DeploymentEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type DeploymentEdge {
+  node: Deployment!
+  cursor: String!
+}
+
+type ExecutionConnection {
+  edges: [ExecutionEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ExecutionEdge {
+  node: Execution!
+  cursor: String!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+# Input types
+input RegisterInput {
+  email: String!
+  password: String!
+  name: String
+}
+
+input CreateWorkspaceInput {
+  name: String!
+  slug: String!
+  description: String
+}
+
+input UpdateWorkspaceInput {
+  name: String
+  description: String
+  avatar: String
+}
+
+input CreateWorkflowInput {
+  name: String!
+  description: String
+  workspaceId: ID!
+  definition: JSON!
+  tags: [String!]
+}
+
+input UpdateWorkflowInput {
+  name: String
+  description: String
+  definition: JSON
+  tags: [String!]
+}
+
+input CreateDeploymentInput {
+  name: String!
+  workflowId: ID!
+  environment: Environment!
+  region: String
+  config: JSON
+}
+
+input UpdateDeploymentInput {
+  name: String
+  config: JSON
+}
+
+input CreateIntegrationInput {
+  name: String!
+  slug: String!
+  type: String!
+  workspaceId: ID!
+  config: JSON!
+  credentials: JSON
+}
+
+input UpdateIntegrationInput {
+  name: String
+  config: JSON
+  credentials: JSON
+}
+
+# Enums
+enum Role {
+  USER
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum WorkspaceRole {
+  OWNER
+  ADMIN
+  MEMBER
+  VIEWER
+}
+
+enum Plan {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+enum WorkflowStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum DeploymentStatus {
+  PENDING
+  BUILDING
+  DEPLOYING
+  ACTIVE
+  FAILED
+  STOPPED
+}
+
+enum ExecutionStatus {
+  PENDING
+  RUNNING
+  SUCCESS
+  FAILED
+  CANCELLED
+}
+
+enum Environment {
+  DEVELOPMENT
+  STAGING
+  PRODUCTION
+}
+
+enum IntegrationStatus {
+  ACTIVE
+  INACTIVE
+  ERROR
+}
+
+enum LogLevel {
+  DEBUG
+  INFO
+  WARN
+  ERROR
+}
+
+enum TimeRange {
+  HOUR
+  DAY
+  WEEK
+  MONTH
+  YEAR
+}
