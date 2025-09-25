@@ -1,0 +1,533 @@
+// Communication platform integrations
+import { BaseConnector, ConnectorConfig, ConnectorAction } from '../types'
+
+// Slack Connector (already implemented in slack.ts)
+export * from '../slack'
+
+// Discord Connector
+export class DiscordConnector extends BaseConnector {
+  constructor(config: ConnectorConfig) {
+    super({
+      ...config,
+      id: 'discord',
+      name: 'Discord',
+      description: 'Send messages and manage Discord servers',
+      category: 'communication',
+      version: '1.0.0',
+      icon: 'discord-icon',
+      color: '#5865F2'
+    })
+  }
+
+  getActions(): ConnectorAction[] {
+    return [
+      {
+        id: 'send-message',
+        name: 'Send Message',
+        description: 'Send message to Discord channel',
+        inputs: [
+          { name: 'channel', type: 'string', required: true, description: 'Channel ID or name' },
+          { name: 'message', type: 'text', required: true, description: 'Message content' },
+          { name: 'embed', type: 'json', required: false, description: 'Rich embed object' }
+        ],
+        outputs: [
+          { name: 'messageId', type: 'string', description: 'ID of sent message' },
+          { name: 'timestamp', type: 'string', description: 'Message timestamp' }
+        ]
+      },
+      {
+        id: 'create-channel',
+        name: 'Create Channel',
+        description: 'Create new Discord channel',
+        inputs: [
+          { name: 'name', type: 'string', required: true, description: 'Channel name' },
+          { name: 'type', type: 'select', required: true, options: ['text', 'voice', 'category'], description: 'Channel type' },
+          { name: 'topic', type: 'string', required: false, description: 'Channel topic' }
+        ],
+        outputs: [
+          { name: 'channelId', type: 'string', description: 'Created channel ID' }
+        ]
+      },
+      {
+        id: 'manage-roles',
+        name: 'Manage Roles',
+        description: 'Add or remove user roles',
+        inputs: [
+          { name: 'userId', type: 'string', required: true, description: 'User ID' },
+          { name: 'roleId', type: 'string', required: true, description: 'Role ID' },
+          { name: 'action', type: 'select', required: true, options: ['add', 'remove'], description: 'Action to perform' }
+        ],
+        outputs: [
+          { name: 'success', type: 'boolean', description: 'Operation success' }
+        ]
+      }
+    ]
+  }
+
+  async executeAction(actionId: string, inputs: Record<string, any>): Promise<any> {
+    switch (actionId) {
+      case 'send-message':
+        return this.sendMessage(inputs)
+      case 'create-channel':
+        return this.createChannel(inputs)
+      case 'manage-roles':
+        return this.manageRoles(inputs)
+      default:
+        throw new Error(`Unknown action: ${actionId}`)
+    }
+  }
+
+  private async sendMessage(inputs: any) {
+    // Discord API implementation
+    const response = await fetch(`https://discord.com/api/v10/channels/${inputs.channel}/messages`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bot ${this.credentials.botToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: inputs.message,
+        embeds: inputs.embed ? [inputs.embed] : undefined
+      })
+    })
+    
+    const result = await response.json()
+    return {
+      messageId: result.id,
+      timestamp: result.timestamp
+    }
+  }
+
+  private async createChannel(inputs: any) {
+    const response = await fetch(`https://discord.com/api/v10/guilds/${this.credentials.guildId}/channels`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bot ${this.credentials.botToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: inputs.name,
+        type: inputs.type === 'text' ? 0 : inputs.type === 'voice' ? 2 : 4,
+        topic: inputs.topic
+      })
+    })
+    
+    const result = await response.json()
+    return { channelId: result.id }
+  }
+
+  private async manageRoles(inputs: any) {
+    const method = inputs.action === 'add' ? 'PUT' : 'DELETE'
+    const response = await fetch(
+      `https://discord.com/api/v10/guilds/${this.credentials.guildId}/members/${inputs.userId}/roles/${inputs.roleId}`,
+      {
+        method,
+        headers: {
+          'Authorization': `Bot ${this.credentials.botToken}`
+        }
+      }
+    )
+    
+    return { success: response.ok }
+  }
+}
+
+// Microsoft Teams Connector
+export class TeamsConnector extends BaseConnector {
+  constructor(config: ConnectorConfig) {
+    super({
+      ...config,
+      id: 'teams',
+      name: 'Microsoft Teams',
+      description: 'Send messages and manage Teams channels',
+      category: 'communication',
+      version: '1.0.0',
+      icon: 'teams-icon',
+      color: '#6264A7'
+    })
+  }
+
+  getActions(): ConnectorAction[] {
+    return [
+      {
+        id: 'send-message',
+        name: 'Send Message',
+        description: 'Send message to Teams channel',
+        inputs: [
+          { name: 'teamId', type: 'string', required: true, description: 'Team ID' },
+          { name: 'channelId', type: 'string', required: true, description: 'Channel ID' },
+          { name: 'message', type: 'text', required: true, description: 'Message content' },
+          { name: 'messageType', type: 'select', options: ['text', 'html'], description: 'Message format' }
+        ],
+        outputs: [
+          { name: 'messageId', type: 'string', description: 'ID of sent message' }
+        ]
+      },
+      {
+        id: 'create-meeting',
+        name: 'Create Meeting',
+        description: 'Schedule Teams meeting',
+        inputs: [
+          { name: 'subject', type: 'string', required: true, description: 'Meeting subject' },
+          { name: 'startTime', type: 'datetime', required: true, description: 'Meeting start time' },
+          { name: 'endTime', type: 'datetime', required: true, description: 'Meeting end time' },
+          { name: 'attendees', type: 'array', required: false, description: 'List of attendee emails' }
+        ],
+        outputs: [
+          { name: 'meetingId', type: 'string', description: 'Created meeting ID' },
+          { name: 'joinUrl', type: 'string', description: 'Meeting join URL' }
+        ]
+      }
+    ]
+  }
+
+  async executeAction(actionId: string, inputs: Record<string, any>): Promise<any> {
+    switch (actionId) {
+      case 'send-message':
+        return this.sendMessage(inputs)
+      case 'create-meeting':
+        return this.createMeeting(inputs)
+      default:
+        throw new Error(`Unknown action: ${actionId}`)
+    }
+  }
+
+  private async sendMessage(inputs: any) {
+    // Microsoft Graph API implementation
+    const response = await fetch(
+      `https://graph.microsoft.com/v1.0/teams/${inputs.teamId}/channels/${inputs.channelId}/messages`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.credentials.accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          body: {
+            contentType: inputs.messageType || 'text',
+            content: inputs.message
+          }
+        })
+      }
+    )
+    
+    const result = await response.json()
+    return { messageId: result.id }
+  }
+
+  private async createMeeting(inputs: any) {
+    const response = await fetch('https://graph.microsoft.com/v1.0/me/onlineMeetings', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${this.credentials.accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        subject: inputs.subject,
+        startDateTime: inputs.startTime,
+        endDateTime: inputs.endTime,
+        participants: {
+          attendees: inputs.attendees?.map((email: string) => ({
+            identity: { user: { id: email } }
+          })) || []
+        }
+      })
+    })
+    
+    const result = await response.json()
+    return {
+      meetingId: result.id,
+      joinUrl: result.joinWebUrl
+    }
+  }
+}
+
+// Telegram Connector
+export class TelegramConnector extends BaseConnector {
+  constructor(config: ConnectorConfig) {
+    super({
+      ...config,
+      id: 'telegram',
+      name: 'Telegram',
+      description: 'Send messages via Telegram bot',
+      category: 'communication',
+      version: '1.0.0',
+      icon: 'telegram-icon',
+      color: '#0088CC'
+    })
+  }
+
+  getActions(): ConnectorAction[] {
+    return [
+      {
+        id: 'send-message',
+        name: 'Send Message',
+        description: 'Send message to Telegram chat',
+        inputs: [
+          { name: 'chatId', type: 'string', required: true, description: 'Chat ID or username' },
+          { name: 'message', type: 'text', required: true, description: 'Message text' },
+          { name: 'parseMode', type: 'select', options: ['Markdown', 'MarkdownV2', 'HTML'], description: 'Message format' }
+        ],
+        outputs: [
+          { name: 'messageId', type: 'number', description: 'Message ID' }
+        ]
+      },
+      {
+        id: 'send-photo',
+        name: 'Send Photo',
+        description: 'Send photo to Telegram chat',
+        inputs: [
+          { name: 'chatId', type: 'string', required: true, description: 'Chat ID or username' },
+          { name: 'photo', type: 'file', required: true, description: 'Photo file or URL' },
+          { name: 'caption', type: 'text', required: false, description: 'Photo caption' }
+        ],
+        outputs: [
+          { name: 'messageId', type: 'number', description: 'Message ID' }
+        ]
+      }
+    ]
+  }
+
+  async executeAction(actionId: string, inputs: Record<string, any>): Promise<any> {
+    switch (actionId) {
+      case 'send-message':
+        return this.sendMessage(inputs)
+      case 'send-photo':
+        return this.sendPhoto(inputs)
+      default:
+        throw new Error(`Unknown action: ${actionId}`)
+    }
+  }
+
+  private async sendMessage(inputs: any) {
+    const response = await fetch(`https://api.telegram.org/bot${this.credentials.botToken}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: inputs.chatId,
+        text: inputs.message,
+        parse_mode: inputs.parseMode
+      })
+    })
+    
+    const result = await response.json()
+    return { messageId: result.result?.message_id }
+  }
+
+  private async sendPhoto(inputs: any) {
+    const formData = new FormData()
+    formData.append('chat_id', inputs.chatId)
+    formData.append('photo', inputs.photo)
+    if (inputs.caption) formData.append('caption', inputs.caption)
+    
+    const response = await fetch(`https://api.telegram.org/bot${this.credentials.botToken}/sendPhoto`, {
+      method: 'POST',
+      body: formData
+    })
+    
+    const result = await response.json()
+    return { messageId: result.result?.message_id }
+  }
+}
+
+// WhatsApp Business Connector
+export class WhatsAppConnector extends BaseConnector {
+  constructor(config: ConnectorConfig) {
+    super({
+      ...config,
+      id: 'whatsapp',
+      name: 'WhatsApp Business',
+      description: 'Send messages via WhatsApp Business API',
+      category: 'communication',
+      version: '1.0.0',
+      icon: 'whatsapp-icon',
+      color: '#25D366'
+    })
+  }
+
+  getActions(): ConnectorAction[] {
+    return [
+      {
+        id: 'send-message',
+        name: 'Send Message',
+        description: 'Send WhatsApp message',
+        inputs: [
+          { name: 'to', type: 'string', required: true, description: 'Phone number with country code' },
+          { name: 'message', type: 'text', required: true, description: 'Message text' },
+          { name: 'messageType', type: 'select', options: ['text', 'template'], description: 'Message type' }
+        ],
+        outputs: [
+          { name: 'messageId', type: 'string', description: 'Message ID' }
+        ]
+      },
+      {
+        id: 'send-media',
+        name: 'Send Media',
+        description: 'Send image or document',
+        inputs: [
+          { name: 'to', type: 'string', required: true, description: 'Phone number with country code' },
+          { name: 'mediaUrl', type: 'string', required: true, description: 'Media URL' },
+          { name: 'mediaType', type: 'select', options: ['image', 'document', 'audio', 'video'], description: 'Media type' },
+          { name: 'caption', type: 'text', required: false, description: 'Media caption' }
+        ],
+        outputs: [
+          { name: 'messageId', type: 'string', description: 'Message ID' }
+        ]
+      }
+    ]
+  }
+
+  async executeAction(actionId: string, inputs: Record<string, any>): Promise<any> {
+    switch (actionId) {
+      case 'send-message':
+        return this.sendMessage(inputs)
+      case 'send-media':
+        return this.sendMedia(inputs)
+      default:
+        throw new Error(`Unknown action: ${actionId}`)
+    }
+  }
+
+  private async sendMessage(inputs: any) {
+    const response = await fetch(
+      `https://graph.facebook.com/v18.0/${this.credentials.phoneNumberId}/messages`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.credentials.accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          messaging_product: 'whatsapp',
+          to: inputs.to,
+          type: 'text',
+          text: { body: inputs.message }
+        })
+      }
+    )
+    
+    const result = await response.json()
+    return { messageId: result.messages?.[0]?.id }
+  }
+
+  private async sendMedia(inputs: any) {
+    const response = await fetch(
+      `https://graph.facebook.com/v18.0/${this.credentials.phoneNumberId}/messages`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.credentials.accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          messaging_product: 'whatsapp',
+          to: inputs.to,
+          type: inputs.mediaType,
+          [inputs.mediaType]: {
+            link: inputs.mediaUrl,
+            caption: inputs.caption
+          }
+        })
+      }
+    )
+    
+    const result = await response.json()
+    return { messageId: result.messages?.[0]?.id }
+  }
+}
+
+// Email Connector
+export class EmailConnector extends BaseConnector {
+  constructor(config: ConnectorConfig) {
+    super({
+      ...config,
+      id: 'email',
+      name: 'Email',
+      description: 'Send emails via SMTP or email service providers',
+      category: 'communication',
+      version: '1.0.0',
+      icon: 'email-icon',
+      color: '#EA4335'
+    })
+  }
+
+  getActions(): ConnectorAction[] {
+    return [
+      {
+        id: 'send-email',
+        name: 'Send Email',
+        description: 'Send email message',
+        inputs: [
+          { name: 'to', type: 'array', required: true, description: 'Recipient email addresses' },
+          { name: 'subject', type: 'string', required: true, description: 'Email subject' },
+          { name: 'body', type: 'text', required: true, description: 'Email body' },
+          { name: 'bodyType', type: 'select', options: ['text', 'html'], description: 'Body format' },
+          { name: 'cc', type: 'array', required: false, description: 'CC recipients' },
+          { name: 'bcc', type: 'array', required: false, description: 'BCC recipients' },
+          { name: 'attachments', type: 'array', required: false, description: 'File attachments' }
+        ],
+        outputs: [
+          { name: 'messageId', type: 'string', description: 'Email message ID' }
+        ]
+      },
+      {
+        id: 'send-template',
+        name: 'Send Template Email',
+        description: 'Send email using template',
+        inputs: [
+          { name: 'to', type: 'array', required: true, description: 'Recipient email addresses' },
+          { name: 'templateId', type: 'string', required: true, description: 'Email template ID' },
+          { name: 'variables', type: 'json', required: false, description: 'Template variables' }
+        ],
+        outputs: [
+          { name: 'messageId', type: 'string', description: 'Email message ID' }
+        ]
+      }
+    ]
+  }
+
+  async executeAction(actionId: string, inputs: Record<string, any>): Promise<any> {
+    switch (actionId) {
+      case 'send-email':
+        return this.sendEmail(inputs)
+      case 'send-template':
+        return this.sendTemplate(inputs)
+      default:
+        throw new Error(`Unknown action: ${actionId}`)
+    }
+  }
+
+  private async sendEmail(inputs: any) {
+    // Implementation would depend on email service (SendGrid, Mailgun, SES, etc.)
+    // This is a generic implementation
+    const emailData = {
+      to: inputs.to,
+      subject: inputs.subject,
+      [inputs.bodyType === 'html' ? 'html' : 'text']: inputs.body,
+      cc: inputs.cc,
+      bcc: inputs.bcc,
+      attachments: inputs.attachments
+    }
+    
+    // Send via configured email service
+    const response = await this.sendViaEmailService(emailData)
+    return { messageId: response.messageId }
+  }
+
+  private async sendTemplate(inputs: any) {
+    const emailData = {
+      to: inputs.to,
+      template_id: inputs.templateId,
+      dynamic_template_data: inputs.variables || {}
+    }
+    
+    const response = await this.sendViaEmailService(emailData)
+    return { messageId: response.messageId }
+  }
+
+  private async sendViaEmailService(emailData: any) {
+    // This would be implemented based on the specific email service
+    // For example, SendGrid, Mailgun, Amazon SES, etc.
+    return { messageId: `email_${Date.now()}` }
+  }
+}
