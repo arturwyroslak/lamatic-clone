@@ -1,0 +1,517 @@
+[
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "slug": "openai",
+    "description": "Leading AI research company providing GPT models, DALL-E, and Whisper",
+    "icon": "/icons/openai.svg",
+    "website": "https://openai.com",
+    "apiKeyRequired": true,
+    "setupInstructions": [
+      "Visit OpenAI platform at platform.openai.com",
+      "Create account or sign in",
+      "Navigate to API keys section",
+      "Create new API key",
+      "Copy and securely store the key"
+    ],
+    "features": ["Text Generation", "Image Generation", "Audio Transcription", "Function Calling", "Vision"],
+    "pricing": {
+      "type": "paid",
+      "plans": [
+        {
+          "name": "Pay-per-use",
+          "price": 0,
+          "currency": "USD",
+          "interval": "usage",
+          "features": ["API Access", "$5 free credits", "Rate limits apply"]
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "gpt-4",
+        "name": "GPT-4",
+        "type": "chat",
+        "contextLength": 8192,
+        "maxTokens": 4096,
+        "inputPricing": 0.03,
+        "outputPricing": 0.06,
+        "features": ["function_calling", "vision"],
+        "capabilities": ["reasoning", "coding", "analysis", "creative_writing"]
+      },
+      {
+        "id": "gpt-4-turbo",
+        "name": "GPT-4 Turbo",
+        "type": "chat",
+        "contextLength": 128000,
+        "maxTokens": 4096,
+        "inputPricing": 0.01,
+        "outputPricing": 0.03,
+        "features": ["function_calling", "vision"],
+        "capabilities": ["reasoning", "coding", "analysis", "long_context"]
+      },
+      {
+        "id": "gpt-3.5-turbo",
+        "name": "GPT-3.5 Turbo",
+        "type": "chat",
+        "contextLength": 16385,
+        "maxTokens": 4096,
+        "inputPricing": 0.0015,
+        "outputPricing": 0.002,
+        "features": ["function_calling"],
+        "capabilities": ["reasoning", "coding", "conversation"]
+      },
+      {
+        "id": "dall-e-3",
+        "name": "DALL-E 3",
+        "type": "image",
+        "contextLength": 1000,
+        "maxTokens": 1000,
+        "inputPricing": 0.04,
+        "outputPricing": 0.04,
+        "features": [],
+        "capabilities": ["image_generation", "high_quality", "style_control"]
+      },
+      {
+        "id": "whisper-1",
+        "name": "Whisper",
+        "type": "audio",
+        "contextLength": 25000000,
+        "maxTokens": 1000,
+        "inputPricing": 0.006,
+        "outputPricing": 0,
+        "features": [],
+        "capabilities": ["speech_to_text", "multilingual", "transcription"]
+      }
+    ]
+  },
+  {
+    "id": "anthropic",
+    "name": "Anthropic",
+    "slug": "anthropic",
+    "description": "AI safety company creating helpful, harmless, and honest AI systems",
+    "icon": "/icons/anthropic.svg",
+    "website": "https://anthropic.com",
+    "apiKeyRequired": true,
+    "setupInstructions": [
+      "Visit Anthropic console at console.anthropic.com",
+      "Create account and verify email",
+      "Navigate to API keys",
+      "Generate new API key",
+      "Store key securely"
+    ],
+    "features": ["Conversational AI", "Long Context", "Analysis", "Safety"],
+    "pricing": {
+      "type": "paid",
+      "plans": [
+        {
+          "name": "Pay-per-use",
+          "price": 0,
+          "currency": "USD",
+          "interval": "usage",
+          "features": ["API Access", "$5 free credits", "Usage-based billing"]
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "claude-3-opus",
+        "name": "Claude 3 Opus",
+        "type": "chat",
+        "contextLength": 200000,
+        "maxTokens": 4096,
+        "inputPricing": 0.015,
+        "outputPricing": 0.075,
+        "features": [],
+        "capabilities": ["reasoning", "analysis", "creative_writing", "long_context"]
+      },
+      {
+        "id": "claude-3-sonnet",
+        "name": "Claude 3 Sonnet",
+        "type": "chat",
+        "contextLength": 200000,
+        "maxTokens": 4096,
+        "inputPricing": 0.003,
+        "outputPricing": 0.015,
+        "features": [],
+        "capabilities": ["reasoning", "analysis", "conversation", "balanced_performance"]
+      },
+      {
+        "id": "claude-3-haiku",
+        "name": "Claude 3 Haiku",
+        "type": "chat",
+        "contextLength": 200000,
+        "maxTokens": 4096,
+        "inputPricing": 0.00025,
+        "outputPricing": 0.00125,
+        "features": [],
+        "capabilities": ["fast_response", "cost_effective", "conversation"]
+      }
+    ]
+  },
+  {
+    "id": "cohere",
+    "name": "Cohere",
+    "slug": "cohere",
+    "description": "Enterprise AI platform for text generation, embeddings, and search",
+    "icon": "/icons/cohere.svg",
+    "website": "https://cohere.com",
+    "apiKeyRequired": true,
+    "setupInstructions": [
+      "Sign up at cohere.com",
+      "Verify your account",
+      "Go to API keys dashboard",
+      "Create production API key",
+      "Configure usage limits"
+    ],
+    "features": ["Text Generation", "Embeddings", "Classification", "Reranking"],
+    "pricing": {
+      "type": "freemium",
+      "plans": [
+        {
+          "name": "Trial",
+          "price": 0,
+          "currency": "USD",
+          "interval": "month",
+          "features": ["100 API calls/month", "All models", "Community support"]
+        },
+        {
+          "name": "Production",
+          "price": 0,
+          "currency": "USD",
+          "interval": "usage",
+          "features": ["Pay per use", "Higher rate limits", "Priority support"]
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "command",
+        "name": "Command",
+        "type": "chat",
+        "contextLength": 4096,
+        "maxTokens": 4096,
+        "inputPricing": 0.015,
+        "outputPricing": 0.015,
+        "features": [],
+        "capabilities": ["text_generation", "conversation", "summarization"]
+      },
+      {
+        "id": "command-light",
+        "name": "Command Light",
+        "type": "chat",
+        "contextLength": 4096,
+        "maxTokens": 4096,
+        "inputPricing": 0.003,
+        "outputPricing": 0.003,
+        "features": [],
+        "capabilities": ["text_generation", "fast_response", "cost_effective"]
+      },
+      {
+        "id": "embed-english-v3.0",
+        "name": "Embed English v3.0",
+        "type": "embedding",
+        "contextLength": 512,
+        "maxTokens": 0,
+        "inputPricing": 0.0001,
+        "outputPricing": 0,
+        "features": [],
+        "capabilities": ["text_embeddings", "semantic_search", "clustering"]
+      }
+    ]
+  },
+  {
+    "id": "huggingface",
+    "name": "Hugging Face",
+    "slug": "huggingface",
+    "description": "Open platform for machine learning models, datasets, and applications",
+    "icon": "/icons/huggingface.svg",
+    "website": "https://huggingface.co",
+    "apiKeyRequired": true,
+    "setupInstructions": [
+      "Create account at huggingface.co",
+      "Go to Settings > Access Tokens",
+      "Create new token with read access",
+      "Copy token for API access",
+      "Choose models from Hub"
+    ],
+    "features": ["Open Source Models", "Model Hub", "Inference API", "AutoNLP"],
+    "pricing": {
+      "type": "freemium",
+      "plans": [
+        {
+          "name": "Free",
+          "price": 0,
+          "currency": "USD",
+          "interval": "month",
+          "features": ["1,000 requests/day", "Community models", "Basic inference"]
+        },
+        {
+          "name": "Pro",
+          "price": 9,
+          "currency": "USD",
+          "interval": "month",
+          "features": ["Higher limits", "Premium models", "Priority support"]
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "microsoft/DialoGPT-medium",
+        "name": "DialoGPT Medium",
+        "type": "chat",
+        "contextLength": 1024,
+        "maxTokens": 1024,
+        "inputPricing": 0,
+        "outputPricing": 0,
+        "features": [],
+        "capabilities": ["conversation", "open_source", "dialogue"]
+      },
+      {
+        "id": "sentence-transformers/all-MiniLM-L6-v2",
+        "name": "All MiniLM L6 v2",
+        "type": "embedding",
+        "contextLength": 256,
+        "maxTokens": 0,
+        "inputPricing": 0,
+        "outputPricing": 0,
+        "features": [],
+        "capabilities": ["sentence_embeddings", "fast", "multilingual"]
+      },
+      {
+        "id": "stabilityai/stable-diffusion-xl-base-1.0",
+        "name": "Stable Diffusion XL",
+        "type": "image",
+        "contextLength": 77,
+        "maxTokens": 77,
+        "inputPricing": 0,
+        "outputPricing": 0,
+        "features": [],
+        "capabilities": ["image_generation", "high_resolution", "open_source"]
+      }
+    ]
+  },
+  {
+    "id": "google-ai",
+    "name": "Google AI",
+    "slug": "google-ai",
+    "description": "Google's AI platform featuring Gemini and PaLM models",
+    "icon": "/icons/google-ai.svg",
+    "website": "https://ai.google.dev",
+    "apiKeyRequired": true,
+    "setupInstructions": [
+      "Visit Google AI Studio",
+      "Sign in with Google account",
+      "Create new project",
+      "Generate API key",
+      "Enable required services"
+    ],
+    "features": ["Multimodal AI", "Code Generation", "Reasoning", "Vision"],
+    "pricing": {
+      "type": "freemium",
+      "plans": [
+        {
+          "name": "Free tier",
+          "price": 0,
+          "currency": "USD",
+          "interval": "month",
+          "features": ["15 requests/minute", "1M tokens/day", "Basic support"]
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "gemini-pro",
+        "name": "Gemini Pro",
+        "type": "chat",
+        "contextLength": 30720,
+        "maxTokens": 2048,
+        "inputPricing": 0.0005,
+        "outputPricing": 0.0015,
+        "features": [],
+        "capabilities": ["reasoning", "code_generation", "multimodal"]
+      },
+      {
+        "id": "gemini-pro-vision",
+        "name": "Gemini Pro Vision",
+        "type": "chat",
+        "contextLength": 12288,
+        "maxTokens": 4096,
+        "inputPricing": 0.0025,
+        "outputPricing": 0.01,
+        "features": ["vision"],
+        "capabilities": ["image_understanding", "multimodal", "reasoning"]
+      }
+    ]
+  },
+  {
+    "id": "mistral",
+    "name": "Mistral AI",
+    "slug": "mistral",
+    "description": "European AI company creating efficient and powerful language models",
+    "icon": "/icons/mistral.svg",
+    "website": "https://mistral.ai",
+    "apiKeyRequired": true,
+    "setupInstructions": [
+      "Create account at console.mistral.ai",
+      "Verify email and complete setup",
+      "Navigate to API keys",
+      "Generate new API key",
+      "Set up billing if needed"
+    ],
+    "features": ["Efficient Models", "Multilingual", "Code Generation", "Function Calling"],
+    "pricing": {
+      "type": "paid",
+      "plans": [
+        {
+          "name": "Pay-as-you-go",
+          "price": 0,
+          "currency": "USD",
+          "interval": "usage",
+          "features": ["Usage-based pricing", "All models", "API access"]
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "mistral-tiny",
+        "name": "Mistral Tiny",
+        "type": "chat",
+        "contextLength": 32000,
+        "maxTokens": 8192,
+        "inputPricing": 0.00025,
+        "outputPricing": 0.00025,
+        "features": [],
+        "capabilities": ["cost_effective", "fast", "conversation"]
+      },
+      {
+        "id": "mistral-small",
+        "name": "Mistral Small",
+        "type": "chat",
+        "contextLength": 32000,
+        "maxTokens": 8192,
+        "inputPricing": 0.002,
+        "outputPricing": 0.006,
+        "features": [],
+        "capabilities": ["balanced", "reasoning", "multilingual"]
+      },
+      {
+        "id": "mistral-medium",
+        "name": "Mistral Medium",
+        "type": "chat",
+        "contextLength": 32000,
+        "maxTokens": 8192,
+        "inputPricing": 0.0027,
+        "outputPricing": 0.0081,
+        "features": ["function_calling"],
+        "capabilities": ["advanced_reasoning", "code_generation", "analysis"]
+      }
+    ]
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity AI",
+    "slug": "perplexity",
+    "description": "AI-powered search and reasoning platform",
+    "icon": "/icons/perplexity.svg",
+    "website": "https://perplexity.ai",
+    "apiKeyRequired": true,
+    "setupInstructions": [
+      "Sign up at perplexity.ai",
+      "Upgrade to Pro account",
+      "Access API documentation",
+      "Generate API key",
+      "Test with sample queries"
+    ],
+    "features": ["Web Search", "Citations", "Real-time Data", "Reasoning"],
+    "pricing": {
+      "type": "paid",
+      "plans": [
+        {
+          "name": "Pro",
+          "price": 20,
+          "currency": "USD",
+          "interval": "month",
+          "features": ["API access", "Higher limits", "Premium models"]
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "llama-2-70b-chat",
+        "name": "Llama 2 70B Chat",
+        "type": "chat",
+        "contextLength": 4096,
+        "maxTokens": 4096,
+        "inputPricing": 0.001,
+        "outputPricing": 0.001,
+        "features": [],
+        "capabilities": ["conversation", "reasoning", "open_source"]
+      },
+      {
+        "id": "codellama-34b-instruct",
+        "name": "Code Llama 34B Instruct",
+        "type": "chat",
+        "contextLength": 16384,
+        "maxTokens": 4096,
+        "inputPricing": 0.001,
+        "outputPricing": 0.001,
+        "features": [],
+        "capabilities": ["code_generation", "programming", "debugging"]
+      }
+    ]
+  },
+  {
+    "id": "replicate",
+    "name": "Replicate",
+    "slug": "replicate",
+    "description": "Platform for running machine learning models in the cloud",
+    "icon": "/icons/replicate.svg",
+    "website": "https://replicate.com",
+    "apiKeyRequired": true,
+    "setupInstructions": [
+      "Create account at replicate.com",
+      "Verify email address",
+      "Go to account settings",
+      "Generate API token",
+      "Add billing method"
+    ],
+    "features": ["Model Hosting", "Image Generation", "Video Processing", "Audio Models"],
+    "pricing": {
+      "type": "paid",
+      "plans": [
+        {
+          "name": "Pay-per-use",
+          "price": 0,
+          "currency": "USD",
+          "interval": "usage",
+          "features": ["Usage-based billing", "All models", "No monthly fees"]
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "stability-ai/stable-diffusion",
+        "name": "Stable Diffusion",
+        "type": "image",
+        "contextLength": 77,
+        "maxTokens": 77,
+        "inputPricing": 0.00236,
+        "outputPricing": 0,
+        "features": [],
+        "capabilities": ["image_generation", "text_to_image", "inpainting"]
+      },
+      {
+        "id": "meta/llama-2-70b-chat",
+        "name": "Llama 2 70B Chat",
+        "type": "chat",
+        "contextLength": 4096,
+        "maxTokens": 4096,
+        "inputPricing": 0.00065,
+        "outputPricing": 0.00275,
+        "features": [],
+        "capabilities": ["conversation", "reasoning", "instruction_following"]
+      }
+    ]
+  }
+]
