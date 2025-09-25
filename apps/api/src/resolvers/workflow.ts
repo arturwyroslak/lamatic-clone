@@ -424,7 +424,7 @@ export const workflowResolvers = {
     workflowUpdated: {
       subscribe: withFilter(
         () => pubsub.asyncIterator(['WORKFLOW_UPDATED', 'WORKFLOW_CREATED', 'WORKFLOW_DELETED', 'WORKFLOW_PUBLISHED']),
-        (payload, variables) => {
+        (payload: any, variables: any) => {
           return payload.workspaceId === variables.workspaceId
         }
       )

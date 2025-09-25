@@ -28,7 +28,6 @@
     "ioredis": "^5.3.2",
     "jsonwebtoken": "^9.0.2",
     "openai": "^4.14.2",
-    "weaviate-ts-client": "^1.5.0",
     "winston": "^3.11.0",
     "zod": "^3.22.4"
   },
