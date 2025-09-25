@@ -1,0 +1,548 @@
+[
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "slug": "openai",
+    "description": "Access GPT-4, GPT-3.5, DALL-E, and Whisper models for text generation, image creation, and audio transcription",
+    "icon": "/icons/openai.svg",
+    "type": "model_provider",
+    "category": "ai",
+    "provider": "openai",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Text Generation", "Image Generation", "Audio Transcription", "Function Calling"],
+    "triggers": ["api_call"],
+    "actions": ["generate_text", "generate_image", "transcribe_audio"],
+    "configSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true, "description": "OpenAI API Key" },
+        "model": { "type": "string", "default": "gpt-4", "options": ["gpt-4", "gpt-3.5-turbo", "dall-e-3"] },
+        "temperature": { "type": "number", "min": 0, "max": 2, "default": 0.7 },
+        "maxTokens": { "type": "number", "min": 1, "max": 4096, "default": 1000 }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": [
+      "Get your API key from OpenAI dashboard",
+      "Add the API key to your credentials",
+      "Configure model parameters"
+    ],
+    "documentation": "https://docs.lamatic.ai/integrations/openai",
+    "examples": []
+  },
+  {
+    "id": "anthropic",
+    "name": "Anthropic",
+    "slug": "anthropic",
+    "description": "Claude AI models for conversational AI, text analysis, and content generation",
+    "icon": "/icons/anthropic.svg",
+    "type": "model_provider",
+    "category": "ai",
+    "provider": "anthropic",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Text Generation", "Conversation", "Analysis", "Long Context"],
+    "triggers": ["api_call"],
+    "actions": ["generate_text", "analyze_content"],
+    "configSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true },
+        "model": { "type": "string", "default": "claude-3-sonnet", "options": ["claude-3-opus", "claude-3-sonnet", "claude-3-haiku"] },
+        "temperature": { "type": "number", "min": 0, "max": 1, "default": 0.7 },
+        "maxTokens": { "type": "number", "min": 1, "max": 4096, "default": 1000 }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Get API key from Anthropic console", "Configure model preferences"],
+    "documentation": "https://docs.lamatic.ai/integrations/anthropic",
+    "examples": []
+  },
+  {
+    "id": "cohere",
+    "name": "Cohere",
+    "slug": "cohere",
+    "description": "Cohere AI models for text generation, embeddings, and classification",
+    "icon": "/icons/cohere.svg",
+    "type": "model_provider",
+    "category": "ai",
+    "provider": "cohere",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Text Generation", "Embeddings", "Classification", "Reranking"],
+    "triggers": ["api_call"],
+    "actions": ["generate_text", "create_embeddings", "classify_text"],
+    "configSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true },
+        "model": { "type": "string", "default": "command", "options": ["command", "command-light", "embed-english-v3.0"] }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Register at Cohere dashboard", "Generate API key"],
+    "documentation": "https://docs.lamatic.ai/integrations/cohere",
+    "examples": []
+  },
+  {
+    "id": "huggingface",
+    "name": "Hugging Face",
+    "slug": "huggingface",
+    "description": "Access thousands of open-source AI models via Hugging Face Inference API",
+    "icon": "/icons/huggingface.svg",
+    "type": "model_provider",
+    "category": "ai",
+    "provider": "huggingface",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Text Generation", "Embeddings", "Image Generation", "Audio Processing"],
+    "triggers": ["api_call"],
+    "actions": ["inference", "feature_extraction"],
+    "configSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true },
+        "model": { "type": "string", "required": true, "description": "Model ID from Hugging Face Hub" }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Create Hugging Face account", "Generate access token"],
+    "documentation": "https://docs.lamatic.ai/integrations/huggingface",
+    "examples": []
+  },
+  {
+    "id": "google-ai",
+    "name": "Google AI",
+    "slug": "google-ai",
+    "description": "Google's Gemini and PaLM models for text generation and multimodal AI",
+    "icon": "/icons/google-ai.svg",
+    "type": "model_provider",
+    "category": "ai",
+    "provider": "google",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Text Generation", "Multimodal", "Code Generation"],
+    "triggers": ["api_call"],
+    "actions": ["generate_text", "generate_code"],
+    "configSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true },
+        "model": { "type": "string", "default": "gemini-pro", "options": ["gemini-pro", "gemini-pro-vision"] }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Enable Google AI Studio", "Generate API key"],
+    "documentation": "https://docs.lamatic.ai/integrations/google-ai",
+    "examples": []
+  },
+  {
+    "id": "azure-openai",
+    "name": "Azure OpenAI",
+    "slug": "azure-openai",
+    "description": "Enterprise-grade OpenAI models hosted on Microsoft Azure",
+    "icon": "/icons/azure-openai.svg",
+    "type": "model_provider",
+    "category": "ai",
+    "provider": "microsoft",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Text Generation", "Embeddings", "Enterprise Security"],
+    "triggers": ["api_call"],
+    "actions": ["generate_text", "create_embeddings"],
+    "configSchema": {
+      "properties": {
+        "endpoint": { "type": "string", "required": true },
+        "apiKey": { "type": "string", "required": true },
+        "deploymentName": { "type": "string", "required": true }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Set up Azure OpenAI resource", "Deploy models", "Get endpoint and key"],
+    "documentation": "https://docs.lamatic.ai/integrations/azure-openai",
+    "examples": []
+  },
+  {
+    "id": "slack",
+    "name": "Slack",
+    "slug": "slack",
+    "description": "Send messages, create channels, and interact with Slack workspaces",
+    "icon": "/icons/slack.svg",
+    "type": "app",
+    "category": "communication",
+    "provider": "slack",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Message Sending", "Channel Management", "User Mentions", "File Sharing"],
+    "triggers": ["message_received", "mention", "reaction_added"],
+    "actions": ["send_message", "create_channel", "upload_file", "set_status"],
+    "configSchema": {
+      "properties": {
+        "botToken": { "type": "string", "required": true },
+        "channel": { "type": "string", "description": "Default channel for messages" }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "botToken": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Create Slack app", "Install to workspace", "Get bot token"],
+    "documentation": "https://docs.lamatic.ai/integrations/slack",
+    "examples": []
+  },
+  {
+    "id": "discord",
+    "name": "Discord",
+    "slug": "discord",
+    "description": "Create Discord bots, send messages, and manage servers",
+    "icon": "/icons/discord.svg",
+    "type": "app",
+    "category": "communication",
+    "provider": "discord",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Bot Commands", "Message Sending", "Server Management", "Voice Integration"],
+    "triggers": ["message", "command", "member_join"],
+    "actions": ["send_message", "create_channel", "ban_user", "assign_role"],
+    "configSchema": {
+      "properties": {
+        "botToken": { "type": "string", "required": true },
+        "guildId": { "type": "string", "description": "Discord server ID" }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "botToken": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Create Discord application", "Create bot user", "Get bot token"],
+    "documentation": "https://docs.lamatic.ai/integrations/discord",
+    "examples": []
+  },
+  {
+    "id": "telegram",
+    "name": "Telegram",
+    "slug": "telegram",
+    "description": "Create Telegram bots and send messages to users and groups",
+    "icon": "/icons/telegram.svg",
+    "type": "app",
+    "category": "communication",
+    "provider": "telegram",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Bot API", "Message Sending", "Inline Keyboards", "File Sharing"],
+    "triggers": ["message", "callback_query", "inline_query"],
+    "actions": ["send_message", "send_photo", "send_document", "answer_callback_query"],
+    "configSchema": {
+      "properties": {
+        "botToken": { "type": "string", "required": true },
+        "chatId": { "type": "string", "description": "Default chat ID" }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "botToken": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Create bot with @BotFather", "Get bot token"],
+    "documentation": "https://docs.lamatic.ai/integrations/telegram",
+    "examples": []
+  },
+  {
+    "id": "whatsapp",
+    "name": "WhatsApp Business",
+    "slug": "whatsapp",
+    "description": "Send WhatsApp messages using WhatsApp Business API",
+    "icon": "/icons/whatsapp.svg",
+    "type": "app",
+    "category": "communication",
+    "provider": "meta",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Message Sending", "Media Sharing", "Templates", "Interactive Messages"],
+    "triggers": ["message_received", "delivery_status"],
+    "actions": ["send_message", "send_template", "send_media"],
+    "configSchema": {
+      "properties": {
+        "accessToken": { "type": "string", "required": true },
+        "phoneNumberId": { "type": "string", "required": true },
+        "webhookVerifyToken": { "type": "string", "required": true }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "accessToken": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Set up WhatsApp Business API", "Get access token"],
+    "documentation": "https://docs.lamatic.ai/integrations/whatsapp",
+    "examples": []
+  },
+  {
+    "id": "email-smtp",
+    "name": "Email (SMTP)",
+    "slug": "email-smtp",
+    "description": "Send emails via SMTP servers like Gmail, Outlook, or custom servers",
+    "icon": "/icons/email.svg",
+    "type": "app",
+    "category": "communication",
+    "provider": "generic",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Email Sending", "HTML Emails", "Attachments", "Templates"],
+    "triggers": ["schedule"],
+    "actions": ["send_email"],
+    "configSchema": {
+      "properties": {
+        "host": { "type": "string", "required": true },
+        "port": { "type": "number", "default": 587 },
+        "secure": { "type": "boolean", "default": false },
+        "username": { "type": "string", "required": true },
+        "password": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "password": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Configure SMTP server settings", "Test email delivery"],
+    "documentation": "https://docs.lamatic.ai/integrations/email-smtp",
+    "examples": []
+  },
+  {
+    "id": "postgresql",
+    "name": "PostgreSQL",
+    "slug": "postgresql",
+    "description": "Connect to PostgreSQL databases for data storage and retrieval",
+    "icon": "/icons/postgresql.svg",
+    "type": "data_source",
+    "category": "database",
+    "provider": "postgresql",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["SQL Queries", "Transactions", "JSON Support", "Full-text Search"],
+    "triggers": ["data_change", "schedule"],
+    "actions": ["execute_query", "insert_data", "update_data", "delete_data"],
+    "configSchema": {
+      "properties": {
+        "host": { "type": "string", "required": true },
+        "port": { "type": "number", "default": 5432 },
+        "database": { "type": "string", "required": true },
+        "username": { "type": "string", "required": true },
+        "password": { "type": "string", "required": true, "sensitive": true },
+        "ssl": { "type": "boolean", "default": false }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "password": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Set up PostgreSQL database", "Create user and permissions"],
+    "documentation": "https://docs.lamatic.ai/integrations/postgresql",
+    "examples": []
+  },
+  {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "slug": "mongodb",
+    "description": "Connect to MongoDB databases for document storage and queries",
+    "icon": "/icons/mongodb.svg",
+    "type": "data_source",
+    "category": "database",
+    "provider": "mongodb",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Document Queries", "Aggregation", "Indexing", "Replication"],
+    "triggers": ["data_change", "schedule"],
+    "actions": ["find_documents", "insert_document", "update_document", "delete_document"],
+    "configSchema": {
+      "properties": {
+        "connectionString": { "type": "string", "required": true, "sensitive": true },
+        "database": { "type": "string", "required": true }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "connectionString": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Set up MongoDB database", "Get connection string"],
+    "documentation": "https://docs.lamatic.ai/integrations/mongodb",
+    "examples": []
+  },
+  {
+    "id": "pinecone",
+    "name": "Pinecone",
+    "slug": "pinecone",
+    "description": "Vector database for similarity search and AI applications",
+    "icon": "/icons/pinecone.svg",
+    "type": "data_source",
+    "category": "database",
+    "provider": "pinecone",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Vector Storage", "Similarity Search", "Metadata Filtering", "Real-time Updates"],
+    "triggers": ["schedule"],
+    "actions": ["upsert_vectors", "query_vectors", "delete_vectors"],
+    "configSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true, "sensitive": true },
+        "environment": { "type": "string", "required": true },
+        "indexName": { "type": "string", "required": true }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Create Pinecone account", "Set up index", "Get API key"],
+    "documentation": "https://docs.lamatic.ai/integrations/pinecone",
+    "examples": []
+  },
+  {
+    "id": "weaviate",
+    "name": "Weaviate",
+    "slug": "weaviate",
+    "description": "Open-source vector database with GraphQL API",
+    "icon": "/icons/weaviate.svg",
+    "type": "data_source",
+    "category": "database",
+    "provider": "weaviate",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Vector Search", "GraphQL API", "Schema Management", "Multi-tenancy"],
+    "triggers": ["schedule"],
+    "actions": ["create_object", "query_objects", "update_object", "delete_object"],
+    "configSchema": {
+      "properties": {
+        "url": { "type": "string", "required": true },
+        "apiKey": { "type": "string", "sensitive": true },
+        "className": { "type": "string", "required": true }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Deploy Weaviate instance", "Configure schema"],
+    "documentation": "https://docs.lamatic.ai/integrations/weaviate",
+    "examples": []
+  },
+  {
+    "id": "redis",
+    "name": "Redis",
+    "slug": "redis",
+    "description": "In-memory data store for caching and session management",
+    "icon": "/icons/redis.svg",
+    "type": "data_source",
+    "category": "database",
+    "provider": "redis",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Key-Value Storage", "Pub/Sub", "Streams", "Modules"],
+    "triggers": ["key_event", "schedule"],
+    "actions": ["set_key", "get_key", "delete_key", "publish_message"],
+    "configSchema": {
+      "properties": {
+        "host": { "type": "string", "required": true },
+        "port": { "type": "number", "default": 6379 },
+        "password": { "type": "string", "sensitive": true },
+        "database": { "type": "number", "default": 0 }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "password": { "type": "string", "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Set up Redis server", "Configure authentication"],
+    "documentation": "https://docs.lamatic.ai/integrations/redis",
+    "examples": []
+  },
+  {
+    "id": "supabase",
+    "name": "Supabase",
+    "slug": "supabase",
+    "description": "Open-source Firebase alternative with PostgreSQL database",
+    "icon": "/icons/supabase.svg",
+    "type": "data_source",
+    "category": "database",
+    "provider": "supabase",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Real-time Database", "Authentication", "Storage", "Edge Functions"],
+    "triggers": ["data_change", "auth_event"],
+    "actions": ["insert_data", "update_data", "delete_data", "call_function"],
+    "configSchema": {
+      "properties": {
+        "url": { "type": "string", "required": true },
+        "anonKey": { "type": "string", "required": true, "sensitive": true },
+        "serviceKey": { "type": "string", "sensitive": true }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "anonKey": { "type": "string", "required": true, "sensitive": true },
+        "serviceKey": { "type": "string", "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Create Supabase project", "Get API keys"],
+    "documentation": "https://docs.lamatic.ai/integrations/supabase",
+    "examples": []
+  },
+  {
+    "id": "airtable",
+    "name": "Airtable",
+    "slug": "airtable",
+    "description": "Cloud-based database and spreadsheet hybrid platform",
+    "icon": "/icons/airtable.svg",
+    "type": "data_source",
+    "category": "database",
+    "provider": "airtable",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Base Management", "Record Operations", "Attachments", "Views"],
+    "triggers": ["record_created", "record_updated"],
+    "actions": ["create_record", "update_record", "delete_record", "list_records"],
+    "configSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true, "sensitive": true },
+        "baseId": { "type": "string", "required": true },
+        "tableName": { "type": "string", "required": true }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": ["Get Airtable API key", "Find base and table IDs"],
+    "documentation": "https://docs.lamatic.ai/integrations/airtable",
+    "examples": []
+  }
+]
