@@ -1241,6 +1241,11 @@
 [7m3[0m import { cn } from "@/lib/utils"
 [7m [0m [91m                   ~~~~~~~~~~~~~[0m
 
+[96m../../apps/web/src/components/ui/toast.tsx[0m:[93m8[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/lib/utils' or its corresponding type declarations.
+
+[7m8[0m import { cn } from "@/lib/utils"
+[7m [0m [91m                   ~~~~~~~~~~~~~[0m
+
 [96m../../apps/web/src/components/workflows/workflow-list.tsx[0m:[93m1[0m:[93m90[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui' or its corresponding type declarations.
 
 [7m1[0m import { Card, CardContent, CardDescription, CardHeader, CardTitle, Badge, Button } from '@/components/ui'
@@ -1580,8 +1585,8 @@
 [7m 54[0m       })
 [7m   [0m [91m~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m149[0m:[93m3[0m
-    [7m149[0m   id: string
+  [96msrc/types.ts[0m:[93m211[0m:[93m3[0m
+    [7m211[0m   id: string
     [7m   [0m [96m  ~~[0m
     'id' is declared here.
 
@@ -1603,8 +1608,8 @@
 [7m 60[0m       })
 [7m   [0m [91m~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m149[0m:[93m3[0m
-    [7m149[0m   id: string
+  [96msrc/types.ts[0m:[93m211[0m:[93m3[0m
+    [7m211[0m   id: string
     [7m   [0m [96m  ~~[0m
     'id' is declared here.
 
@@ -1684,9 +1689,9 @@
 [7m132[0m       model: config.model,
 [7m   [0m [91m      ~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m8[0m:[93m3[0m
-    [7m8[0m   model: ModelConfig
-    [7m [0m [96m  ~~~~~[0m
+  [96msrc/types.ts[0m:[93m70[0m:[93m3[0m
+    [7m70[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
     The expected type comes from property 'model' which is declared here on type 'Agent'
 
 [96msrc/engine.ts[0m:[93m300[0m:[93m29[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: string; description?: string | undefined; type: AgentType; model?: string | ModelConfig | undefined; systemPrompt: string; tools: string[]; memory?: MemoryConfig | undefined; config?: AgentSpecificConfig | undefined; metadata?: Record<...> | undefined; } | { ...; } | { ...; }' is not assignable to parameter of type 'AgentConfig'.
@@ -1730,6 +1735,16 @@
 [7m [0m [91m              ~~~~~~~~~[0m
 
 [96msrc/index.ts[0m:[93m8[0m:[93m1[0m - [91merror[0m[90m TS2308: [0mModule './types' has already exported a member named 'AgentTemplate'. Consider explicitly re-exporting to resolve the ambiguity.
+
+[7m8[0m export * from './templates'
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/index.ts[0m:[93m8[0m:[93m1[0m - [91merror[0m[90m TS2308: [0mModule './types' has already exported a member named 'WorkflowConnection'. Consider explicitly re-exporting to resolve the ambiguity.
+
+[7m8[0m export * from './templates'
+[7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/index.ts[0m:[93m8[0m:[93m1[0m - [91merror[0m[90m TS2308: [0mModule './types' has already exported a member named 'WorkflowNode'. Consider explicitly re-exporting to resolve the ambiguity.
 
 [7m8[0m export * from './templates'
 [7m [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
@@ -1884,9 +1899,9 @@
 [7m151[0m       type: 'content',
 [7m   [0m [91m      ~~~~[0m
 
-  [96msrc/types.ts[0m:[93m77[0m:[93m3[0m
-    [7m77[0m   type: AgentType
-    [7m  [0m [96m  ~~~~[0m
+  [96msrc/types.ts[0m:[93m139[0m:[93m3[0m
+    [7m139[0m   type: AgentType
+    [7m   [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
 [96msrc/templates/agent-templates.ts[0m:[93m179[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
@@ -1924,9 +1939,9 @@
 [7m247[0m       type: 'strategy',
 [7m   [0m [91m      ~~~~[0m
 
-  [96msrc/types.ts[0m:[93m77[0m:[93m3[0m
-    [7m77[0m   type: AgentType
-    [7m  [0m [96m  ~~~~[0m
+  [96msrc/types.ts[0m:[93m139[0m:[93m3[0m
+    [7m139[0m   type: AgentType
+    [7m   [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
 [96msrc/templates/agent-templates.ts[0m:[93m271[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"marketing"' is not assignable to type 'AgentType'.
@@ -1934,9 +1949,9 @@
 [7m271[0m       type: 'marketing',
 [7m   [0m [91m      ~~~~[0m
 
-  [96msrc/types.ts[0m:[93m77[0m:[93m3[0m
-    [7m77[0m   type: AgentType
-    [7m  [0m [96m  ~~~~[0m
+  [96msrc/types.ts[0m:[93m139[0m:[93m3[0m
+    [7m139[0m   type: AgentType
+    [7m   [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
 [96msrc/templates/agent-templates.ts[0m:[93m295[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"optimization"' is not assignable to type 'AgentType'.
@@ -1944,9 +1959,9 @@
 [7m295[0m       type: 'optimization',
 [7m   [0m [91m      ~~~~[0m
 
-  [96msrc/types.ts[0m:[93m77[0m:[93m3[0m
-    [7m77[0m   type: AgentType
-    [7m  [0m [96m  ~~~~[0m
+  [96msrc/types.ts[0m:[93m139[0m:[93m3[0m
+    [7m139[0m   type: AgentType
+    [7m   [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
 [96msrc/templates/agent-templates.ts[0m:[93m319[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"translation"' is not assignable to type 'AgentType'.
@@ -1954,9 +1969,9 @@
 [7m319[0m       type: 'translation',
 [7m   [0m [91m      ~~~~[0m
 
-  [96msrc/types.ts[0m:[93m77[0m:[93m3[0m
-    [7m77[0m   type: AgentType
-    [7m  [0m [96m  ~~~~[0m
+  [96msrc/types.ts[0m:[93m139[0m:[93m3[0m
+    [7m139[0m   type: AgentType
+    [7m   [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
 [96msrc/templates/agent-templates.ts[0m:[93m343[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"research"' is not assignable to type 'AgentType'.
@@ -1964,9 +1979,9 @@
 [7m343[0m       type: 'research',
 [7m   [0m [91m      ~~~~[0m
 
-  [96msrc/types.ts[0m:[93m77[0m:[93m3[0m
-    [7m77[0m   type: AgentType
-    [7m  [0m [96m  ~~~~[0m
+  [96msrc/types.ts[0m:[93m139[0m:[93m3[0m
+    [7m139[0m   type: AgentType
+    [7m   [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
 [96msrc/templates/agent-templates.ts[0m:[93m367[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"productivity"' is not assignable to type 'AgentType'.
@@ -1974,9 +1989,9 @@
 [7m367[0m       type: 'productivity',
 [7m   [0m [91m      ~~~~[0m
 
-  [96msrc/types.ts[0m:[93m77[0m:[93m3[0m
-    [7m77[0m   type: AgentType
-    [7m  [0m [96m  ~~~~[0m
+  [96msrc/types.ts[0m:[93m139[0m:[93m3[0m
+    [7m139[0m   type: AgentType
+    [7m   [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
 [96msrc/templates/agent-templates.ts[0m:[93m391[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"management"' is not assignable to type 'AgentType'.
@@ -1984,9 +1999,9 @@
 [7m391[0m       type: 'management',
 [7m   [0m [91m      ~~~~[0m
 
-  [96msrc/types.ts[0m:[93m77[0m:[93m3[0m
-    [7m77[0m   type: AgentType
-    [7m  [0m [96m  ~~~~[0m
+  [96msrc/types.ts[0m:[93m139[0m:[93m3[0m
+    [7m139[0m   type: AgentType
+    [7m   [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
 [96msrc/templates/index.ts[0m:[93m4[0m:[93m15[0m - [91merror[0m[90m TS2307: [0mCannot find module './prompt-templates' or its corresponding type declarations.
@@ -2214,7 +2229,7 @@
     [7m  [0m [96m  ~~~~~~[0m
     The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-workflow-templates.ts[0m:[93m559[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '"file_upload"' is not assignable to type '"webhook" | "manual" | "event" | "schedule"'.
+[96msrc/templates/industry-workflow-templates.ts[0m:[93m559[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '"file_upload"' is not assignable to type '"manual" | "schedule" | "webhook" | "event"'.
 
 [7m559[0m         type: 'file_upload',
 [7m   [0m [91m        ~~~~[0m
@@ -2224,7 +2239,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'WorkflowTrigger'
 
-[96msrc/templates/industry-workflow-templates.ts[0m:[93m662[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '"form_submission"' is not assignable to type '"webhook" | "manual" | "event" | "schedule"'.
+[96msrc/templates/industry-workflow-templates.ts[0m:[93m662[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '"form_submission"' is not assignable to type '"manual" | "schedule" | "webhook" | "event"'.
 
 [7m662[0m         type: 'form_submission',
 [7m   [0m [91m        ~~~~[0m
@@ -2233,6 +2248,11 @@
     [7m54[0m   type: 'webhook' | 'schedule' | 'event' | 'manual'
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'WorkflowTrigger'
+
+[96msrc/templates/template-manager.ts[0m:[93m519[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'metadata' does not exist on type 'Omit<WorkflowTemplate, "id" | "metadata" | "stats">'.
+
+[7m519[0m         ...template.metadata
+[7m   [0m [91m                    ~~~~~~~~[0m
 
 [96msrc/tools/advanced-tools.ts[0m:[93m2[0m:[93m16[0m - [91merror[0m[90m TS2305: [0mModule '"../types"' has no exported member 'ToolInput'.
 
@@ -2456,24 +2476,29 @@
 [7m515[0m     name: 'font_identifier',
 [7m   [0m [91m    ~~~~[0m
 
-[96msrc/types.ts[0m:[93m44[0m:[93m3[0m - [91merror[0m[90m TS2300: [0mDuplicate identifier 'outputFormat'.
+[96msrc/types.ts[0m:[93m35[0m:[93m17[0m - [91merror[0m[90m TS2304: [0mCannot find name 'RetryPolicy'.
 
-[7m44[0m   outputFormat?: 'plain' | 'markdown' | 'json' | 'xml'
-[7m  [0m [91m  ~~~~~~~~~~~~[0m
+[7m35[0m   retryPolicy?: RetryPolicy
+[7m  [0m [91m                ~~~~~~~~~~~[0m
 
-[96msrc/types.ts[0m:[93m65[0m:[93m3[0m - [91merror[0m[90m TS2300: [0mDuplicate identifier 'outputFormat'.
+[96msrc/types.ts[0m:[93m106[0m:[93m3[0m - [91merror[0m[90m TS2300: [0mDuplicate identifier 'outputFormat'.
 
-[7m65[0m   outputFormat?: string
-[7m  [0m [91m  ~~~~~~~~~~~~[0m
+[7m106[0m   outputFormat?: 'plain' | 'markdown' | 'json' | 'xml'
+[7m   [0m [91m  ~~~~~~~~~~~~[0m
 
-[96msrc/types.ts[0m:[93m65[0m:[93m3[0m - [91merror[0m[90m TS2717: [0mSubsequent property declarations must have the same type.  Property 'outputFormat' must be of type '"json" | "plain" | "markdown" | "xml" | undefined', but here has type 'string | undefined'.
+[96msrc/types.ts[0m:[93m127[0m:[93m3[0m - [91merror[0m[90m TS2300: [0mDuplicate identifier 'outputFormat'.
 
-[7m65[0m   outputFormat?: string
-[7m  [0m [91m  ~~~~~~~~~~~~[0m
+[7m127[0m   outputFormat?: string
+[7m   [0m [91m  ~~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m44[0m:[93m3[0m
-    [7m44[0m   outputFormat?: 'plain' | 'markdown' | 'json' | 'xml'
-    [7m  [0m [96m  ~~~~~~~~~~~~[0m
+[96msrc/types.ts[0m:[93m127[0m:[93m3[0m - [91merror[0m[90m TS2717: [0mSubsequent property declarations must have the same type.  Property 'outputFormat' must be of type '"plain" | "markdown" | "json" | "xml" | undefined', but here has type 'string | undefined'.
+
+[7m127[0m   outputFormat?: string
+[7m   [0m [91m  ~~~~~~~~~~~~[0m
+
+  [96msrc/types.ts[0m:[93m106[0m:[93m3[0m
+    [7m106[0m   outputFormat?: 'plain' | 'markdown' | 'json' | 'xml'
+    [7m   [0m [96m  ~~~~~~~~~~~~[0m
     'outputFormat' was also declared here.
 
 [96msrc/workflows/index.ts[0m:[93m3[0m:[93m15[0m - [91merror[0m[90m TS2307: [0mCannot find module './executor' or its corresponding type declarations.
@@ -2542,6 +2567,49 @@
 
 [7m17[0m   public readonly config = {
 [7m  [0m [91m                  ~~~~~~[0m
+
+[96m../integrations/src/connectors/databases/weaviate-enhanced.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../types"' has no exported member 'IntegrationConnector'.
+
+[7m1[0m import { IntegrationConnector, ConnectionConfig, ExecutionContext, ActionResult } from '../../types'
+[7m [0m [91m         ~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../integrations/src/connectors/databases/weaviate-enhanced.ts[0m:[93m1[0m:[93m32[0m - [91merror[0m[90m TS2305: [0mModule '"../../types"' has no exported member 'ConnectionConfig'.
+
+[7m1[0m import { IntegrationConnector, ConnectionConfig, ExecutionContext, ActionResult } from '../../types'
+[7m [0m [91m                               ~~~~~~~~~~~~~~~~[0m
+
+[96m../integrations/src/connectors/databases/weaviate-enhanced.ts[0m:[93m47[0m:[93m14[0m - [91merror[0m[90m TS2654: [0mNon-abstract class 'WeaviateEnhancedConnector' is missing implementations for the following members of 'BaseConnector<ConnectorConfig>': 'initialize', 'getActions'.
+
+[7m47[0m export class WeaviateEnhancedConnector extends BaseConnector implements IntegrationConnector {
+[7m  [0m [91m             ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../integrations/src/connectors/databases/weaviate-enhanced.ts[0m:[93m55[0m:[93m11[0m - [91merror[0m[90m TS2416: [0mProperty 'config' in type 'WeaviateEnhancedConnector' is not assignable to the same property in base type 'BaseConnector<ConnectorConfig>'.
+  Type 'WeaviateConfig' is missing the following properties from type 'ConnectorConfig': id, name
+
+[7m55[0m   private config: WeaviateConfig
+[7m  [0m [91m          ~~~~~~[0m
+
+[96m../integrations/src/connectors/databases/weaviate-enhanced.ts[0m:[93m58[0m:[93m5[0m - [91merror[0m[90m TS2554: [0mExpected 3 arguments, but got 0.
+
+[7m58[0m     super()
+[7m  [0m [91m    ~~~~~[0m
+
+  [96m../integrations/src/connectors/base.ts[0m:[93m26[0m:[93m5[0m
+    [7m26[0m     public readonly type: string,
+    [7m  [0m [96m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'type' was not provided.
+
+[96m../integrations/src/connectors/databases/weaviate-enhanced.ts[0m:[93m477[0m:[93m55[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Record<string, any>' is not assignable to parameter of type 'VectorSearchOptions'.
+  Type 'Record<string, any>' is missing the following properties from type 'VectorSearchOptions': query, className
+
+[7m477[0m         const hybridResults = await this.hybridSearch(params)
+[7m   [0m [91m                                                      ~~~~~~[0m
+
+[96m../integrations/src/connectors/databases/weaviate-enhanced.ts[0m:[93m481[0m:[93m59[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Record<string, any>' is not assignable to parameter of type 'VectorSearchOptions'.
+  Type 'Record<string, any>' is missing the following properties from type 'VectorSearchOptions': query, className
+
+[7m481[0m         const semanticResults = await this.semanticSearch(params)
+[7m   [0m [91m                                                          ~~~~~~[0m
 
 [96m../integrations/src/connectors/databases/weaviate.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"../../types"' has no exported member 'IntegrationConnector'.
 
@@ -2946,7 +3014,7 @@
     [7m  [0m [96m  ~~~~~~~[0m
     The expected type comes from property 'pricing' which is declared here on type 'ModelProvider'
 
-[96m../integrations/src/registry.ts[0m:[93m303[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
+[96m../integrations/src/registry.ts[0m:[93m303[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m303[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -2956,7 +3024,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../integrations/src/registry.ts[0m:[93m314[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
+[96m../integrations/src/registry.ts[0m:[93m314[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m314[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -2966,7 +3034,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../integrations/src/registry.ts[0m:[93m325[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
+[96m../integrations/src/registry.ts[0m:[93m325[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m325[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -2976,7 +3044,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../integrations/src/registry.ts[0m:[93m336[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"image_generation"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
+[96m../integrations/src/registry.ts[0m:[93m336[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"image_generation"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m336[0m             type: 'image_generation' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -2996,7 +3064,7 @@
     [7m  [0m [96m  ~~~~~~~[0m
     The expected type comes from property 'pricing' which is declared here on type 'ModelProvider'
 
-[96m../integrations/src/registry.ts[0m:[93m364[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
+[96m../integrations/src/registry.ts[0m:[93m364[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m364[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -3006,7 +3074,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../integrations/src/registry.ts[0m:[93m375[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
+[96m../integrations/src/registry.ts[0m:[93m375[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m375[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -3016,7 +3084,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../integrations/src/registry.ts[0m:[93m386[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
+[96m../integrations/src/registry.ts[0m:[93m386[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m386[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -3117,7 +3185,7 @@
 [7m   [0m [91m                     ~~~~[0m
 
 
-Found 532 errors in 73 files.
+Found 544 errors in 76 files.
 
 Errors  Files
      1  ../../apps/web/app/deployments/page.tsx[90m:1[0m
@@ -3164,6 +3232,7 @@ Errors  Files
      1  ../../apps/web/src/components/ui/separator.tsx[90m:6[0m
      1  ../../apps/web/src/components/ui/tabs.tsx[90m:6[0m
      1  ../../apps/web/src/components/ui/textarea.tsx[90m:3[0m
+     1  ../../apps/web/src/components/ui/toast.tsx[90m:8[0m
      1  ../../apps/web/src/components/workflows/workflow-list.tsx[90m:1[0m
      1  ../../apps/web/src/hooks/use-integrations.ts[90m:2[0m
     57  ../../apps/web/src/store/flow-store.ts[90m:95[0m
@@ -3173,21 +3242,23 @@ Errors  Files
      3  src/collaboration/index.ts[90m:3[0m
      3  src/engine.ts[90m:4[0m
      4  src/executor.ts[90m:112[0m
-    17  src/index.ts[90m:4[0m
+    19  src/index.ts[90m:4[0m
      2  src/memory/index.ts[90m:2[0m
      2  src/memory/manager.ts[90m:3[0m
     16  src/templates/agent-templates.ts[90m:35[0m
      3  src/templates/index.ts[90m:4[0m
     21  src/templates/industry-templates.ts[90m:16[0m
      2  src/templates/industry-workflow-templates.ts[90m:559[0m
+     1  src/templates/template-manager.ts[90m:519[0m
     20  src/tools/advanced-tools.ts[90m:2[0m
      5  src/tools/document-processor.ts[90m:2[0m
      6  src/tools/index.ts[90m:4[0m
     11  src/tools/specialized-tools.ts[90m:2[0m
-     3  src/types.ts[90m:44[0m
+     4  src/types.ts[90m:35[0m
      5  src/workflows/index.ts[90m:3[0m
      4  ../integrations/src/connectors/ai-models/openai.ts[90m:1[0m
      4  ../integrations/src/connectors/communication/slack.ts[90m:1[0m
+     7  ../integrations/src/connectors/databases/weaviate-enhanced.ts[90m:1[0m
      5  ../integrations/src/connectors/databases/weaviate.ts[90m:1[0m
     57  ../integrations/src/index.ts[90m:5[0m
      2  ../integrations/src/manager.ts[90m:55[0m

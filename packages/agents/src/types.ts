@@ -77,7 +77,23 @@ export interface Agent {
   updatedAt: Date
 }
 
-export type AgentType = 'text' | 'chat' | 'multimodal' | 'code' | 'analysis' | 'workflow'
+export type AgentType = 
+  | 'text' 
+  | 'chat' 
+  | 'multimodal' 
+  | 'code' 
+  | 'analysis' 
+  | 'workflow'
+  | 'strategy'
+  | 'marketing'
+  | 'optimization'
+  | 'translation'
+  | 'research'
+  | 'productivity'
+  | 'management'
+  | 'customer-service'
+  | 'content-creation'
+  | 'data-processing'
 
 export interface ModelConfig {
   provider: string
@@ -139,6 +155,8 @@ export interface AgentConfig {
   type: AgentType
   model: ModelConfig | string  // Allow both ModelConfig object and string model ID
   systemPrompt: string
+  temperature?: number  // Model temperature parameter
+  maxTokens?: number   // Maximum tokens for generation
   tools?: string[]
   memory?: MemoryConfig
   config?: AgentSpecificConfig
