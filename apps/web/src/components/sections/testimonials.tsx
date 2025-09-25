@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@lamatic/ui'
+import { Card, CardContent } from '@/components/ui/card'
 
 const testimonials = [
   {

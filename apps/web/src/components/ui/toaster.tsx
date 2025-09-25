@@ -1,1 +1,5 @@
-export { Toaster } from '@lamatic/ui'
+import * as React from "react"
+
+export function Toaster() {
+  return <div id="toaster-container" />
+}

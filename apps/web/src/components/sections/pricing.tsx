@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Badge } from '@lamatic/ui'
+import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Badge } from '@/components/ui'
 import { Check } from 'lucide-react'
 
 const plans = [

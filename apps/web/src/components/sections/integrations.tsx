@@ -1,4 +1,4 @@
-import { Badge } from '@lamatic/ui'
+import { Badge } from '@/components/ui/badge'
 
 const integrations = [
   { name: 'OpenAI', category: 'AI Models' },

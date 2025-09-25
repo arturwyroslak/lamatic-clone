@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, Badge, Button } from '@lamatic/ui'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, Badge, Button } from '@/components/ui'
 import { Play, Pause, Settings, MoreVertical } from 'lucide-react'
 
 const workflows = [

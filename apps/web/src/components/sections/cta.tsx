@@ -1,4 +1,4 @@
-import { Button } from '@lamatic/ui'
+import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
 export function CTA() {
