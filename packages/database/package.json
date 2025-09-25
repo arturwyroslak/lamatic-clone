@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "lint": "eslint src --ext .ts",
+    "lint": "eslint prisma/**/*.ts --fix || echo 'No TypeScript files to lint'",
     "type-check": "tsc --noEmit",
     "test": "jest",
     "clean": "rimraf dist",

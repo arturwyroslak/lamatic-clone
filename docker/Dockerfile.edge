@@ -1,0 +1,48 @@
+# Multi-stage build for Edge functions
+FROM node:18.17-alpine AS base
+
+# Install dependencies only when needed
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+COPY apps/edge/package*.json ./apps/edge/
+COPY packages/*/package.json ./packages/*/
+
+# Install dependencies
+RUN npm ci --omit=dev
+
+# Build stage
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# Build the edge functions
+RUN npm run build --workspace=@lamatic/edge
+
+# Production image
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+
+RUN addgroup --system --gid 1001 edgeuser
+RUN adduser --system --uid 1001 edgeuser
+
+# Copy built application
+COPY --from=builder /app/apps/edge/dist ./apps/edge/dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/apps/edge/package.json ./apps/edge/package.json
+
+USER edgeuser
+
+EXPOSE 8787
+
+ENV PORT 8787
+ENV HOSTNAME "0.0.0.0"
+
+CMD ["npm", "run", "start", "--workspace=@lamatic/edge"]
