@@ -104,7 +104,7 @@ export const userResolvers = {
         include: {
           workspace: true
         }
-      }).then(results => results.map(r => r.workspace))
+      }).then((results: any) => results.map((r: any) => r.workspace))
     },
 
     createdWorkflows: async (parent: any) => {

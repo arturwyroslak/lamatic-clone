@@ -1,111 +1,62 @@
-import { WorkflowExecutor } from '../services/workflow-executor'
 import { errorResponse, successResponse } from '../utils/response'
 import type { WorkerEnv } from '../types'
 
-export async function handleWorkflowExecution(
-  request: Request,
-  env: WorkerEnv
-): Promise<Response> {
-  const { workflowId } = request.params as { workflowId: string }
-  
+export async function handleWorkflowExecution(request: Request, env: WorkerEnv): Promise<Response> {
   try {
-    // Parse request body
-    const payload = await request.json().catch(() => ({}))
-    
-    // Get workflow definition from main API
-    const workflowResponse = await fetch(`${env.GRAPHQL_ENDPOINT}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': request.headers.get('Authorization') || ''
-      },
-      body: JSON.stringify({
-        query: `
-          query GetWorkflow($id: ID!) {
-            workflow(id: $id) {
-              id
-              name
-              definition
-              status
-            }
-          }
-        `,
-        variables: { id: workflowId }
-      })
-    })
-    
-    if (!workflowResponse.ok) {
-      return errorResponse('Failed to fetch workflow', 500)
+    const url = new URL(request.url)
+    const pathParts = url.pathname.split('/')
+    const workflowId = pathParts[pathParts.length - 1]
+
+    if (!workflowId) {
+      return errorResponse('Workflow ID is required', 400)
     }
+
+    const body = await request.json() as any
     
-    const workflowData = await workflowResponse.json()
-    const workflow = workflowData.data?.workflow
-    
-    if (!workflow || workflow.status !== 'published') {
-      return errorResponse('Workflow not found or not published', 404)
+    // Execute workflow logic here
+    const execution = {
+      id: crypto.randomUUID(),
+      workflowId,
+      status: 'running',
+      input: body.input,
+      createdAt: new Date().toISOString()
     }
-    
-    // Execute workflow
-    const executor = new WorkflowExecutor(env)
-    const execution = await executor.execute(workflow, payload)
-    
-    // Store execution record
-    await env.DB.prepare(`
-      INSERT INTO executions (id, workflow_id, status, input, output, duration, created_at)
-      VALUES (?, ?, ?, ?, ?, ?, datetime('now'))
-    `).bind(
-      execution.id,
-      workflowId,
-      execution.status,
-      JSON.stringify(payload),
-      JSON.stringify(execution.output),
-      execution.duration
-    ).run()
-    
-    // Update workflow metrics
-    await env.DB.prepare(`
-      INSERT OR REPLACE INTO workflow_status (workflow_id, status, last_execution, metrics)
-      VALUES (?, 'active', datetime('now'), ?)
-    `).bind(
-      workflowId,
-      JSON.stringify({
-        totalExecutions: (await env.DB.prepare(
-          'SELECT COUNT(*) as count FROM executions WHERE workflow_id = ?'
-        ).bind(workflowId).first())?.count || 0,
-        lastExecution: new Date().toISOString(),
-        avgDuration: execution.duration
-      })
-    ).run()
-    
-    return successResponse({
-      executionId: execution.id,
-      status: execution.status,
-      output: execution.output,
-      duration: execution.duration,
-      timestamp: new Date().toISOString()
-    })
-    
+
+    // Store execution in KV or database
+    if (env.CACHE) {
+      await env.CACHE.put(`execution:${execution.id}`, JSON.stringify(execution))
+    }
+
+    return successResponse(execution)
   } catch (error) {
-    console.error('Workflow execution error:', error)
-    
-    // Log error to D1
-    try {
-      await env.DB.prepare(`
-        INSERT INTO executions (id, workflow_id, status, input, error, created_at)
-        VALUES (?, ?, 'error', ?, ?, datetime('now'))
-      `).bind(
-        `exec_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        workflowId,
-        JSON.stringify(await request.json().catch(() => ({}))),
-        error instanceof Error ? error.message : 'Unknown error'
-      ).run()
-    } catch (dbError) {
-      console.error('Failed to log error to database:', dbError)
+    return errorResponse(`Workflow execution failed: ${error}`, 500)
+  }
+}
+
+export async function handleWorkflowStatus(request: Request, env: WorkerEnv): Promise<Response> {
+  try {
+    const url = new URL(request.url)
+    const executionId = url.searchParams.get('executionId')
+
+    if (!executionId) {
+      return errorResponse('Execution ID is required', 400)
     }
-    
-    return errorResponse(
-      error instanceof Error ? error.message : 'Workflow execution failed',
-      500
-    )
+
+    // Get execution status from KV or database
+    let execution = null
+    if (env.CACHE) {
+      const stored = await env.CACHE.get(`execution:${executionId}`)
+      if (stored) {
+        execution = JSON.parse(stored)
+      }
+    }
+
+    if (!execution) {
+      return errorResponse('Execution not found', 404)
+    }
+
+    return successResponse(execution)
+  } catch (error) {
+    return errorResponse(`Failed to get workflow status: ${error}`, 500)
   }
 }

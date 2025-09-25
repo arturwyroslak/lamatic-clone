@@ -303,7 +303,7 @@ export const workspaceResolvers = {
         }
       })
 
-      return memberships.map(m => ({
+      return memberships.map((m: any) => ({
         user: m.user,
         role: m.role,
         joinedAt: m.createdAt

@@ -16,6 +16,11 @@ const typeDefs = readFileSync(
 
 const schema = buildSchema(typeDefs)
 
+// Initialize Fastify first
+const fastify = Fastify({
+  logger: false,
+})
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -30,45 +35,41 @@ const server = new ApolloServer({
   },
 })
 
-const fastify = Fastify({
-  logger: false,
-})
-
-// Register plugins
-await fastify.register(import('@fastify/cors'), {
-  origin: process.env.CORS_ORIGIN || true,
-  credentials: true,
-})
-
-await fastify.register(import('@fastify/helmet'))
-
-await fastify.register(import('@fastify/rate-limit'), {
-  max: 1000,
-  timeWindow: '1 minute',
-})
-
-// Register Apollo GraphQL
-await server.start()
-await fastify.register(fastifyApollo(server), {
-  context: createContext,
-  path: '/graphql',
-})
-
-// Health check endpoint
-fastify.get('/health', async () => {
-  return { status: 'ok', timestamp: new Date().toISOString() }
-})
-
-// Start server
-const start = async () => {
+async function start() {
   try {
-    const port = parseInt(process.env.PORT || '4000')
+    // Register plugins
+    await fastify.register(import('@fastify/cors'), {
+      origin: process.env.CORS_ORIGIN || true,
+      credentials: true,
+    })
+
+    await fastify.register(import('@fastify/helmet'))
+
+    await fastify.register(import('@fastify/rate-limit'), {
+      max: 1000,
+      timeWindow: '1 minute',
+    })
+
+    // Register Apollo GraphQL
+    await server.start()
+    await fastify.register(fastifyApollo(server), {
+      context: async (request: any) => createContext({ request }),
+      path: '/graphql',
+    })
+
+    // Health check endpoint
+    fastify.get('/health', async () => {
+      return { status: 'ok', timestamp: new Date().toISOString() }
+    })
+
+    // Start server
+    const port = Number(process.env.PORT) || 4000
     const host = process.env.HOST || '0.0.0.0'
-    
+
     await fastify.listen({ port, host })
-    logger.info(`🚀 Server ready at http://${host}:${port}/graphql`)
-  } catch (err) {
-    logger.error('Error starting server:', err)
+    logger.info(`🚀 GraphQL server ready at http://${host}:${port}/graphql`)
+  } catch (error) {
+    logger.error('Error starting server:', error)
     process.exit(1)
   }
 }

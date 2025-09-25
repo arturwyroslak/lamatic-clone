@@ -1,0 +1,531 @@
+
+> @lamatic/agents@1.0.0 build
+> tsc
+
+[96m../../apps/edge/src/handlers/workflow.ts[0m:[93m26[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'CACHE' does not exist on type 'WorkerEnv'.
+
+[7m26[0m     if (env.CACHE) {
+[7m  [0m [91m            ~~~~~[0m
+
+[96m../../apps/edge/src/handlers/workflow.ts[0m:[93m27[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'CACHE' does not exist on type 'WorkerEnv'.
+
+[7m27[0m       await env.CACHE.put(`execution:${execution.id}`, JSON.stringify(execution))
+[7m  [0m [91m                ~~~~~[0m
+
+[96m../../apps/edge/src/handlers/workflow.ts[0m:[93m47[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'CACHE' does not exist on type 'WorkerEnv'.
+
+[7m47[0m     if (env.CACHE) {
+[7m  [0m [91m            ~~~~~[0m
+
+[96m../../apps/edge/src/handlers/workflow.ts[0m:[93m48[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'CACHE' does not exist on type 'WorkerEnv'.
+
+[7m48[0m       const stored = await env.CACHE.get(`execution:${executionId}`)
+[7m  [0m [91m                               ~~~~~[0m
+
+[96m../../apps/edge/src/index.ts[0m:[93m2[0m:[93m36[0m - [91merror[0m[90m TS2307: [0mCannot find module './handlers/graphql' or its corresponding type declarations.
+
+[7m2[0m import { handleGraphQLProxy } from './handlers/graphql'
+[7m [0m [91m                                   ~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/edge/src/index.ts[0m:[93m3[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module './handlers/webhook' or its corresponding type declarations.
+
+[7m3[0m import { handleWebhook } from './handlers/webhook'
+[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/edge/src/index.ts[0m:[93m4[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module './handlers/widget' or its corresponding type declarations.
+
+[7m4[0m import { handleWidget } from './handlers/widget'
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/deployments/page.tsx[0m:[93m1[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/deployments/deployment-dashboard' or its corresponding type declarations.
+
+[7m1[0m import { DeploymentDashboard } from '@/components/deployments/deployment-dashboard'
+[7m [0m [91m                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/integrations/page.tsx[0m:[93m1[0m:[93m32[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/integrations/integration-hub' or its corresponding type declarations.
+
+[7m1[0m import { IntegrationHub } from '@/components/integrations/integration-hub'
+[7m [0m [91m                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/layout.tsx[0m:[93m4[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/providers' or its corresponding type declarations.
+
+[7m4[0m import { Providers } from '@/components/providers'
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/layout.tsx[0m:[93m5[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/layout/header' or its corresponding type declarations.
+
+[7m5[0m import { Header } from '@/components/layout/header'
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/layout.tsx[0m:[93m6[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/layout/sidebar' or its corresponding type declarations.
+
+[7m6[0m import { Sidebar } from '@/components/layout/sidebar'
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/layout.tsx[0m:[93m7[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/toaster' or its corresponding type declarations.
+
+[7m7[0m import { Toaster } from '@/components/ui/toaster'
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/page.tsx[0m:[93m1[0m:[93m22[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/sections/hero' or its corresponding type declarations.
+
+[7m1[0m import { Hero } from '@/components/sections/hero'
+[7m [0m [91m                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/page.tsx[0m:[93m2[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/sections/features' or its corresponding type declarations.
+
+[7m2[0m import { Features } from '@/components/sections/features'
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/page.tsx[0m:[93m3[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/sections/integrations' or its corresponding type declarations.
+
+[7m3[0m import { Integrations } from '@/components/sections/integrations'
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/page.tsx[0m:[93m4[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/sections/testimonials' or its corresponding type declarations.
+
+[7m4[0m import { Testimonials } from '@/components/sections/testimonials'
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/page.tsx[0m:[93m5[0m:[93m25[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/sections/pricing' or its corresponding type declarations.
+
+[7m5[0m import { Pricing } from '@/components/sections/pricing'
+[7m [0m [91m                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/page.tsx[0m:[93m6[0m:[93m21[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/sections/cta' or its corresponding type declarations.
+
+[7m6[0m import { CTA } from '@/components/sections/cta'
+[7m [0m [91m                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/studio/page.tsx[0m:[93m1[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/studio/studio-interface' or its corresponding type declarations.
+
+[7m1[0m import { StudioInterface } from '@/components/studio/studio-interface'
+[7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/workflows/page.tsx[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/workflows/workflow-list' or its corresponding type declarations.
+
+[7m1[0m import { WorkflowList } from '@/components/workflows/workflow-list'
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/app/workflows/page.tsx[0m:[93m2[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/button' or its corresponding type declarations.
+
+[7m2[0m import { Button } from '@/components/ui/button'
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/deployments/deployment-dashboard.tsx[0m:[93m4[0m:[93m58[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/card' or its corresponding type declarations.
+
+[7m4[0m import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+[7m [0m [91m                                                         ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/deployments/deployment-dashboard.tsx[0m:[93m5[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/button' or its corresponding type declarations.
+
+[7m5[0m import { Button } from '@/components/ui/button'
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/deployments/deployment-dashboard.tsx[0m:[93m6[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/badge' or its corresponding type declarations.
+
+[7m6[0m import { Badge } from '@/components/ui/badge'
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/deployments/deployment-dashboard.tsx[0m:[93m7[0m:[93m58[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/tabs' or its corresponding type declarations.
+
+[7m7[0m import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+[7m [0m [91m                                                         ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/deployments/deployment-dashboard.tsx[0m:[93m8[0m:[93m28[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/scroll-area' or its corresponding type declarations.
+
+[7m8[0m import { ScrollArea } from '@/components/ui/scroll-area'
+[7m [0m [91m                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/deployments/deployment-dashboard.tsx[0m:[93m9[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/separator' or its corresponding type declarations.
+
+[7m9[0m import { Separator } from '@/components/ui/separator'
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/deployments/deployment-dashboard.tsx[0m:[93m10[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/progress' or its corresponding type declarations.
+
+[7m10[0m import { Progress } from '@/components/ui/progress'
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/layout/sidebar.tsx[0m:[93m3[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/lib/utils' or its corresponding type declarations.
+
+[7m3[0m import { cn } from '@/lib/utils'
+[7m [0m [91m                   ~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/layout/sidebar.tsx[0m:[93m4[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/button' or its corresponding type declarations.
+
+[7m4[0m import { Button } from '@/components/ui/button'
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/layout/sidebar.tsx[0m:[93m5[0m:[93m28[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/scroll-area' or its corresponding type declarations.
+
+[7m5[0m import { ScrollArea } from '@/components/ui/scroll-area'
+[7m [0m [91m                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/layout/sidebar.tsx[0m:[93m6[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/separator' or its corresponding type declarations.
+
+[7m6[0m import { Separator } from '@/components/ui/separator'
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/providers/index.tsx[0m:[93m4[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module 'next-themes' or its corresponding type declarations.
+
+[7m4[0m import { ThemeProvider } from 'next-themes'
+[7m [0m [91m                              ~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/providers/index.tsx[0m:[93m6[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/lib/apollo-client' or its corresponding type declarations.
+
+[7m6[0m import { apolloClient } from '@/lib/apollo-client'
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/agent-manager.tsx[0m:[93m4[0m:[93m58[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/card' or its corresponding type declarations.
+
+[7m4[0m import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+[7m [0m [91m                                                         ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/agent-manager.tsx[0m:[93m5[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/button' or its corresponding type declarations.
+
+[7m5[0m import { Button } from '@/components/ui/button'
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/agent-manager.tsx[0m:[93m6[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/badge' or its corresponding type declarations.
+
+[7m6[0m import { Badge } from '@/components/ui/badge'
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/agent-manager.tsx[0m:[93m7[0m:[93m58[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/tabs' or its corresponding type declarations.
+
+[7m7[0m import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+[7m [0m [91m                                                         ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/agent-manager.tsx[0m:[93m8[0m:[93m28[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/scroll-area' or its corresponding type declarations.
+
+[7m8[0m import { ScrollArea } from '@/components/ui/scroll-area'
+[7m [0m [91m                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/agent-manager.tsx[0m:[93m9[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/input' or its corresponding type declarations.
+
+[7m9[0m import { Input } from '@/components/ui/input'
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/agent-manager.tsx[0m:[93m10[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/label' or its corresponding type declarations.
+
+[7m10[0m import { Label } from '@/components/ui/label'
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/agent-manager.tsx[0m:[93m11[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/textarea' or its corresponding type declarations.
+
+[7m11[0m import { Textarea } from '@/components/ui/textarea'
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/agent-manager.tsx[0m:[93m12[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/separator' or its corresponding type declarations.
+
+[7m12[0m import { Separator } from '@/components/ui/separator'
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/context-manager.tsx[0m:[93m4[0m:[93m58[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/card' or its corresponding type declarations.
+
+[7m4[0m import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+[7m [0m [91m                                                         ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/context-manager.tsx[0m:[93m5[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/button' or its corresponding type declarations.
+
+[7m5[0m import { Button } from '@/components/ui/button'
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/context-manager.tsx[0m:[93m6[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/badge' or its corresponding type declarations.
+
+[7m6[0m import { Badge } from '@/components/ui/badge'
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/context-manager.tsx[0m:[93m7[0m:[93m58[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/tabs' or its corresponding type declarations.
+
+[7m7[0m import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+[7m [0m [91m                                                         ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/context-manager.tsx[0m:[93m8[0m:[93m28[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/scroll-area' or its corresponding type declarations.
+
+[7m8[0m import { ScrollArea } from '@/components/ui/scroll-area'
+[7m [0m [91m                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/context-manager.tsx[0m:[93m9[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/input' or its corresponding type declarations.
+
+[7m9[0m import { Input } from '@/components/ui/input'
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/context-manager.tsx[0m:[93m10[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/label' or its corresponding type declarations.
+
+[7m10[0m import { Label } from '@/components/ui/label'
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/context-manager.tsx[0m:[93m11[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/textarea' or its corresponding type declarations.
+
+[7m11[0m import { Textarea } from '@/components/ui/textarea'
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/context-manager.tsx[0m:[93m12[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/separator' or its corresponding type declarations.
+
+[7m12[0m import { Separator } from '@/components/ui/separator'
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/context-manager.tsx[0m:[93m13[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/progress' or its corresponding type declarations.
+
+[7m13[0m import { Progress } from '@/components/ui/progress'
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/context-manager.tsx[0m:[93m331[0m:[93m43[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m331[0m                                 onClick={(e) => {
+[7m   [0m [91m                                          ~[0m
+
+[96m../../apps/web/src/components/studio/deployment-panel.tsx[0m:[93m4[0m:[93m58[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/card' or its corresponding type declarations.
+
+[7m4[0m import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+[7m [0m [91m                                                         ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/deployment-panel.tsx[0m:[93m5[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/button' or its corresponding type declarations.
+
+[7m5[0m import { Button } from '@/components/ui/button'
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/deployment-panel.tsx[0m:[93m6[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/badge' or its corresponding type declarations.
+
+[7m6[0m import { Badge } from '@/components/ui/badge'
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/deployment-panel.tsx[0m:[93m7[0m:[93m58[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/tabs' or its corresponding type declarations.
+
+[7m7[0m import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+[7m [0m [91m                                                         ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/deployment-panel.tsx[0m:[93m8[0m:[93m28[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/scroll-area' or its corresponding type declarations.
+
+[7m8[0m import { ScrollArea } from '@/components/ui/scroll-area'
+[7m [0m [91m                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/deployment-panel.tsx[0m:[93m9[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/input' or its corresponding type declarations.
+
+[7m9[0m import { Input } from '@/components/ui/input'
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/deployment-panel.tsx[0m:[93m10[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/label' or its corresponding type declarations.
+
+[7m10[0m import { Label } from '@/components/ui/label'
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/deployment-panel.tsx[0m:[93m11[0m:[93m79[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/select' or its corresponding type declarations.
+
+[7m11[0m import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+[7m  [0m [91m                                                                              ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/deployment-panel.tsx[0m:[93m12[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/separator' or its corresponding type declarations.
+
+[7m12[0m import { Separator } from '@/components/ui/separator'
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/deployment-panel.tsx[0m:[93m13[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/progress' or its corresponding type declarations.
+
+[7m13[0m import { Progress } from '@/components/ui/progress'
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-builder.tsx[0m:[93m20[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/button' or its corresponding type declarations.
+
+[7m20[0m import { Button } from '@/components/ui/button'
+[7m  [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-builder.tsx[0m:[93m21[0m:[93m22[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/card' or its corresponding type declarations.
+
+[7m21[0m import { Card } from '@/components/ui/card'
+[7m  [0m [91m                     ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-builder.tsx[0m:[93m22[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/separator' or its corresponding type declarations.
+
+[7m22[0m import { Separator } from '@/components/ui/separator'
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-builder.tsx[0m:[93m23[0m:[93m28[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/scroll-area' or its corresponding type declarations.
+
+[7m23[0m import { ScrollArea } from '@/components/ui/scroll-area'
+[7m  [0m [91m                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-builder.tsx[0m:[93m26[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"./flow-node"' has no exported member 'FlowNode'. Did you mean to use 'import FlowNode from "./flow-node"' instead?
+
+[7m26[0m import { FlowNode } from './flow-node'
+[7m  [0m [91m         ~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-builder.tsx[0m:[93m28[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/store/flow-store' or its corresponding type declarations.
+
+[7m28[0m import { useFlowStore } from '@/store/flow-store'
+[7m  [0m [91m                             ~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-builder.tsx[0m:[93m337[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '{ node: Node; onNodeUpdate: (updates: any) => void; onClose: () => void; }' is not assignable to type 'IntrinsicAttributes'.
+  Property 'node' does not exist on type 'IntrinsicAttributes'.
+
+[7m337[0m             node={selectedNode}
+[7m   [0m [91m            ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-builder.tsx[0m:[93m338[0m:[93m28[0m - [91merror[0m[90m TS7006: [0mParameter 'updates' implicitly has an 'any' type.
+
+[7m338[0m             onNodeUpdate={(updates) => {
+[7m   [0m [91m                           ~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m5[0m:[93m22[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/card' or its corresponding type declarations.
+
+[7m5[0m import { Card } from '@/components/ui/card'
+[7m [0m [91m                     ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m6[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/badge' or its corresponding type declarations.
+
+[7m6[0m import { Badge } from '@/components/ui/badge'
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m7[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/button' or its corresponding type declarations.
+
+[7m7[0m import { Button } from '@/components/ui/button'
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m15[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/dropdown-menu' or its corresponding type declarations.
+
+[7m15[0m } from '@/components/ui/dropdown-menu'
+[7m  [0m [91m       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m16[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/lib/utils' or its corresponding type declarations.
+
+[7m16[0m import { cn } from '@/lib/utils'
+[7m  [0m [91m                   ~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m83[0m:[93m53[0m - [91merror[0m[90m TS2344: [0mType 'NodeData' does not satisfy the constraint 'Node<Record<string, unknown>, string | undefined>'.
+  Type 'NodeData' is missing the following properties from type '{ id: string; position: XYPosition; data: Record<string, unknown>; sourcePosition?: Position | undefined; targetPosition?: Position | undefined; ... 19 more ...; measured?: { ...; } | undefined; }': id, position, data
+
+[7m83[0m function FlowNode({ id, data, selected }: NodeProps<NodeData>) {
+[7m  [0m [91m                                                    ~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m84[0m:[93m18[0m - [91merror[0m[90m TS7053: [0mElement implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ trigger: { hasInput: boolean; hasOutput: boolean; bgColor: string; borderColor: string; headerColor: string; }; llm: { hasInput: boolean; hasOutput: boolean; bgColor: string; borderColor: string; headerColor: string; }; action: { ...; }; data: { ...; }; processor: { ...; }; }'.
+
+[7m84[0m   const config = nodeTypeConfig[data.type]
+[7m  [0m [91m                 ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m84[0m:[93m33[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m84[0m   const config = nodeTypeConfig[data.type]
+[7m  [0m [91m                                ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m85[0m:[93m25[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m85[0m   const IconComponent = data.icon
+[7m  [0m [91m                        ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m86[0m:[93m22[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m86[0m   const StatusIcon = data.status ? statusIcons[data.status] : null
+[7m  [0m [91m                     ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m86[0m:[93m36[0m - [91merror[0m[90m TS7053: [0mElement implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ idle: null; running: LucideIcon; success: LucideIcon; error: LucideIcon; }'.
+
+[7m86[0m   const StatusIcon = data.status ? statusIcons[data.status] : null
+[7m  [0m [91m                                   ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m86[0m:[93m48[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m86[0m   const StatusIcon = data.status ? statusIcons[data.status] : null
+[7m  [0m [91m                                               ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m100[0m:[93m9[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m100[0m         data.status === 'running' && 'animate-pulse'
+[7m   [0m [91m        ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m116[0m:[93m84[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m116[0m             <div className={cn('w-6 h-6 rounded flex items-center justify-center', data.color)}>
+[7m   [0m [91m                                                                                   ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m120[0m:[93m53[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m120[0m               <div className="font-medium text-sm">{data.title}</div>
+[7m   [0m [91m                                                    ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m122[0m:[93m18[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m122[0m                 {data.type}
+[7m   [0m [91m                 ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m129[0m:[93m52[0m - [91merror[0m[90m TS7053: [0mElement implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ idle: string; running: string; success: string; error: string; }'.
+
+[7m129[0m               <StatusIcon className={cn('h-4 w-4', statusColors[data.status!])} />
+[7m   [0m [91m                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m129[0m:[93m65[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m129[0m               <StatusIcon className={cn('h-4 w-4', statusColors[data.status!])} />
+[7m   [0m [91m                                                                ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m163[0m:[93m12[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m163[0m           {data.description}
+[7m   [0m [91m           ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m167[0m:[93m22[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m167[0m         {Object.keys(data.config).length > 0 && (
+[7m   [0m [91m                     ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m173[0m:[93m31[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m173[0m               {Object.entries(data.config).slice(0, 3).map(([key, value]) => (
+[7m   [0m [91m                              ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m181[0m:[93m28[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m181[0m               {Object.keys(data.config).length > 3 && (
+[7m   [0m [91m                           ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m183[0m:[93m33[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m183[0m                   +{Object.keys(data.config).length - 3} more...
+[7m   [0m [91m                                ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m191[0m:[93m10[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m191[0m         {data.lastRun && (
+[7m   [0m [91m         ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m195[0m:[93m22[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m195[0m               <span>{data.lastRun.toLocaleTimeString()}</span>
+[7m   [0m [91m                     ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m197[0m:[93m14[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m197[0m             {data.executionTime && (
+[7m   [0m [91m             ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m200[0m:[93m24[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m200[0m                 <span>{data.executionTime}ms</span>
+[7m   [0m [91m                       ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m207[0m:[93m10[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m207[0m         {data.error && (
+[7m   [0m [91m         ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-node.tsx[0m:[93m216[0m:[93m16[0m - [91merror[0m[90m TS18046: [0m'data' is of type 'unknown'.
+
+[7m216[0m               {data.error}
+[7m   [0m [91m               ~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-toolbar.tsx[0m:[93m4[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/button' or its corresponding type declarations.
+
+[7m4[0m import { Button } from '@/components/ui/button'
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-toolbar.tsx[0m:[93m5[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/badge' or its corresponding type declarations.
+
+[7m5[0m import { Badge } from '@/components/ui/badge'
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../../apps/web/src/components/studio/flow-toolbar.tsx[0m:[93m6[0m:[93m27[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/separator' or its corresponding type declarations.
+
+[7m6[0m import { Separator } from '@/components/ui/separator'
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+

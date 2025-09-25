@@ -37,7 +37,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.6",
-    "graphql": "^16.8.1"
+    "graphql": "^16.8.1",
+    "graphql-subscriptions": "^2.0.0"
   },
   "engines": {
     "node": ">=18.17.0",
