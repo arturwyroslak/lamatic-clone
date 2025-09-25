@@ -1,5 +1,67 @@
 // Core agent types for the Lamatic AI platform
 
+// Workflow types
+export interface WorkflowDefinition {
+  id: string
+  name: string
+  description: string
+  version: string
+  nodes: WorkflowNode[]
+  connections: WorkflowConnection[]
+  settings?: WorkflowSettings
+  metadata?: Record<string, any>
+}
+
+export interface WorkflowNode {
+  id: string
+  type: 'agent' | 'integration' | 'transform' | 'condition' | 'delay' | 'parallel' | 'start' | 'end'
+  position: { x: number; y: number }
+  data: Record<string, any>
+  config?: Record<string, any>
+}
+
+export interface WorkflowConnection {
+  id: string
+  source: string
+  target: string
+  sourceHandle?: string
+  targetHandle?: string
+  type?: string
+  data?: Record<string, any>
+}
+
+export interface WorkflowSettings {
+  timeout?: number
+  retryPolicy?: RetryPolicy
+  errorHandling?: 'stop' | 'continue' | 'retry'
+  parallelExecution?: boolean
+}
+
+export interface WorkflowContext {
+  executionId: string
+  workflowId: string
+  userId: string
+  workspaceId: string
+  variables: Record<string, any>
+  sessionId?: string
+  metadata?: Record<string, any>
+}
+
+export interface WorkflowExecution {
+  id: string
+  workflowId: string
+  status: 'pending' | 'running' | 'completed' | 'failed' | 'stopped'
+  input: any
+  output?: any
+  error?: string
+  startTime: Date
+  endTime?: Date
+  duration?: number
+  context: WorkflowContext
+  trace?: any[]
+}
+
+// Agent types
 export interface Agent {
   id: string
   name: string
