@@ -147,6 +147,41 @@
 [7m10[0m import { Progress } from '@/components/ui/progress'
 [7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
+[96m../web/src/components/integrations/integration-hub.tsx[0m:[93m4[0m:[93m75[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/card' or its corresponding type declarations.
+
+[7m4[0m import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+[7m [0m [91m                                                                          ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../web/src/components/integrations/integration-hub.tsx[0m:[93m5[0m:[93m24[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/button' or its corresponding type declarations.
+
+[7m5[0m import { Button } from '@/components/ui/button'
+[7m [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../web/src/components/integrations/integration-hub.tsx[0m:[93m6[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/badge' or its corresponding type declarations.
+
+[7m6[0m import { Badge } from '@/components/ui/badge'
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../web/src/components/integrations/integration-hub.tsx[0m:[93m7[0m:[93m23[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/input' or its corresponding type declarations.
+
+[7m7[0m import { Input } from '@/components/ui/input'
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../web/src/components/integrations/integration-hub.tsx[0m:[93m8[0m:[93m58[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/tabs' or its corresponding type declarations.
+
+[7m8[0m import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+[7m [0m [91m                                                         ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../web/src/components/integrations/integration-hub.tsx[0m:[93m9[0m:[93m28[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/ui/scroll-area' or its corresponding type declarations.
+
+[7m9[0m import { ScrollArea } from '@/components/ui/scroll-area'
+[7m [0m [91m                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96m../web/src/components/integrations/integration-hub.tsx[0m:[93m373[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'e' implicitly has an 'any' type.
+
+[7m373[0m             onChange={(e) => setSearchTerm(e.target.value)}
+[7m   [0m [91m                       ~[0m
+
 [96m../web/src/components/layout/sidebar.tsx[0m:[93m3[0m:[93m20[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/lib/utils' or its corresponding type declarations.
 
 [7m3[0m import { cn } from '@/lib/utils'
@@ -1666,6 +1701,226 @@
     [7m  [0m [96m  ~~~~~[0m
     The expected type comes from property 'model' which is declared here on type 'AgentConfig'
 
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m82[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m82[0m       model: 'gpt-4',
+[7m  [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m106[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m106[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m130[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m130[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m151[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"content"' is not assignable to type 'AgentType'.
+
+[7m151[0m       type: 'content',
+[7m   [0m [91m      ~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m77[0m:[93m3[0m
+    [7m77[0m   type: AgentType
+    [7m  [0m [96m  ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m154[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m154[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m178[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m178[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m202[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m202[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m226[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m226[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m247[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"strategy"' is not assignable to type 'AgentType'.
+
+[7m247[0m       type: 'strategy',
+[7m   [0m [91m      ~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m77[0m:[93m3[0m
+    [7m77[0m   type: AgentType
+    [7m  [0m [96m  ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m250[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m250[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m271[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"marketing"' is not assignable to type 'AgentType'.
+
+[7m271[0m       type: 'marketing',
+[7m   [0m [91m      ~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m77[0m:[93m3[0m
+    [7m77[0m   type: AgentType
+    [7m  [0m [96m  ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m274[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m274[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m295[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"optimization"' is not assignable to type 'AgentType'.
+
+[7m295[0m       type: 'optimization',
+[7m   [0m [91m      ~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m77[0m:[93m3[0m
+    [7m77[0m   type: AgentType
+    [7m  [0m [96m  ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m298[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m298[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m319[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"translation"' is not assignable to type 'AgentType'.
+
+[7m319[0m       type: 'translation',
+[7m   [0m [91m      ~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m77[0m:[93m3[0m
+    [7m77[0m   type: AgentType
+    [7m  [0m [96m  ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m322[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m322[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m343[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"research"' is not assignable to type 'AgentType'.
+
+[7m343[0m       type: 'research',
+[7m   [0m [91m      ~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m77[0m:[93m3[0m
+    [7m77[0m   type: AgentType
+    [7m  [0m [96m  ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m346[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m346[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m367[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"productivity"' is not assignable to type 'AgentType'.
+
+[7m367[0m       type: 'productivity',
+[7m   [0m [91m      ~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m77[0m:[93m3[0m
+    [7m77[0m   type: AgentType
+    [7m  [0m [96m  ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m370[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m370[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m391[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"management"' is not assignable to type 'AgentType'.
+
+[7m391[0m       type: 'management',
+[7m   [0m [91m      ~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m77[0m:[93m3[0m
+    [7m77[0m   type: AgentType
+    [7m  [0m [96m  ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/agent-templates.ts[0m:[93m394[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m394[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
 [96m../../packages/agents/src/templates/index.ts[0m:[93m4[0m:[93m15[0m - [91merror[0m[90m TS2307: [0mCannot find module './prompt-templates' or its corresponding type declarations.
 
 [7m4[0m export * from './prompt-templates'
@@ -1811,6 +2066,106 @@
     [7m  [0m [96m  ~~~~~[0m
     The expected type comes from property 'model' which is declared here on type 'AgentConfig'
 
+[96m../../packages/agents/src/templates/industry-templates.ts[0m:[93m511[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m511[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/industry-templates.ts[0m:[93m547[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m547[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/industry-templates.ts[0m:[93m586[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m586[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/industry-templates.ts[0m:[93m622[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m622[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/industry-templates.ts[0m:[93m661[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m661[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/industry-templates.ts[0m:[93m697[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m697[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/industry-templates.ts[0m:[93m736[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m736[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/industry-templates.ts[0m:[93m772[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+
+[7m772[0m       model: 'gpt-4',
+[7m   [0m [91m      ~~~~~[0m
+
+  [96m../../packages/agents/src/types.ts[0m:[93m78[0m:[93m3[0m
+    [7m78[0m   model: ModelConfig
+    [7m  [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+
+[96m../../packages/agents/src/templates/industry-workflow-templates.ts[0m:[93m559[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '"file_upload"' is not assignable to type '"webhook" | "schedule" | "event" | "manual"'.
+
+[7m559[0m         type: 'file_upload',
+[7m   [0m [91m        ~~~~[0m
+
+  [96m../../packages/agents/src/templates/workflow-templates.ts[0m:[93m54[0m:[93m3[0m
+    [7m54[0m   type: 'webhook' | 'schedule' | 'event' | 'manual'
+    [7m  [0m [96m  ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'WorkflowTrigger'
+
+[96m../../packages/agents/src/templates/industry-workflow-templates.ts[0m:[93m662[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '"form_submission"' is not assignable to type '"webhook" | "schedule" | "event" | "manual"'.
+
+[7m662[0m         type: 'form_submission',
+[7m   [0m [91m        ~~~~[0m
+
+  [96m../../packages/agents/src/templates/workflow-templates.ts[0m:[93m54[0m:[93m3[0m
+    [7m54[0m   type: 'webhook' | 'schedule' | 'event' | 'manual'
+    [7m  [0m [96m  ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'WorkflowTrigger'
+
 [96m../../packages/agents/src/tools/advanced-tools.ts[0m:[93m2[0m:[93m16[0m - [91merror[0m[90m TS2305: [0mModule '"../types"' has no exported member 'ToolInput'.
 
 [7m2[0m import { Tool, ToolInput, ToolOutput } from '../types'
@@ -1919,6 +2274,34 @@
 
 [7m600[0m       reply: templates[tone] || templates.professional,
 [7m   [0m [91m             ~~~~~~~~~~~~~~~[0m
+
+[96m../../packages/agents/src/tools/document-processor.ts[0m:[93m2[0m:[93m16[0m - [91merror[0m[90m TS2305: [0mModule '"../types"' has no exported member 'ToolInput'.
+
+[7m2[0m import { Tool, ToolInput, ToolOutput } from '../types'
+[7m [0m [91m               ~~~~~~~~~[0m
+
+[96m../../packages/agents/src/tools/document-processor.ts[0m:[93m2[0m:[93m27[0m - [91merror[0m[90m TS2305: [0mModule '"../types"' has no exported member 'ToolOutput'.
+
+[7m2[0m import { Tool, ToolInput, ToolOutput } from '../types'
+[7m [0m [91m                          ~~~~~~~~~~[0m
+
+[96m../../packages/agents/src/tools/document-processor.ts[0m:[93m4[0m:[93m14[0m - [91merror[0m[90m TS2420: [0mClass 'DocumentProcessor' incorrectly implements interface 'Tool'.
+  Type 'DocumentProcessor' is missing the following properties from type 'Tool': id, category, inputSchema, outputSchema, and 3 more.
+
+[7m4[0m export class DocumentProcessor implements Tool {
+[7m [0m [91m             ~~~~~~~~~~~~~~~~~[0m
+
+[96m../../packages/agents/src/tools/document-processor.ts[0m:[93m161[0m:[93m14[0m - [91merror[0m[90m TS2420: [0mClass 'EmailProcessor' incorrectly implements interface 'Tool'.
+  Type 'EmailProcessor' is missing the following properties from type 'Tool': id, category, inputSchema, outputSchema, and 3 more.
+
+[7m161[0m export class EmailProcessor implements Tool {
+[7m   [0m [91m             ~~~~~~~~~~~~~~[0m
+
+[96m../../packages/agents/src/tools/document-processor.ts[0m:[93m329[0m:[93m14[0m - [91merror[0m[90m TS2420: [0mClass 'VectorSearchTool' incorrectly implements interface 'Tool'.
+  Type 'VectorSearchTool' is missing the following properties from type 'Tool': id, category, inputSchema, outputSchema, and 3 more.
+
+[7m329[0m export class VectorSearchTool implements Tool {
+[7m   [0m [91m             ~~~~~~~~~~~~~~~~[0m
 
 [96m../../packages/agents/src/tools/index.ts[0m:[93m4[0m:[93m15[0m - [91merror[0m[90m TS2307: [0mCannot find module './file-processor' or its corresponding type declarations.
 
@@ -2345,16 +2728,6 @@
 [7m208[0m       .filter(connector => connector.workspaceId === workspaceId)
 [7m   [0m [91m                                     ~~~~~~~~~~~[0m
 
-[96m../../packages/integrations/src/registry.ts[0m:[93m2[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module './data/integrations.json' or its corresponding type declarations.
-
-[7m2[0m import * as integrations from './data/integrations.json'
-[7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[96m../../packages/integrations/src/registry.ts[0m:[93m3[0m:[93m33[0m - [91merror[0m[90m TS2307: [0mCannot find module './data/model-providers.json' or its corresponding type declarations.
-
-[7m3[0m import * as modelProviders from './data/model-providers.json'
-[7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
 [96m../../packages/integrations/src/registry.ts[0m:[93m129[0m:[93m20[0m - [91merror[0m[90m TS2322: [0mType '"sync_trigger"' is not assignable to type 'TriggerType'.
 
 [7m129[0m         triggers: ['sync_trigger', 'event_trigger', 'action'] as const,
@@ -2430,7 +2803,7 @@
     [7m  [0m [96m  ~~~~~~~[0m
     The expected type comes from property 'pricing' which is declared here on type 'ModelProvider'
 
-[96m../../packages/integrations/src/registry.ts[0m:[93m303[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "image" | "audio" | "video" | "embedding"'.
+[96m../../packages/integrations/src/registry.ts[0m:[93m303[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m303[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -2440,7 +2813,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../../packages/integrations/src/registry.ts[0m:[93m314[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "image" | "audio" | "video" | "embedding"'.
+[96m../../packages/integrations/src/registry.ts[0m:[93m314[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m314[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -2450,7 +2823,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../../packages/integrations/src/registry.ts[0m:[93m325[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "image" | "audio" | "video" | "embedding"'.
+[96m../../packages/integrations/src/registry.ts[0m:[93m325[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m325[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -2460,7 +2833,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../../packages/integrations/src/registry.ts[0m:[93m336[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"image_generation"' is not assignable to type '"text" | "image" | "audio" | "video" | "embedding"'.
+[96m../../packages/integrations/src/registry.ts[0m:[93m336[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"image_generation"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m336[0m             type: 'image_generation' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -2480,7 +2853,7 @@
     [7m  [0m [96m  ~~~~~~~[0m
     The expected type comes from property 'pricing' which is declared here on type 'ModelProvider'
 
-[96m../../packages/integrations/src/registry.ts[0m:[93m364[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "image" | "audio" | "video" | "embedding"'.
+[96m../../packages/integrations/src/registry.ts[0m:[93m364[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m364[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -2490,7 +2863,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../../packages/integrations/src/registry.ts[0m:[93m375[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "image" | "audio" | "video" | "embedding"'.
+[96m../../packages/integrations/src/registry.ts[0m:[93m375[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m375[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -2500,7 +2873,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../../packages/integrations/src/registry.ts[0m:[93m386[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "image" | "audio" | "video" | "embedding"'.
+[96m../../packages/integrations/src/registry.ts[0m:[93m386[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
 
 [7m386[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -2696,7 +3069,7 @@
 [7m  [0m [91m                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
-Found 489 errors in 61 files.
+Found 531 errors in 64 files.
 
 Errors  Files
      4  src/handlers/workflow.ts[90m:26[0m
@@ -2708,6 +3081,7 @@ Errors  Files
      1  ../web/app/studio/page.tsx[90m:1[0m
      2  ../web/app/workflows/page.tsx[90m:1[0m
      7  ../web/src/components/deployments/deployment-dashboard.tsx[90m:4[0m
+     7  ../web/src/components/integrations/integration-hub.tsx[90m:4[0m
      4  ../web/src/components/layout/sidebar.tsx[90m:3[0m
      2  ../web/src/components/providers/index.tsx[90m:4[0m
      9  ../web/src/components/studio/agent-manager.tsx[90m:4[0m
@@ -2747,16 +3121,18 @@ Errors  Files
     17  ../../packages/agents/src/index.ts[90m:4[0m
      2  ../../packages/agents/src/memory/index.ts[90m:2[0m
      2  ../../packages/agents/src/memory/manager.ts[90m:3[0m
-     2  ../../packages/agents/src/templates/agent-templates.ts[90m:34[0m
+    24  ../../packages/agents/src/templates/agent-templates.ts[90m:34[0m
      3  ../../packages/agents/src/templates/index.ts[90m:4[0m
-    13  ../../packages/agents/src/templates/industry-templates.ts[90m:15[0m
+    21  ../../packages/agents/src/templates/industry-templates.ts[90m:15[0m
+     2  ../../packages/agents/src/templates/industry-workflow-templates.ts[90m:559[0m
     20  ../../packages/agents/src/tools/advanced-tools.ts[90m:2[0m
+     5  ../../packages/agents/src/tools/document-processor.ts[90m:2[0m
      6  ../../packages/agents/src/tools/index.ts[90m:4[0m
     11  ../../packages/agents/src/tools/specialized-tools.ts[90m:2[0m
      3  ../../packages/agents/src/types.ts[90m:44[0m
      5  ../../packages/agents/src/workflows/index.ts[90m:3[0m
     57  ../../packages/integrations/src/index.ts[90m:5[0m
      2  ../../packages/integrations/src/manager.ts[90m:55[0m
-    28  ../../packages/integrations/src/registry.ts[90m:2[0m
+    26  ../../packages/integrations/src/registry.ts[90m:129[0m
      1  ../../packages/ui/src/hooks/use-toast.ts[90m:27[0m
     20  ../../packages/ui/src/index.tsx[90m:4[0m

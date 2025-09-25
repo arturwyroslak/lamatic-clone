@@ -232,3 +232,4 @@ function FlowNode({ id, data, selected }: NodeProps<NodeData>) {
 }
 
 export default memo(FlowNode)
+export { FlowNode }
