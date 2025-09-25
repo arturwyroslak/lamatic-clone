@@ -75,7 +75,7 @@ export interface AgentConfig {
   name: string
   description: string
   type: AgentType
-  model: ModelConfig
+  model: ModelConfig | string  // Allow both ModelConfig object and string model ID
   systemPrompt: string
   tools?: string[]
   memory?: MemoryConfig

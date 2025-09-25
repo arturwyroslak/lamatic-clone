@@ -94,9 +94,9 @@ export async function handleGraphQLSubscription(request: Request, env: WorkerEnv
   server.accept()
 
   // Handle WebSocket messages
-  server.addEventListener('message', async (event) => {
+  server.addEventListener('message', async (event: MessageEvent) => {
     try {
-      const message = JSON.parse(event.data)
+      const message = JSON.parse(event.data as string)
       
       switch (message.type) {
         case 'connection_init':

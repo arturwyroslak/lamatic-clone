@@ -3,9 +3,18 @@ export interface WorkerEnv {
   DATABASE_URL?: string
   JWT_SECRET?: string
   API_URL?: string
+  GRAPHQL_API_URL?: string
   OPENAI_API_KEY?: string
   ANTHROPIC_API_KEY?: string
   SLACK_BOT_TOKEN?: string
+  WEBHOOK_SECRET?: string
+  
+  // Cloudflare KV Namespaces
+  CACHE?: KVNamespace
+  WEBHOOKS_KV?: KVNamespace
+  EXECUTIONS_KV?: KVNamespace
+  LOGS_KV?: KVNamespace
+  WIDGETS_KV?: KVNamespace
 }
 
 export interface WorkflowExecution {
@@ -66,4 +75,33 @@ export interface ExecutionResult {
   data?: any
   error?: string
   duration: number
+}
+
+// Cloudflare Workers global types
+declare global {
+  interface ExecutionContext {
+    waitUntil(promise: Promise<any>): void
+    passThroughOnException(): void
+  }
+
+  interface WebSocketPair {
+    0: WebSocket
+    1: WebSocket
+  }
+
+  var WebSocketPair: {
+    new (): WebSocketPair
+  }
+
+  interface KVNamespace {
+    get(key: string, options?: { type?: 'text' | 'json' | 'arrayBuffer' | 'stream' }): Promise<string | null>
+    put(key: string, value: string | ArrayBuffer | ArrayBufferView | ReadableStream, options?: { expirationTtl?: number; metadata?: object }): Promise<void>
+    delete(key: string): Promise<void>
+    list(options?: { prefix?: string; limit?: number; cursor?: string }): Promise<{ keys: { name: string }[]; list_complete: boolean; cursor?: string }>
+  }
+
+  // Extend ResponseInit to include webSocket property for WebSocket responses
+  interface ResponseInit {
+    webSocket?: WebSocket
+  }
 }

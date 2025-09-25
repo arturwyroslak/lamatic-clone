@@ -2,216 +2,6 @@
 > @lamatic/agents@1.0.0 build
 > tsc
 
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m3[0m:[93m81[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ExecutionContext'.
-
-[7m3[0m export async function handleGraphQLProxy(request: Request, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
-[7m [0m [91m                                                                                ~~~~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m26[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'GRAPHQL_API_URL' does not exist on type 'WorkerEnv'.
-
-[7m26[0m     const apiUrl = env.GRAPHQL_API_URL || 'http://localhost:4000/graphql'
-[7m  [0m [91m                       ~~~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m54[0m:[93m15[0m - [91merror[0m[90m TS2339: [0mProperty 'CACHE' does not exist on type 'WorkerEnv'.
-
-[7m54[0m       if (env.CACHE) {
-[7m  [0m [91m              ~~~~~[0m
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m56[0m:[93m15[0m - [91merror[0m[90m TS2339: [0mProperty 'CACHE' does not exist on type 'WorkerEnv'.
-
-[7m56[0m           env.CACHE.put(cacheKey, JSON.stringify(result), {
-[7m  [0m [91m              ~~~~~[0m
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m90[0m:[93m29[0m - [91merror[0m[90m TS2552: [0mCannot find name 'WebSocketPair'. Did you mean 'webSocketPair'?
-
-[7m90[0m   const webSocketPair = new WebSocketPair()
-[7m  [0m [91m                            ~~~~~~~~~~~~~[0m
-
-  [96m../../apps/edge/src/handlers/graphql.ts[0m:[93m90[0m:[93m9[0m
-    [7m90[0m   const webSocketPair = new WebSocketPair()
-    [7m  [0m [96m        ~~~~~~~~~~~~~[0m
-    'webSocketPair' is declared here.
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m94[0m:[93m3[0m - [91merror[0m[90m TS18046: [0m'server' is of type 'unknown'.
-
-[7m94[0m   server.accept()
-[7m  [0m [91m  ~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m97[0m:[93m3[0m - [91merror[0m[90m TS18046: [0m'server' is of type 'unknown'.
-
-[7m97[0m   server.addEventListener('message', async (event) => {
-[7m  [0m [91m  ~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m97[0m:[93m45[0m - [91merror[0m[90m TS7006: [0mParameter 'event' implicitly has an 'any' type.
-
-[7m97[0m   server.addEventListener('message', async (event) => {
-[7m  [0m [91m                                            ~~~~~[0m
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m103[0m:[93m11[0m - [91merror[0m[90m TS18046: [0m'server' is of type 'unknown'.
-
-[7m103[0m           server.send(JSON.stringify({ type: 'connection_ack' }))
-[7m   [0m [91m          ~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m113[0m:[93m11[0m - [91merror[0m[90m TS18046: [0m'server' is of type 'unknown'.
-
-[7m113[0m           server.send(JSON.stringify({
-[7m   [0m [91m          ~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m131[0m:[93m11[0m - [91merror[0m[90m TS18046: [0m'server' is of type 'unknown'.
-
-[7m131[0m           server.send(JSON.stringify({
-[7m   [0m [91m          ~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m142[0m:[93m7[0m - [91merror[0m[90m TS18046: [0m'server' is of type 'unknown'.
-
-[7m142[0m       server.send(JSON.stringify({
-[7m   [0m [91m      ~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m149[0m:[93m3[0m - [91merror[0m[90m TS18046: [0m'server' is of type 'unknown'.
-
-[7m149[0m   server.addEventListener('close', () => {
-[7m   [0m [91m  ~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/graphql.ts[0m:[93m155[0m:[93m5[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'webSocket' does not exist in type 'ResponseInit'.
-
-[7m155[0m     webSocket: client
-[7m   [0m [91m    ~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/webhook.ts[0m:[93m3[0m:[93m76[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ExecutionContext'.
-
-[7m3[0m export async function handleWebhook(request: Request, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
-[7m [0m [91m                                                                           ~~~~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/webhook.ts[0m:[93m13[0m:[93m11[0m - [91merror[0m[90m TS2339: [0mProperty 'WEBHOOK_SECRET' does not exist on type 'WorkerEnv'.
-
-[7m13[0m   if (env.WEBHOOK_SECRET && signature) {
-[7m  [0m [91m          ~~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/webhook.ts[0m:[93m14[0m:[93m65[0m - [91merror[0m[90m TS2339: [0mProperty 'WEBHOOK_SECRET' does not exist on type 'WorkerEnv'.
-
-[7m14[0m     const isValid = await validateWebhookSignature(request, env.WEBHOOK_SECRET, signature)
-[7m  [0m [91m                                                                ~~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/webhook.ts[0m:[93m109[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'WEBHOOKS_KV' does not exist on type 'WorkerEnv'.
-
-[7m109[0m     if (env.WEBHOOKS_KV) {
-[7m   [0m [91m            ~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/webhook.ts[0m:[93m110[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'WEBHOOKS_KV' does not exist on type 'WorkerEnv'.
-
-[7m110[0m       const config = await env.WEBHOOKS_KV.get(`webhook:${webhookId}`)
-[7m   [0m [91m                               ~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/webhook.ts[0m:[93m143[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'EXECUTIONS_KV' does not exist on type 'WorkerEnv'.
-
-[7m143[0m     if (env.EXECUTIONS_KV) {
-[7m   [0m [91m            ~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/webhook.ts[0m:[93m144[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'EXECUTIONS_KV' does not exist on type 'WorkerEnv'.
-
-[7m144[0m       await env.EXECUTIONS_KV.put(`execution:${executionId}`, JSON.stringify({
-[7m   [0m [91m                ~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/webhook.ts[0m:[93m158[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'EXECUTIONS_KV' does not exist on type 'WorkerEnv'.
-
-[7m158[0m     if (env.EXECUTIONS_KV) {
-[7m   [0m [91m            ~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/webhook.ts[0m:[93m159[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'EXECUTIONS_KV' does not exist on type 'WorkerEnv'.
-
-[7m159[0m       await env.EXECUTIONS_KV.put(`execution:${executionId}`, JSON.stringify({
-[7m   [0m [91m                ~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/webhook.ts[0m:[93m179[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'LOGS_KV' does not exist on type 'WorkerEnv'.
-
-[7m179[0m     if (env.LOGS_KV) {
-[7m   [0m [91m            ~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/webhook.ts[0m:[93m189[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'LOGS_KV' does not exist on type 'WorkerEnv'.
-
-[7m189[0m       await env.LOGS_KV.put(`webhook-log:${webhookId}:${Date.now()}`, JSON.stringify(logEntry))
-[7m   [0m [91m                ~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/widget.ts[0m:[93m3[0m:[93m75[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ExecutionContext'.
-
-[7m3[0m export async function handleWidget(request: Request, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
-[7m [0m [91m                                                                          ~~~~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/widget.ts[0m:[93m25[0m:[93m90[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ExecutionContext'.
-
-[7m25[0m async function handleChatWidget(request: Request, widgetId: string, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
-[7m  [0m [91m                                                                                         ~~~~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/widget.ts[0m:[93m85[0m:[93m92[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ExecutionContext'.
-
-[7m85[0m async function handleSearchWidget(request: Request, widgetId: string, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
-[7m  [0m [91m                                                                                           ~~~~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/widget.ts[0m:[93m131[0m:[93m91[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ExecutionContext'.
-
-[7m131[0m async function handleEmbedWidget(request: Request, widgetId: string, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
-[7m   [0m [91m                                                                                          ~~~~~~~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/widget.ts[0m:[93m341[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'WIDGETS_KV' does not exist on type 'WorkerEnv'.
-
-[7m341[0m     if (env.WIDGETS_KV) {
-[7m   [0m [91m            ~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/widget.ts[0m:[93m342[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'WIDGETS_KV' does not exist on type 'WorkerEnv'.
-
-[7m342[0m       const config = await env.WIDGETS_KV.get(`widget:${widgetId}`)
-[7m   [0m [91m                               ~~~~~~~~~~[0m
-
-[96m../../apps/edge/src/handlers/workflow.ts[0m:[93m26[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'CACHE' does not exist on type 'WorkerEnv'.
-
-[7m26[0m     if (env.CACHE) {
-[7m  [0m [91m            ~~~~~[0m
-
-[96m../../apps/edge/src/handlers/workflow.ts[0m:[93m27[0m:[93m17[0m - [91merror[0m[90m TS2339: [0mProperty 'CACHE' does not exist on type 'WorkerEnv'.
-
-[7m27[0m       await env.CACHE.put(`execution:${execution.id}`, JSON.stringify(execution))
-[7m  [0m [91m                ~~~~~[0m
-
-[96m../../apps/edge/src/handlers/workflow.ts[0m:[93m47[0m:[93m13[0m - [91merror[0m[90m TS2339: [0mProperty 'CACHE' does not exist on type 'WorkerEnv'.
-
-[7m47[0m     if (env.CACHE) {
-[7m  [0m [91m            ~~~~~[0m
-
-[96m../../apps/edge/src/handlers/workflow.ts[0m:[93m48[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'CACHE' does not exist on type 'WorkerEnv'.
-
-[7m48[0m       const stored = await env.CACHE.get(`execution:${executionId}`)
-[7m  [0m [91m                               ~~~~~[0m
-
-[96m../../apps/edge/src/index.ts[0m:[93m58[0m:[93m12[0m - [91merror[0m[90m TS2554: [0mExpected 3 arguments, but got 2.
-
-[7m58[0m     return handleGraphQLProxy(request, env)
-[7m  [0m [91m           ~~~~~~~~~~~~~~~~~~[0m
-
-  [96m../../apps/edge/src/handlers/graphql.ts[0m:[93m3[0m:[93m76[0m
-    [7m3[0m export async function handleGraphQLProxy(request: Request, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
-    [7m [0m [96m                                                                           ~~~~~~~~~~~~~~~~~~~~~[0m
-    An argument for 'ctx' was not provided.
-
-[96m../../apps/edge/src/index.ts[0m:[93m62[0m:[93m12[0m - [91merror[0m[90m TS2554: [0mExpected 3 arguments, but got 2.
-
-[7m62[0m     return handleWebhook(request, env)
-[7m  [0m [91m           ~~~~~~~~~~~~~[0m
-
-  [96m../../apps/edge/src/handlers/webhook.ts[0m:[93m3[0m:[93m71[0m
-    [7m3[0m export async function handleWebhook(request: Request, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
-    [7m [0m [96m                                                                      ~~~~~~~~~~~~~~~~~~~~~[0m
-    An argument for 'ctx' was not provided.
-
-[96m../../apps/edge/src/index.ts[0m:[93m66[0m:[93m12[0m - [91merror[0m[90m TS2554: [0mExpected 3 arguments, but got 2.
-
-[7m66[0m     return handleWidget(request, env)
-[7m  [0m [91m           ~~~~~~~~~~~~[0m
-
-  [96m../../apps/edge/src/handlers/widget.ts[0m:[93m3[0m:[93m70[0m
-    [7m3[0m export async function handleWidget(request: Request, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
-    [7m [0m [96m                                                                     ~~~~~~~~~~~~~~~~~~~~~[0m
-    An argument for 'ctx' was not provided.
-
 [96m../../apps/web/app/deployments/page.tsx[0m:[93m1[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/components/deployments/deployment-dashboard' or its corresponding type declarations.
 
 [7m1[0m import { DeploymentDashboard } from '@/components/deployments/deployment-dashboard'
@@ -432,82 +222,82 @@
 [7m25[0m import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 [7m  [0m [91m                                                         ~~~~~~~~~~~~~~~~~~~~~~[0m
 
-[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m48[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
-  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m48[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
     Types of parameters '__0' and 'props' are incompatible.
-      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
-        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
-          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
+        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
 
 [7m48[0m   'ai-model': FlowNode,
 [7m  [0m [91m  ~~~~~~~~~~[0m
 
-[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m49[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
-  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m49[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
     Types of parameters '__0' and 'props' are incompatible.
-      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
-        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
-          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
+        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
 
 [7m49[0m   'data-source': FlowNode,
 [7m  [0m [91m  ~~~~~~~~~~~~~[0m
 
-[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m50[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
-  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m50[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
     Types of parameters '__0' and 'props' are incompatible.
-      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
-        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
-          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
+        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
 
 [7m50[0m   'processor': FlowNode,
 [7m  [0m [91m  ~~~~~~~~~~~[0m
 
-[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m51[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
-  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m51[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
     Types of parameters '__0' and 'props' are incompatible.
-      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
-        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
-          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
+        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
 
 [7m51[0m   'condition': FlowNode,
 [7m  [0m [91m  ~~~~~~~~~~~[0m
 
-[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m52[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
-  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m52[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
     Types of parameters '__0' and 'props' are incompatible.
-      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
-        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
-          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
+        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
 
 [7m52[0m   'webhook': FlowNode,
 [7m  [0m [91m  ~~~~~~~~~[0m
 
-[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m53[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
-  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m53[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
     Types of parameters '__0' and 'props' are incompatible.
-      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
-        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
-          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
+        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
 
 [7m53[0m   'api-call': FlowNode,
 [7m  [0m [91m  ~~~~~~~~~~[0m
 
-[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m54[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
-  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m54[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
     Types of parameters '__0' and 'props' are incompatible.
-      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
-        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
-          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
+        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
 
 [7m54[0m   'transformer': FlowNode,
 [7m  [0m [91m  ~~~~~~~~~~~~~[0m
 
-[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m55[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
-  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+[96m../../apps/web/src/components/studio/advanced-flow-builder.tsx[0m:[93m55[0m:[93m3[0m - [91merror[0m[90m TS2322: [0mType '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+  Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
     Types of parameters '__0' and 'props' are incompatible.
-      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
-        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
-          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+      Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
+        Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+          Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
 
 [7m55[0m   'output': FlowNode
 [7m  [0m [91m  ~~~~~~~~[0m
@@ -724,12 +514,12 @@
 
 [96m../../apps/web/src/components/studio/flow-builder.tsx[0m:[93m302[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType '{ 'flow-node': ({ id, data, selected }: NodeProps<NodeData>) => React.JSX.Element; }' is not assignable to type 'NodeTypes'.
   Property ''flow-node'' is incompatible with index signature.
-    Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
-      Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+    Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'ComponentType<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
+      Type '({ id, data, selected }: NodeProps<NodeData>) => Element' is not assignable to type 'FunctionComponent<Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }>'.
         Types of parameters '__0' and 'props' are incompatible.
-          Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
-            Type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
-              Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "data" | "id" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+          Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'NodeProps<NodeData>'.
+            Type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' is not assignable to type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
+              Property 'width' is optional in type 'Pick<Node<Record<string, unknown>, string | undefined>, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId"> & Required<...> & { ...; } & { ...; }' but required in type 'Pick<NodeData, "id" | "data" | "width" | "height" | "sourcePosition" | "targetPosition" | "dragHandle" | "parentId">'.
 
 [7m302[0m           nodeTypes={nodeTypes}
 [7m   [0m [91m          ~~~~~~~~~[0m
@@ -1888,8 +1678,19 @@
 [7m4[0m import { ToolRegistry } from './tools'
 [7m [0m [91m         ~~~~~~~~~~~~[0m
 
-[96msrc/engine.ts[0m:[93m300[0m:[93m29[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: string; description?: string | undefined; type: AgentType; model?: ModelConfig | undefined; systemPrompt: string; tools: string[]; memory?: MemoryConfig | undefined; config?: AgentSpecificConfig | undefined; metadata?: Record<...> | undefined; } | { ...; } | { ...; }' is not assignable to parameter of type 'AgentConfig'.
-  Type '{ name: string; description?: string | undefined; type: AgentType; model?: ModelConfig | undefined; systemPrompt: string; tools: string[]; memory?: MemoryConfig | undefined; config?: AgentSpecificConfig | undefined; metadata?: Record<string, any> | undefined; }' is not assignable to type 'AgentConfig'.
+[96msrc/engine.ts[0m:[93m132[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string | ModelConfig' is not assignable to type 'ModelConfig'.
+  Type 'string' is not assignable to type 'ModelConfig'.
+
+[7m132[0m       model: config.model,
+[7m   [0m [91m      ~~~~~[0m
+
+  [96msrc/types.ts[0m:[93m8[0m:[93m3[0m
+    [7m8[0m   model: ModelConfig
+    [7m [0m [96m  ~~~~~[0m
+    The expected type comes from property 'model' which is declared here on type 'Agent'
+
+[96msrc/engine.ts[0m:[93m300[0m:[93m29[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ name: string; description?: string | undefined; type: AgentType; model?: string | ModelConfig | undefined; systemPrompt: string; tools: string[]; memory?: MemoryConfig | undefined; config?: AgentSpecificConfig | undefined; metadata?: Record<...> | undefined; } | { ...; } | { ...; }' is not assignable to parameter of type 'AgentConfig'.
+  Type '{ name: string; description?: string | undefined; type: AgentType; model?: string | ModelConfig | undefined; systemPrompt: string; tools: string[]; memory?: MemoryConfig | undefined; config?: AgentSpecificConfig | undefined; metadata?: Record<string, any> | undefined; }' is not assignable to type 'AgentConfig'.
     Types of property 'description' are incompatible.
       Type 'string | undefined' is not assignable to type 'string'.
         Type 'undefined' is not assignable to type 'string'.
@@ -2028,55 +1829,55 @@
 [7m4[0m import { ContextMemory } from './context-memory'
 [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~[0m
 
-[96msrc/templates/agent-templates.ts[0m:[93m34[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/agent-templates.ts[0m:[93m35[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m34[0m       model: 'gpt-4',
-[7m  [0m [91m      ~~~~~[0m
+[7m35[0m       temperature: 0.7,
+[7m  [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/agent-templates.ts[0m:[93m58[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/agent-templates.ts[0m:[93m59[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m58[0m       model: 'gpt-4',
-[7m  [0m [91m      ~~~~~[0m
+[7m59[0m       temperature: 0.3,
+[7m  [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/agent-templates.ts[0m:[93m82[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/agent-templates.ts[0m:[93m83[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m82[0m       model: 'gpt-4',
-[7m  [0m [91m      ~~~~~[0m
+[7m83[0m       temperature: 0.5,
+[7m  [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/agent-templates.ts[0m:[93m106[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/agent-templates.ts[0m:[93m107[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m106[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m107[0m       temperature: 0.2,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/agent-templates.ts[0m:[93m130[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/agent-templates.ts[0m:[93m131[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m130[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m131[0m       temperature: 0.3,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
 [96msrc/templates/agent-templates.ts[0m:[93m151[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"content"' is not assignable to type 'AgentType'.
 
@@ -2088,45 +1889,35 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
-[96msrc/templates/agent-templates.ts[0m:[93m154[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/agent-templates.ts[0m:[93m179[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m154[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m179[0m       temperature: 0.1,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/agent-templates.ts[0m:[93m178[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/agent-templates.ts[0m:[93m203[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m178[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m203[0m       temperature: 0.4,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/agent-templates.ts[0m:[93m202[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/agent-templates.ts[0m:[93m227[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m202[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m227[0m       temperature: 0.2,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
-
-[96msrc/templates/agent-templates.ts[0m:[93m226[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
-
-[7m226[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
-
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
 [96msrc/templates/agent-templates.ts[0m:[93m247[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"strategy"' is not assignable to type 'AgentType'.
 
@@ -2138,16 +1929,6 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
-[96msrc/templates/agent-templates.ts[0m:[93m250[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
-
-[7m250[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
-
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
-
 [96msrc/templates/agent-templates.ts[0m:[93m271[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"marketing"' is not assignable to type 'AgentType'.
 
 [7m271[0m       type: 'marketing',
@@ -2157,16 +1938,6 @@
     [7m77[0m   type: AgentType
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
-
-[96msrc/templates/agent-templates.ts[0m:[93m274[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
-
-[7m274[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
-
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
 
 [96msrc/templates/agent-templates.ts[0m:[93m295[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"optimization"' is not assignable to type 'AgentType'.
 
@@ -2178,16 +1949,6 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
-[96msrc/templates/agent-templates.ts[0m:[93m298[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
-
-[7m298[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
-
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
-
 [96msrc/templates/agent-templates.ts[0m:[93m319[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"translation"' is not assignable to type 'AgentType'.
 
 [7m319[0m       type: 'translation',
@@ -2197,16 +1958,6 @@
     [7m77[0m   type: AgentType
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
-
-[96msrc/templates/agent-templates.ts[0m:[93m322[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
-
-[7m322[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
-
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
 
 [96msrc/templates/agent-templates.ts[0m:[93m343[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"research"' is not assignable to type 'AgentType'.
 
@@ -2218,16 +1969,6 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
-[96msrc/templates/agent-templates.ts[0m:[93m346[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
-
-[7m346[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
-
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
-
 [96msrc/templates/agent-templates.ts[0m:[93m367[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"productivity"' is not assignable to type 'AgentType'.
 
 [7m367[0m       type: 'productivity',
@@ -2238,16 +1979,6 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
 
-[96msrc/templates/agent-templates.ts[0m:[93m370[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
-
-[7m370[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
-
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
-
 [96msrc/templates/agent-templates.ts[0m:[93m391[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"management"' is not assignable to type 'AgentType'.
 
 [7m391[0m       type: 'management',
@@ -2257,16 +1988,6 @@
     [7m77[0m   type: AgentType
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'AgentConfig'
-
-[96msrc/templates/agent-templates.ts[0m:[93m394[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
-
-[7m394[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
-
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
 
 [96msrc/templates/index.ts[0m:[93m4[0m:[93m15[0m - [91merror[0m[90m TS2307: [0mCannot find module './prompt-templates' or its corresponding type declarations.
 
@@ -2283,217 +2004,217 @@
 [7m6[0m export * from './marketplace'
 [7m [0m [91m              ~~~~~~~~~~~~~~~[0m
 
-[96msrc/templates/industry-templates.ts[0m:[93m15[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m16[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m15[0m       model: 'gpt-4',
-[7m  [0m [91m      ~~~~~[0m
+[7m16[0m       temperature: 0.1,
+[7m  [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m53[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m54[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m53[0m       model: 'gpt-4',
-[7m  [0m [91m      ~~~~~[0m
+[7m54[0m       temperature: 0.2,
+[7m  [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m92[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m93[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m92[0m       model: 'gpt-4',
-[7m  [0m [91m      ~~~~~[0m
+[7m93[0m       temperature: 0.2,
+[7m  [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m130[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m131[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m130[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m131[0m       temperature: 0.1,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m166[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m167[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m166[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m167[0m       temperature: 0.1,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m205[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m206[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m205[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m206[0m       temperature: 0.1,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m243[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m244[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m243[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m244[0m       temperature: 0.2,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m284[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m285[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m284[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m285[0m       temperature: 0.3,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m322[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m323[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m322[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m323[0m       temperature: 0.2,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m361[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m362[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m361[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m362[0m       temperature: 0.2,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m397[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m398[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m397[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m398[0m       temperature: 0.3,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m436[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m437[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m436[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m437[0m       temperature: 0.1,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m472[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m473[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m472[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m473[0m       temperature: 0.2,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m511[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m512[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m511[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m512[0m       temperature: 0.5,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m547[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m548[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m547[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m548[0m       temperature: 0.2,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m586[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m587[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m586[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m587[0m       temperature: 0.3,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m622[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m623[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m622[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m623[0m       temperature: 0.2,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m661[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m662[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m661[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m662[0m       temperature: 0.3,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m697[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m698[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m697[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m698[0m       temperature: 0.4,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m736[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m737[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m736[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m737[0m       temperature: 0.8,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-templates.ts[0m:[93m772[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string' is not assignable to type 'ModelConfig'.
+[96msrc/templates/industry-templates.ts[0m:[93m773[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'temperature' does not exist in type 'AgentConfig'.
 
-[7m772[0m       model: 'gpt-4',
-[7m   [0m [91m      ~~~~~[0m
+[7m773[0m       temperature: 0.4,
+[7m   [0m [91m      ~~~~~~~~~~~[0m
 
-  [96msrc/types.ts[0m:[93m78[0m:[93m3[0m
-    [7m78[0m   model: ModelConfig
-    [7m  [0m [96m  ~~~~~[0m
-    The expected type comes from property 'model' which is declared here on type 'AgentConfig'
+  [96msrc/templates/agent-templates.ts[0m:[93m11[0m:[93m3[0m
+    [7m11[0m   config: AgentConfig
+    [7m  [0m [96m  ~~~~~~[0m
+    The expected type comes from property 'config' which is declared here on type 'AgentTemplate'
 
-[96msrc/templates/industry-workflow-templates.ts[0m:[93m559[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '"file_upload"' is not assignable to type '"webhook" | "schedule" | "event" | "manual"'.
+[96msrc/templates/industry-workflow-templates.ts[0m:[93m559[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '"file_upload"' is not assignable to type '"webhook" | "manual" | "event" | "schedule"'.
 
 [7m559[0m         type: 'file_upload',
 [7m   [0m [91m        ~~~~[0m
@@ -2503,7 +2224,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'WorkflowTrigger'
 
-[96msrc/templates/industry-workflow-templates.ts[0m:[93m662[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '"form_submission"' is not assignable to type '"webhook" | "schedule" | "event" | "manual"'.
+[96msrc/templates/industry-workflow-templates.ts[0m:[93m662[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '"form_submission"' is not assignable to type '"webhook" | "manual" | "event" | "schedule"'.
 
 [7m662[0m         type: 'form_submission',
 [7m   [0m [91m        ~~~~[0m
@@ -3225,7 +2946,7 @@
     [7m  [0m [96m  ~~~~~~~[0m
     The expected type comes from property 'pricing' which is declared here on type 'ModelProvider'
 
-[96m../integrations/src/registry.ts[0m:[93m303[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
+[96m../integrations/src/registry.ts[0m:[93m303[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
 
 [7m303[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -3235,7 +2956,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../integrations/src/registry.ts[0m:[93m314[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
+[96m../integrations/src/registry.ts[0m:[93m314[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
 
 [7m314[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -3245,7 +2966,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../integrations/src/registry.ts[0m:[93m325[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
+[96m../integrations/src/registry.ts[0m:[93m325[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
 
 [7m325[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -3255,7 +2976,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../integrations/src/registry.ts[0m:[93m336[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"image_generation"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
+[96m../integrations/src/registry.ts[0m:[93m336[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"image_generation"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
 
 [7m336[0m             type: 'image_generation' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -3275,7 +2996,7 @@
     [7m  [0m [96m  ~~~~~~~[0m
     The expected type comes from property 'pricing' which is declared here on type 'ModelProvider'
 
-[96m../integrations/src/registry.ts[0m:[93m364[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
+[96m../integrations/src/registry.ts[0m:[93m364[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
 
 [7m364[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -3285,7 +3006,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../integrations/src/registry.ts[0m:[93m375[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
+[96m../integrations/src/registry.ts[0m:[93m375[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
 
 [7m375[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -3295,7 +3016,7 @@
     [7m  [0m [96m  ~~~~[0m
     The expected type comes from property 'type' which is declared here on type 'ModelConfig'
 
-[96m../integrations/src/registry.ts[0m:[93m386[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"audio" | "video" | "image" | "text" | "embedding"'.
+[96m../integrations/src/registry.ts[0m:[93m386[0m:[93m13[0m - [91merror[0m[90m TS2322: [0mType '"chat"' is not assignable to type '"text" | "video" | "embedding" | "audio" | "image"'.
 
 [7m386[0m             type: 'chat' as const,
 [7m   [0m [91m            ~~~~[0m
@@ -3395,3 +3116,87 @@
 [7m149[0m       onOpenChange: (open) => {
 [7m   [0m [91m                     ~~~~[0m
 
+
+Found 532 errors in 73 files.
+
+Errors  Files
+     1  ../../apps/web/app/deployments/page.tsx[90m:1[0m
+     1  ../../apps/web/app/integrations/page.tsx[90m:1[0m
+     4  ../../apps/web/app/layout.tsx[90m:4[0m
+     6  ../../apps/web/app/page.tsx[90m:1[0m
+     1  ../../apps/web/app/studio/page.tsx[90m:1[0m
+     2  ../../apps/web/app/workflows/page.tsx[90m:1[0m
+     7  ../../apps/web/src/components/deployments/deployment-dashboard.tsx[90m:4[0m
+     7  ../../apps/web/src/components/integrations/integration-hub.tsx[90m:4[0m
+     4  ../../apps/web/src/components/layout/sidebar.tsx[90m:3[0m
+     1  ../../apps/web/src/components/providers/index.tsx[90m:6[0m
+     1  ../../apps/web/src/components/sections/cta.tsx[90m:1[0m
+     1  ../../apps/web/src/components/sections/features.tsx[90m:1[0m
+     1  ../../apps/web/src/components/sections/hero.tsx[90m:1[0m
+     1  ../../apps/web/src/components/sections/integrations.tsx[90m:1[0m
+     1  ../../apps/web/src/components/sections/pricing.tsx[90m:1[0m
+     1  ../../apps/web/src/components/sections/testimonials.tsx[90m:1[0m
+    15  ../../apps/web/src/components/studio/advanced-flow-builder.tsx[90m:22[0m
+     9  ../../apps/web/src/components/studio/agent-manager.tsx[90m:4[0m
+    11  ../../apps/web/src/components/studio/context-manager.tsx[90m:4[0m
+     1  ../../apps/web/src/components/studio/custom-edge.tsx[90m:51[0m
+    10  ../../apps/web/src/components/studio/deployment-panel.tsx[90m:4[0m
+     8  ../../apps/web/src/components/studio/flow-builder.tsx[90m:20[0m
+    29  ../../apps/web/src/components/studio/flow-node.tsx[90m:5[0m
+     3  ../../apps/web/src/components/studio/flow-toolbar.tsx[90m:4[0m
+    10  ../../apps/web/src/components/studio/logs-viewer.tsx[90m:4[0m
+     5  ../../apps/web/src/components/studio/node-palette.tsx[90m:4[0m
+    10  ../../apps/web/src/components/studio/prompt-library.tsx[90m:4[0m
+    15  ../../apps/web/src/components/studio/property-panel.tsx[90m:4[0m
+     8  ../../apps/web/src/components/studio/reports-viewer.tsx[90m:4[0m
+    21  ../../apps/web/src/components/studio/settings-panel.tsx[90m:4[0m
+     7  ../../apps/web/src/components/studio/studio-interface.tsx[90m:4[0m
+    10  ../../apps/web/src/components/studio/test-runner.tsx[90m:4[0m
+    10  ../../apps/web/src/components/studio/tools-manager.tsx[90m:4[0m
+     1  ../../apps/web/src/components/ui/badge.tsx[90m:4[0m
+     1  ../../apps/web/src/components/ui/button.tsx[90m:5[0m
+     1  ../../apps/web/src/components/ui/card.tsx[90m:3[0m
+     1  ../../apps/web/src/components/ui/input.tsx[90m:3[0m
+     1  ../../apps/web/src/components/ui/label.tsx[90m:7[0m
+     1  ../../apps/web/src/components/ui/progress.tsx[90m:6[0m
+     1  ../../apps/web/src/components/ui/scroll-area.tsx[90m:6[0m
+     1  ../../apps/web/src/components/ui/select.tsx[90m:7[0m
+     1  ../../apps/web/src/components/ui/separator.tsx[90m:6[0m
+     1  ../../apps/web/src/components/ui/tabs.tsx[90m:6[0m
+     1  ../../apps/web/src/components/ui/textarea.tsx[90m:3[0m
+     1  ../../apps/web/src/components/workflows/workflow-list.tsx[90m:1[0m
+     1  ../../apps/web/src/hooks/use-integrations.ts[90m:2[0m
+    57  ../../apps/web/src/store/flow-store.ts[90m:95[0m
+     7  src/agents/chat-agent.ts[90m:2[0m
+     7  src/agents/index.ts[90m:5[0m
+     3  src/agents/multimodal-agent.ts[90m:2[0m
+     3  src/collaboration/index.ts[90m:3[0m
+     3  src/engine.ts[90m:4[0m
+     4  src/executor.ts[90m:112[0m
+    17  src/index.ts[90m:4[0m
+     2  src/memory/index.ts[90m:2[0m
+     2  src/memory/manager.ts[90m:3[0m
+    16  src/templates/agent-templates.ts[90m:35[0m
+     3  src/templates/index.ts[90m:4[0m
+    21  src/templates/industry-templates.ts[90m:16[0m
+     2  src/templates/industry-workflow-templates.ts[90m:559[0m
+    20  src/tools/advanced-tools.ts[90m:2[0m
+     5  src/tools/document-processor.ts[90m:2[0m
+     6  src/tools/index.ts[90m:4[0m
+    11  src/tools/specialized-tools.ts[90m:2[0m
+     3  src/types.ts[90m:44[0m
+     5  src/workflows/index.ts[90m:3[0m
+     4  ../integrations/src/connectors/ai-models/openai.ts[90m:1[0m
+     4  ../integrations/src/connectors/communication/slack.ts[90m:1[0m
+     5  ../integrations/src/connectors/databases/weaviate.ts[90m:1[0m
+    57  ../integrations/src/index.ts[90m:5[0m
+     2  ../integrations/src/manager.ts[90m:55[0m
+    26  ../integrations/src/registry.ts[90m:129[0m
+     2  ../ui/src/hooks/use-toast.ts[90m:148[0m
+[1mnpm[22m [31merror[39m Lifecycle script `build` failed with error:
+[1mnpm[22m [31merror[39m [94mcode[39m [33m2[39m
+[1mnpm[22m [31merror[39m [94mpath[39m /home/runner/work/lamatic-clone/lamatic-clone/packages/agents
+[1mnpm[22m [31merror[39m [94mworkspace[39m @lamatic/agents@1.0.0
+[1mnpm[22m [31merror[39m [94mlocation[39m /home/runner/work/lamatic-clone/lamatic-clone/packages/agents
+[1mnpm[22m [31merror[39m command failed
+[1mnpm[22m [31merror[39m [94mcommand[39m sh -c tsc
