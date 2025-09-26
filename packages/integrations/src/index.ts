@@ -50,11 +50,13 @@ export * from './models/groq'
 // Google Workspace connectors
 export * from './connectors/google-workspace/google-sheets'
 export * from './connectors/google-workspace/google-drive'
+export * from './connectors/google-workspace/google-calendar'
 
 // Project management connectors
 export * from './connectors/project-management/linear'
 export * from './connectors/project-management/jira'
 export * from './connectors/project-management/asana'
+export * from './connectors/project-management/trello'
 
 // E-commerce connectors  
 export * from './connectors/e-commerce/shopify'
@@ -74,16 +76,26 @@ export * from './connectors/productivity-tools/airtable'
 // Developer tool connectors
 export * from './connectors/developer-tools/github'
 export * from './connectors/developer-tools/gitlab'
+export * from './connectors/developer-tools/bitbucket'
 
 // Marketing connectors
 export * from './connectors/marketing/mailchimp'
 export * from './connectors/marketing/hubspot'
+export * from './connectors/marketing/convertkit'
 
 // Analytics connectors
 export * from './connectors/analytics/google-analytics'
+export * from './connectors/analytics/mixpanel'
 
 // Scheduling connectors
 export * from './connectors/scheduling/calendly'
+
+// CRM connectors
+export * from './connectors/crm/salesforce'
+export * from './connectors/crm/zendesk'
+
+// Cloud services connectors
+export * from './connectors/cloud-services/aws-lambda'
 
 // Business service connectors
 export * from './connectors/business-services/stripe'

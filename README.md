@@ -1,12 +1,12 @@
 # Lamatic Clone - AI Agent Platform
 
-🚀 **Full-featured clone of Lamatic.ai** - Build, Connect and Deploy AI Agents on Edge with 130+ Professional Integrations
+🚀 **Full-featured clone of Lamatic.ai** - Build, Connect and Deploy AI Agents on Edge with 150+ Professional Integrations
 
 [![Next.js](https://img.shields.io/badge/Next.js-13-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)](https://docker.com/)
 [![GraphQL](https://img.shields.io/badge/GraphQL-API-E10098)](https://graphql.org/)
-[![Integrations](https://img.shields.io/badge/Integrations-130+-green)](https://github.com/arturwyroslak/lamatic-clone)
+[![Integrations](https://img.shields.io/badge/Integrations-150+-green)](https://github.com/arturwyroslak/lamatic-clone)
 
 ## 🎯 Overview
 
@@ -14,7 +14,7 @@ Complete implementation of Lamatic.ai's AI Agent platform featuring:
 
 - **Visual Flow Builder** - Drag & drop interface for AI workflows
 - **Edge Deployment** - Serverless hosting with global CDN  
-- **130+ Professional Integrations** - AI models, databases, APIs, and enterprise services
+- **150+ Professional Integrations** - AI models, databases, APIs, and enterprise services
 - **GraphQL API** - Single endpoint for all operations
 - **Vector Database** - Built-in Weaviate integration
 - **Real-time Monitoring** - Traces, logs, and analytics
@@ -65,19 +65,20 @@ open http://localhost:3000
 - Real-time collaboration
 - Version control integration
 
-### 🔌 Integrations Hub - 130+ Integrations
+### 🔌 Integrations Hub - 150+ Integrations
 - **AI Models** (11): OpenAI GPT-4, Anthropic Claude, Cohere, Mistral AI, Groq, Together AI, Replicate, Perplexity AI, xAI (Grok), Hugging Face, Google PaLM
-- **Productivity Tools** (3): Notion, Airtable, Google Sheets, Google Drive
-- **Project Management** (3): Linear, Jira, Asana  
-- **Developer Tools** (2): GitHub, GitLab (repositories, issues, PRs, pipelines)
+- **Google Workspace** (3): Google Sheets, Google Drive, Google Calendar
+- **Project Management** (4): Linear, Jira, Asana, Trello (complete Kanban management)
+- **Developer Tools** (3): GitHub, GitLab, Bitbucket (repositories, issues, PRs, CI/CD)
 - **E-commerce** (2): Shopify, WooCommerce (products, orders, customers)
 - **Communication** (5): Slack, Discord, Microsoft Teams, Telegram, WhatsApp Business
-- **Marketing** (2): Mailchimp, HubSpot (CRM, automation, campaigns)
+- **Marketing** (3): Mailchimp, HubSpot, ConvertKit (email automation & CRM)
+- **Analytics** (2): Google Analytics 4, Mixpanel (user behavior tracking)
+- **CRM** (2): Salesforce, Zendesk (customer support & ticketing)
+- **Cloud Services** (1): AWS Lambda (serverless functions)
 - **Databases** (6): PostgreSQL, MongoDB, Redis, Elasticsearch, Weaviate, Weaviate Enhanced
 - **Business Services** (1): Stripe (payments, subscriptions)
-- **CRM** (1): Salesforce
 - **Storage** (1): AWS S3
-- **Analytics** (1): Google Analytics 4
 - **Scheduling** (1): Calendly
 - **Legacy Integrations**: REST APIs, GraphQL, Webhooks, Zapier, N8N compatibility
 
