@@ -1,5 +1,6 @@
 import { BaseConnector } from '../base'
 import { IntegrationConfig, ExecutionContext } from '../../types'
+import { randomBytes } from 'crypto'
 
 export interface ElasticsearchConfig extends IntegrationConfig {
   nodes: string[]
@@ -62,7 +63,7 @@ export class ElasticsearchConnector extends BaseConnector {
     
     const result = {
       _index: index,
-      _id: id || `doc_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      _id: id || `doc_${Date.now()}_${randomBytes(6).toString('hex')}`,
       _version: 1,
       result: 'created',
       _shards: {

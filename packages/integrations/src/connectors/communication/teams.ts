@@ -1,5 +1,6 @@
 import { BaseConnector } from '../base'
 import { IntegrationConfig, ExecutionContext } from '../../types'
+import { randomBytes } from 'crypto'
 
 export interface TeamsConfig extends IntegrationConfig {
   webhookUrl?: string
@@ -8,6 +9,11 @@ export interface TeamsConfig extends IntegrationConfig {
   tenantId?: string
   appId?: string
   appSecret?: string
+}
+
+function generateSecureId(prefix: string): string {
+  const randomId = randomBytes(6).toString('hex')
+  return `${prefix}_${Date.now()}_${randomId}`
 }
 
 export class TeamsConnector extends BaseConnector {
@@ -54,7 +60,7 @@ export class TeamsConnector extends BaseConnector {
     const { channelId, message, mentionUsers = [] } = params
 
     const result = {
-      id: `teams_msg_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('teams_msg'),
       body: {
         content: message,
         contentType: 'text'
@@ -90,7 +96,7 @@ export class TeamsConnector extends BaseConnector {
     const { channelId, card } = params
 
     const result = {
-      id: `teams_card_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('teams_card'),
       body: {
         content: JSON.stringify(card),
         contentType: 'application/vnd.microsoft.card.adaptive'
@@ -124,7 +130,7 @@ export class TeamsConnector extends BaseConnector {
 
     const result = {
       '@odata.context': 'https://graph.microsoft.com/v1.0/$metadata#teams/$entity',
-      id: `team_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('team'),
       displayName,
       description,
       internalId: `internal_${Date.now()}`,
@@ -201,7 +207,7 @@ export class TeamsConnector extends BaseConnector {
 
     const result = {
       '@odata.context': 'https://graph.microsoft.com/v1.0/$metadata#teams(\'{teamId}\')/channels/$entity',
-      id: `channel_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('channel'),
       displayName,
       description,
       email: '',
@@ -218,7 +224,7 @@ export class TeamsConnector extends BaseConnector {
     const { channelId, message, scheduleTime } = params
 
     const result = {
-      id: `scheduled_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('scheduled'),
       channelId,
       message,
       scheduledTime: scheduleTime,
@@ -264,7 +270,7 @@ export class TeamsConnector extends BaseConnector {
 
     const result = {
       '@odata.context': 'https://graph.microsoft.com/v1.0/$metadata#users(\'{userId}\')/teamwork/installedApps',
-      id: `notification_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('notification'),
       title,
       body: {
         content: body

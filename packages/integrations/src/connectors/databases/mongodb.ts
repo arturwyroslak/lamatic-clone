@@ -1,5 +1,6 @@
 import { BaseConnector } from '../base'
 import { IntegrationConfig, ExecutionContext } from '../../types'
+import { randomBytes } from 'crypto'
 
 export interface MongoDBConfig extends IntegrationConfig {
   connectionString: string
@@ -55,7 +56,7 @@ export class MongoDBConnector extends BaseConnector {
     // Simulate document insertion
     const result = {
       acknowledged: true,
-      insertedId: `obj_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      insertedId: `obj_${Date.now()}_${randomBytes(6).toString('hex')}`,
       insertedCount: 1
     }
 

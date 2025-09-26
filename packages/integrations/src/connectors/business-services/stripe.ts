@@ -1,11 +1,17 @@
 import { BaseConnector } from '../base'
 import { IntegrationConfig, ExecutionContext } from '../../types'
+import { randomBytes } from 'crypto'
 
 export interface StripeConfig extends IntegrationConfig {
   secretKey: string
   publishableKey?: string
   webhookSecret?: string
   apiVersion?: string
+}
+
+function generateSecureId(prefix: string): string {
+  const randomId = randomBytes(6).toString('hex')
+  return `${prefix}_${Date.now()}_${randomId}`
 }
 
 export class StripeConnector extends BaseConnector {
@@ -58,7 +64,7 @@ export class StripeConnector extends BaseConnector {
     const { email, name, phone, description, metadata = {} } = params
 
     const result = {
-      id: `cus_${Date.now()}${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('cus'),
       object: 'customer',
       created: Math.floor(Date.now() / 1000),
       email,
@@ -71,7 +77,7 @@ export class StripeConnector extends BaseConnector {
       default_source: null,
       delinquent: false,
       discount: null,
-      invoice_prefix: `${Math.random().toString(36).substr(2, 8).toUpperCase()}`,
+      invoice_prefix: `${randomBytes(4).toString('hex').toUpperCase()}`,
       invoice_settings: {
         custom_fields: null,
         default_payment_method: null,
@@ -115,7 +121,7 @@ export class StripeConnector extends BaseConnector {
     } = params
 
     const result = {
-      id: `pi_${Date.now()}${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('pi'),
       object: 'payment_intent',
       amount,
       amount_capturable: 0,
@@ -131,7 +137,7 @@ export class StripeConnector extends BaseConnector {
         has_more: false,
         url: `/v1/charges?payment_intent=pi_${Date.now()}`
       },
-      client_secret: `pi_${Date.now()}_secret_${Math.random().toString(36).substr(2, 16)}`,
+      client_secret: `pi_${Date.now()}_secret_${randomBytes(8).toString('hex')}`,
       confirmation_method: 'automatic',
       created: Math.floor(Date.now() / 1000),
       currency,
@@ -164,7 +170,7 @@ export class StripeConnector extends BaseConnector {
     const { customer, items, trial_period_days, metadata = {} } = params
 
     const result = {
-      id: `sub_${Date.now()}${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('sub'),
       object: 'subscription',
       application_fee_percent: null,
       billing_cycle_anchor: Math.floor(Date.now() / 1000),
@@ -223,7 +229,7 @@ export class StripeConnector extends BaseConnector {
     const { name, description, type = 'service', metadata = {} } = params
 
     const result = {
-      id: `prod_${Date.now()}${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('prod'),
       object: 'product',
       active: true,
       created: Math.floor(Date.now() / 1000),
@@ -255,7 +261,7 @@ export class StripeConnector extends BaseConnector {
     } = params
 
     const result = {
-      id: `price_${Date.now()}${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('price'),
       object: 'price',
       active: true,
       billing_scheme: 'per_unit',
@@ -343,7 +349,7 @@ export class StripeConnector extends BaseConnector {
     const { payment_intent, amount, reason = 'requested_by_customer', metadata = {} } = params
 
     const result = {
-      id: `re_${Date.now()}${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('re'),
       object: 'refund',
       amount,
       charge: `ch_${Date.now()}`,
@@ -408,7 +414,7 @@ export class StripeConnector extends BaseConnector {
     } = params
 
     const result = {
-      id: `cs_${Date.now()}${Math.random().toString(36).substr(2, 9)}`,
+      id: generateSecureId('cs'),
       object: 'checkout.session',
       allow_promotion_codes: null,
       amount_subtotal: null,
