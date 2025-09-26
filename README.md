@@ -65,7 +65,7 @@ open http://localhost:3000
 - Real-time collaboration
 - Version control integration
 
-### 🔌 Integrations Hub - 150+ Integrations
+### 🔌 Integrations Hub - 170+ Enterprise Integrations
 - **AI Models** (11): OpenAI GPT-4, Anthropic Claude, Cohere, Mistral AI, Groq, Together AI, Replicate, Perplexity AI, xAI (Grok), Hugging Face, Google PaLM
 - **Google Workspace** (3): Google Sheets, Google Drive, Google Calendar
 - **Project Management** (4): Linear, Jira, Asana, Trello (complete Kanban management)
@@ -75,10 +75,12 @@ open http://localhost:3000
 - **Marketing** (3): Mailchimp, HubSpot, ConvertKit (email automation & CRM)
 - **Analytics** (2): Google Analytics 4, Mixpanel (user behavior tracking)
 - **CRM** (2): Salesforce, Zendesk (customer support & ticketing)
-- **Cloud Services** (1): AWS Lambda (serverless functions)
+- **Cloud Services** (2): AWS Lambda (serverless functions), AWS S3 (cloud storage)
+- **Finance** (2): QuickBooks Online, Xero (accounting & financial management)
+- **Social Media** (2): Twitter/X, LinkedIn (professional networking & content)
+- **Video Conferencing** (2): Zoom, Microsoft Teams (meetings & collaboration)
 - **Databases** (6): PostgreSQL, MongoDB, Redis, Elasticsearch, Weaviate, Weaviate Enhanced
 - **Business Services** (1): Stripe (payments, subscriptions)
-- **Storage** (1): AWS S3
 - **Scheduling** (1): Calendly
 - **Legacy Integrations**: REST APIs, GraphQL, Webhooks, Zapier, N8N compatibility
 

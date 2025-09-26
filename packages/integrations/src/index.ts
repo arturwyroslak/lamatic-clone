@@ -96,6 +96,19 @@ export * from './connectors/crm/zendesk'
 
 // Cloud services connectors
 export * from './connectors/cloud-services/aws-lambda'
+export * from './connectors/cloud-services/aws-s3'
+
+// Finance connectors
+export * from './connectors/finance/quickbooks'
+export * from './connectors/finance/xero'
+
+// Social media connectors
+export * from './connectors/social-media/twitter'
+export * from './connectors/social-media/linkedin'
+
+// Video conferencing connectors
+export * from './connectors/video-conferencing/zoom'
+export * from './connectors/video-conferencing/microsoft-teams'
 
 // Business service connectors
 export * from './connectors/business-services/stripe'
