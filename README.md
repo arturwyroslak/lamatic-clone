@@ -1,12 +1,12 @@
 # Lamatic Clone - AI Agent Platform
 
-🚀 **Full-featured clone of Lamatic.ai** - Build, Connect and Deploy AI Agents on Edge with 150+ Professional Integrations
+🚀 **Full-featured clone of Lamatic.ai** - Build, Connect and Deploy AI Agents on Edge with 190+ Professional Integrations
 
 [![Next.js](https://img.shields.io/badge/Next.js-13-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)](https://docker.com/)
 [![GraphQL](https://img.shields.io/badge/GraphQL-API-E10098)](https://graphql.org/)
-[![Integrations](https://img.shields.io/badge/Integrations-150+-green)](https://github.com/arturwyroslak/lamatic-clone)
+[![Integrations](https://img.shields.io/badge/Integrations-190+-green)](https://github.com/arturwyroslak/lamatic-clone)
 
 ## 🎯 Overview
 
@@ -14,7 +14,7 @@ Complete implementation of Lamatic.ai's AI Agent platform featuring:
 
 - **Visual Flow Builder** - Drag & drop interface for AI workflows
 - **Edge Deployment** - Serverless hosting with global CDN  
-- **150+ Professional Integrations** - AI models, databases, APIs, and enterprise services
+- **190+ Professional Integrations** - AI models, databases, APIs, and enterprise services
 - **GraphQL API** - Single endpoint for all operations
 - **Vector Database** - Built-in Weaviate integration
 - **Real-time Monitoring** - Traces, logs, and analytics

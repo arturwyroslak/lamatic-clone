@@ -78,6 +78,58 @@ export * from './connectors/developer-tools/github'
 export * from './connectors/developer-tools/gitlab'
 export * from './connectors/developer-tools/bitbucket'
 
+// Marketing & CRM connectors
+export * from './connectors/marketing/mailchimp'
+export * from './connectors/marketing/hubspot'
+export * from './connectors/marketing/convertkit'
+
+// Analytics connectors
+export * from './connectors/analytics/google-analytics'
+export * from './connectors/analytics/mixpanel'
+
+// Scheduling connectors
+export * from './connectors/scheduling/calendly'
+
+// Cloud services connectors
+export * from './connectors/cloud-services/aws-lambda'
+export * from './connectors/cloud-services/aws-s3'
+
+// Finance & accounting connectors
+export * from './connectors/finance/paypal'
+export * from './connectors/finance/square'
+export * from './connectors/finance/quickbooks'
+export * from './connectors/finance/xero'
+export * from './connectors/finance/wave'
+
+// Human resources connectors
+export * from './connectors/hr/bamboo-hr'
+export * from './connectors/hr/workday'
+
+// Legal & compliance connectors
+export * from './connectors/legal/docusign'
+export * from './connectors/legal/pandadoc'
+
+// Storage connectors
+export * from './connectors/storage/dropbox'
+
+// Monitoring & observability connectors
+export * from './connectors/monitoring/datadog'
+
+// Customer support & CRM connectors
+export * from './connectors/crm/zendesk'
+export * from './connectors/crm/pipedrive'
+
+// Identity & access management connectors
+export * from './connectors/identity/auth0'
+
+// Social media connectors
+export * from './connectors/social-media/twitter'
+export * from './connectors/social-media/linkedin'
+
+// Video conferencing connectors
+export * from './connectors/video-conferencing/zoom'
+export * from './connectors/video-conferencing/microsoft-teams'
+
 // Marketing connectors
 export * from './connectors/marketing/mailchimp'
 export * from './connectors/marketing/hubspot'
