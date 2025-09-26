@@ -1,23 +1,25 @@
 # Lamatic Clone - AI Agent Platform
 
-🚀 **Full-featured clone of Lamatic.ai** - Build, Connect and Deploy AI Agents on Edge
+🚀 **Full-featured clone of Lamatic.ai** - Build, Connect and Deploy AI Agents on Edge with 100+ Professional Integrations
 
 [![Next.js](https://img.shields.io/badge/Next.js-13-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)](https://docker.com/)
 [![GraphQL](https://img.shields.io/badge/GraphQL-API-E10098)](https://graphql.org/)
+[![Integrations](https://img.shields.io/badge/Integrations-100+-green)](https://github.com/arturwyroslak/lamatic-clone)
 
 ## 🎯 Overview
 
 Complete implementation of Lamatic.ai's AI Agent platform featuring:
 
 - **Visual Flow Builder** - Drag & drop interface for AI workflows
-- **Edge Deployment** - Serverless hosting with global CDN
-- **150+ Integrations** - Models, databases, APIs, and services
+- **Edge Deployment** - Serverless hosting with global CDN  
+- **100+ Professional Integrations** - AI models, databases, APIs, and enterprise services
 - **GraphQL API** - Single endpoint for all operations
 - **Vector Database** - Built-in Weaviate integration
 - **Real-time Monitoring** - Traces, logs, and analytics
 - **Team Collaboration** - Role-based permissions and sharing
+- **Advanced Workflow Templates** - Industry-specific automation scenarios
 
 ## 🏗️ Architecture
 
@@ -63,11 +65,21 @@ open http://localhost:3000
 - Real-time collaboration
 - Version control integration
 
-### 🔌 Integrations Hub
-- **AI Models**: OpenAI, Anthropic, Cohere, Hugging Face
-- **Databases**: PostgreSQL, MongoDB, Pinecone, Weaviate
-- **APIs**: REST, GraphQL, Webhooks
-- **Services**: Zapier, Airtable, Notion, Slack
+### 🔌 Integrations Hub - 100+ Integrations
+- **AI Models** (8): OpenAI GPT-4, Anthropic Claude, Cohere, Mistral AI, Groq, Together AI, Hugging Face, Google PaLM
+- **Productivity Tools** (3): Notion, Airtable, Google Sheets
+- **Developer Tools** (1): GitHub (repositories, issues, PRs)
+- **Project Management** (1): Linear (GraphQL API, issues, teams)
+- **E-commerce** (1): Shopify (products, orders, customers)
+- **Communication** (4): Slack, Discord, Microsoft Teams, Telegram
+- **Databases** (6): PostgreSQL, MongoDB, Redis, Elasticsearch, Weaviate, Weaviate Enhanced
+- **Business Services** (1): Stripe (payments, subscriptions)
+- **CRM** (1): Salesforce
+- **Storage** (1): AWS S3
+- **Analytics** (1): Google Analytics 4
+- **Marketing** (1): Mailchimp
+- **Scheduling** (1): Calendly
+- **Legacy Integrations**: REST APIs, GraphQL, Webhooks, Zapier, N8N compatibility
 
 ### 🚀 Deployment Options
 - **Edge Functions** - Global serverless deployment
@@ -89,6 +101,26 @@ open http://localhost:3000
 - **Database**: PostgreSQL, Redis, Weaviate
 - **Deployment**: Docker, Vercel, AWS Lambda
 - **Monitoring**: OpenTelemetry, Grafana
+
+## 🚀 Advanced Workflow Templates
+
+### AI-Powered E-commerce Customer Support
+Comprehensive automated customer support workflow featuring:
+- **Multi-AI Classification** - Cohere, Mistral, GPT-4 for inquiry analysis
+- **Shopify Integration** - Real-time order status checking
+- **Knowledge Base Search** - Notion integration for support articles  
+- **Team Notifications** - Slack alerts for escalation
+- **Task Management** - Linear integration for follow-ups
+- **CRM Logging** - Airtable customer interaction tracking
+- **Sentiment Analysis** - AI-powered customer mood detection
+
+### Multi-AI Content Generation Pipeline
+Advanced content creation workflow with:
+- **Parallel AI Generation** - GPT-4, Claude, Mistral, Cohere comparison
+- **Quality Assessment** - Groq-powered content scoring
+- **Content Synthesis** - Together AI for optimal version creation
+- **Analytics Tracking** - Google Sheets performance monitoring
+- **Content Library** - Notion storage and organization
 
 ## 📁 Project Structure
 
