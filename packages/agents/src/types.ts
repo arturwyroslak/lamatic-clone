@@ -94,6 +94,8 @@ export type AgentType =
   | 'customer-service'
   | 'content-creation'
   | 'data-processing'
+  | 'devops-automation'
+  | 'security-audit'
 
 export interface ModelConfig {
   provider: string

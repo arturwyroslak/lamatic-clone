@@ -33,16 +33,20 @@ export class TelegramConnector extends BaseConnector<TelegramConfig> {
   }
 
   async initialize(): Promise<void> {
-    // Test the bot token by calling getMe
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
+    // Validate bot token by getting bot information
     const response = await fetch(`${this.baseUrl}/bot${this.config.botToken}/getMe`);
     
     if (!response.ok) {
       throw new Error(`Telegram initialization failed: ${response.statusText}`);
     }
 
-    const data = await response.json();
-    if (!data.ok) {
-      throw new Error(`Telegram bot token invalid: ${data.description}`);
+    const botInfo = await response.json();
+    if (!botInfo.ok) {
+      throw new Error(`Telegram bot validation failed: ${botInfo.description}`);
     }
 
     this.status = 'connected';
@@ -88,6 +92,10 @@ export class TelegramConnector extends BaseConnector<TelegramConfig> {
   }
 
   private async sendMessage(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const validated = sendMessageSchema.parse(params);
     
     const response = await fetch(`${this.baseUrl}/bot${this.config.botToken}/sendMessage`, {
@@ -107,6 +115,10 @@ export class TelegramConnector extends BaseConnector<TelegramConfig> {
   }
 
   private async sendPhoto(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const validated = sendPhotoSchema.parse(params);
     
     const response = await fetch(`${this.baseUrl}/bot${this.config.botToken}/sendPhoto`, {
@@ -126,6 +138,10 @@ export class TelegramConnector extends BaseConnector<TelegramConfig> {
   }
 
   private async getUpdates(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const queryParams = new URLSearchParams();
     if (params.offset) queryParams.append('offset', params.offset);
     if (params.limit) queryParams.append('limit', params.limit);
@@ -144,6 +160,10 @@ export class TelegramConnector extends BaseConnector<TelegramConfig> {
   }
 
   private async getChat(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const response = await fetch(
       `${this.baseUrl}/bot${this.config.botToken}/getChat?chat_id=${params.chat_id}`
     );

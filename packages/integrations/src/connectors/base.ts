@@ -1,11 +1,13 @@
 import { z } from 'zod';
+import { ConnectionConfig, ExecutionContext, ActionResult, ConnectorCapabilities } from '../types';
 
 export interface ConnectorConfig {
-  id: string;
-  name: string;
+  id?: string;
+  name?: string;
   apiEndpoint?: string;
   timeout?: number;
   retries?: number;
+  [key: string]: unknown;
 }
 
 export interface ConnectorAction {
@@ -18,19 +20,52 @@ export interface ConnectorAction {
 
 export type ConnectorStatus = 'disconnected' | 'connecting' | 'connected' | 'error';
 
-export abstract class BaseConnector<T extends ConnectorConfig = ConnectorConfig> {
+export class BaseConnector<T extends ConnectorConfig = ConnectorConfig> {
   protected status: ConnectorStatus = 'disconnected';
   protected lastError?: Error;
+  protected config?: T;
 
-  constructor(
-    public readonly type: string,
-    public readonly displayName: string,
-    protected config: T
-  ) {}
+  constructor(type?: string, displayName?: string, config?: T) {
+    // Support both new parameterless style and legacy style with config
+    this.config = config;
+  }
 
-  abstract initialize(): Promise<void>;
-  abstract getActions(): ConnectorAction[];
-  abstract testConnection(): Promise<boolean>;
+  async initialize(): Promise<void> {
+    return Promise.resolve();
+  }
+
+  getActions(): ConnectorAction[] {
+    return [];
+  }
+
+  async testConnection(config?: ConnectionConfig): Promise<boolean> {
+    // Default implementation - should be overridden by subclasses
+    return this.status === 'connected' || this.status === 'connecting';
+  }
+
+  async connect(config?: ConnectionConfig): Promise<boolean> {
+    try {
+      this.status = 'connecting';
+      this.clearError();
+      await this.initialize();
+      this.status = 'connected';
+      return true;
+    } catch (error) {
+      this.setError(error as Error);
+      return false;
+    }
+  }
+
+  // Add logExecution method that many connectors expect
+  protected async logExecution(
+    context: ExecutionContext,
+    operation: string,
+    input: any,
+    result: any
+  ): Promise<void> {
+    // Default implementation - can be overridden by subclasses
+    console.log(`[${context.executionId}] ${operation}:`, { input, result });
+  }
 
   getStatus(): ConnectorStatus {
     return this.status;
@@ -38,14 +73,6 @@ export abstract class BaseConnector<T extends ConnectorConfig = ConnectorConfig>
 
   getLastError(): Error | undefined {
     return this.lastError;
-  }
-
-  getConfig(): T {
-    return { ...this.config };
-  }
-
-  updateConfig(newConfig: Partial<T>): void {
-    this.config = { ...this.config, ...newConfig };
   }
 
   protected setError(error: Error): void {
@@ -60,18 +87,6 @@ export abstract class BaseConnector<T extends ConnectorConfig = ConnectorConfig>
     }
   }
 
-  async connect(): Promise<void> {
-    try {
-      this.status = 'connecting';
-      this.clearError();
-      await this.initialize();
-      this.status = 'connected';
-    } catch (error) {
-      this.setError(error as Error);
-      throw error;
-    }
-  }
-
   disconnect(): void {
     this.status = 'disconnected';
     this.clearError();
@@ -79,12 +94,12 @@ export abstract class BaseConnector<T extends ConnectorConfig = ConnectorConfig>
 
   async executeAction(actionId: string, params: any): Promise<any> {
     if (this.status !== 'connected') {
-      throw new Error(`Connector ${this.displayName} is not connected`);
+      throw new Error(`Connector is not connected`);
     }
 
     const action = this.getActions().find(a => a.id === actionId);
     if (!action) {
-      throw new Error(`Action ${actionId} not found in connector ${this.displayName}`);
+      throw new Error(`Action ${actionId} not found in connector`);
     }
 
     try {

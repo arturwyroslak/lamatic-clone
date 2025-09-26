@@ -300,6 +300,7 @@ export class IntegrationRegistry {
           {
             id: 'gpt-4',
             name: 'GPT-4',
+            description: 'OpenAI GPT-4 model for complex reasoning and analysis',
             type: 'chat' as const,
             contextLength: 8192,
             maxTokens: 4096,
@@ -311,6 +312,7 @@ export class IntegrationRegistry {
           {
             id: 'gpt-4-turbo',
             name: 'GPT-4 Turbo',
+            description: 'OpenAI GPT-4 Turbo with enhanced speed and multimodal capabilities',
             type: 'chat' as const,
             contextLength: 128000,
             maxTokens: 4096,
@@ -322,6 +324,7 @@ export class IntegrationRegistry {
           {
             id: 'gpt-3.5-turbo',
             name: 'GPT-3.5 Turbo',
+            description: 'OpenAI GPT-3.5 Turbo for fast and efficient text generation',
             type: 'chat' as const,
             contextLength: 16385,
             maxTokens: 4096,
@@ -333,7 +336,8 @@ export class IntegrationRegistry {
           {
             id: 'dall-e-3',
             name: 'DALL-E 3',
-            type: 'image_generation' as const,
+            description: 'OpenAI DALL-E 3 for high-quality image generation',
+            type: 'image' as const,
             contextLength: 1000,
             maxTokens: 1,
             inputPricing: 0.04,
@@ -361,6 +365,7 @@ export class IntegrationRegistry {
           {
             id: 'claude-3-opus',
             name: 'Claude 3 Opus',
+            description: 'Anthropic Claude 3 Opus for complex reasoning and advanced analysis',
             type: 'chat' as const,
             contextLength: 200000,
             maxTokens: 4096,
@@ -372,6 +377,7 @@ export class IntegrationRegistry {
           {
             id: 'claude-3-sonnet',
             name: 'Claude 3 Sonnet',
+            description: 'Anthropic Claude 3 Sonnet for balanced performance and multimodal tasks',
             type: 'chat' as const,
             contextLength: 200000,
             maxTokens: 4096,
@@ -383,6 +389,7 @@ export class IntegrationRegistry {
           {
             id: 'claude-3-haiku',
             name: 'Claude 3 Haiku',
+            description: 'Anthropic Claude 3 Haiku for fast and efficient text processing',
             type: 'chat' as const,
             contextLength: 200000,
             maxTokens: 4096,

@@ -47,6 +47,10 @@ export class DiscordConnector extends BaseConnector<DiscordConfig> {
   }
 
   async initialize(): Promise<void> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     // Validate bot token by making a test API call
     const response = await fetch('https://discord.com/api/v10/users/@me', {
       headers: {
@@ -96,6 +100,10 @@ export class DiscordConnector extends BaseConnector<DiscordConfig> {
   }
 
   private async sendMessage(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const validated = sendMessageSchema.parse(params);
     
     const response = await fetch(`https://discord.com/api/v10/channels/${validated.channelId}/messages`, {
@@ -115,6 +123,10 @@ export class DiscordConnector extends BaseConnector<DiscordConfig> {
   }
 
   private async getGuildChannels(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const guildId = params.guildId || this.config.guildId;
     if (!guildId) {
       throw new Error('Guild ID is required');
@@ -135,6 +147,10 @@ export class DiscordConnector extends BaseConnector<DiscordConfig> {
   }
 
   private async createChannel(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const guildId = params.guildId || this.config.guildId;
     if (!guildId) {
       throw new Error('Guild ID is required');

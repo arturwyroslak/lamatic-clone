@@ -40,38 +40,34 @@ export class SalesforceConnector extends BaseConnector<SalesforceConfig> {
   }
 
   async initialize(): Promise<void> {
-    try {
-      // OAuth2 Authentication with username-password flow
-      const authUrl = 'https://login.salesforce.com/services/oauth2/token';
-      
-      const authParams = new URLSearchParams({
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
+    // Get access token for Salesforce API
+    const tokenResponse = await fetch('https://login.salesforce.com/services/oauth2/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
         grant_type: 'password',
         client_id: this.config.clientId,
         client_secret: this.config.clientSecret,
         username: this.config.username,
         password: this.config.password + this.config.securityToken,
-      });
+      }),
+    });
 
-      const response = await fetch(authUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: authParams,
-      });
-
-      if (!response.ok) {
-        throw new Error(`Authentication failed: ${response.statusText}`);
-      }
-
-      const authData = await response.json();
-      this.accessToken = authData.access_token;
-      this.instanceUrl = authData.instance_url;
-
-      this.status = 'connected';
-    } catch (error) {
-      throw new Error(`Failed to initialize Salesforce connection: ${error}`);
+    if (!tokenResponse.ok) {
+      throw new Error(`Authentication failed: ${tokenResponse.statusText}`);
     }
+
+    const authData = await tokenResponse.json();
+    this.accessToken = authData.access_token;
+    this.instanceUrl = authData.instance_url;
+
+    this.status = 'connected';
   }
 
   getActions(): ConnectorAction[] {
@@ -161,6 +157,10 @@ export class SalesforceConnector extends BaseConnector<SalesforceConfig> {
   }
 
   private async createRecord(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const validated = createRecordSchema.parse(params);
     const apiVersion = this.config.apiVersion || '58.0';
     
@@ -171,6 +171,10 @@ export class SalesforceConnector extends BaseConnector<SalesforceConfig> {
   }
 
   private async updateRecord(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const validated = updateRecordSchema.parse(params);
     const apiVersion = this.config.apiVersion || '58.0';
     
@@ -181,6 +185,10 @@ export class SalesforceConnector extends BaseConnector<SalesforceConfig> {
   }
 
   private async getRecord(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const apiVersion = this.config.apiVersion || '58.0';
     const fieldsParam = params.fields ? `?fields=${params.fields.join(',')}` : '';
     
@@ -188,6 +196,10 @@ export class SalesforceConnector extends BaseConnector<SalesforceConfig> {
   }
 
   private async deleteRecord(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const apiVersion = this.config.apiVersion || '58.0';
     
     await this.makeRequest(`/services/data/v${apiVersion}/sobjects/${params.sobjectType}/${params.id}`, {
@@ -198,6 +210,10 @@ export class SalesforceConnector extends BaseConnector<SalesforceConfig> {
   }
 
   private async queryRecords(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const validated = querySchema.parse(params);
     const apiVersion = this.config.apiVersion || '58.0';
     const encodedQuery = encodeURIComponent(validated.query);
@@ -206,6 +222,10 @@ export class SalesforceConnector extends BaseConnector<SalesforceConfig> {
   }
 
   private async searchRecords(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const validated = searchSchema.parse(params);
     const apiVersion = this.config.apiVersion || '58.0';
     
@@ -219,6 +239,10 @@ export class SalesforceConnector extends BaseConnector<SalesforceConfig> {
   }
 
   private async getSObjectDescribe(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const apiVersion = this.config.apiVersion || '58.0';
     
     return this.makeRequest(`/services/data/v${apiVersion}/sobjects/${params.sobjectType}/describe`);

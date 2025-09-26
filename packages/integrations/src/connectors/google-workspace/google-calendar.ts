@@ -37,7 +37,7 @@ export class GoogleCalendarConnector extends BaseConnector implements Integratio
       const response = await fetch('https://www.googleapis.com/calendar/v3/calendars/primary', {
         method: 'GET',
         headers: {
-          'Authorization': `******
+          'Authorization': `Bearer ${config.accessToken}`,
           'Content-Type': 'application/json'
         }
       })
@@ -62,7 +62,7 @@ export class GoogleCalendarConnector extends BaseConnector implements Integratio
     try {
       const { operation, ...params } = input
       const headers = {
-        'Authorization': `******
+        'Authorization': `Bearer ${config.accessToken}`,
         'Content-Type': 'application/json'
       }
 

@@ -1,8 +1,14 @@
-[env.production]
-name = "lamatic-clone-edge"
+name = "lamatic-clone-edge-dev"
+main = "src/index.ts"
 compatibility_date = "2023-10-30"
 compatibility_flags = ["nodejs_compat"]
-node_compat = true
+
+[vars]
+ENVIRONMENT = "development"
+GRAPHQL_ENDPOINT = "http://localhost:4000/graphql"
+
+[env.production]
+name = "lamatic-clone-edge"
 
 [env.production.vars]
 ENVIRONMENT = "production"
@@ -10,9 +16,6 @@ GRAPHQL_ENDPOINT = "https://api.lamatic-clone.com/graphql"
 
 [env.staging]
 name = "lamatic-clone-edge-staging"
-compatibility_date = "2023-10-30"
-compatibility_flags = ["nodejs_compat"]
-node_compat = true
 
 [env.staging.vars]
 ENVIRONMENT = "staging"
@@ -20,9 +23,6 @@ GRAPHQL_ENDPOINT = "https://staging-api.lamatic-clone.com/graphql"
 
 [env.development]
 name = "lamatic-clone-edge-dev"
-compatibility_date = "2023-10-30"
-compatibility_flags = ["nodejs_compat"]
-node_compat = true
 
 [env.development.vars]
 ENVIRONMENT = "development"

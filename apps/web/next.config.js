@@ -2,9 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  experimental: {
-    appDir: true,
-  },
   transpilePackages: ['@lamatic/ui', '@lamatic/database'],
   env: {
     CUSTOM_KEY: process.env.CUSTOM_KEY,

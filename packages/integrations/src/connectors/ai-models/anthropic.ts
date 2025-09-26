@@ -42,6 +42,9 @@ export class AnthropicConnector extends BaseConnector<AnthropicConfig> {
   async initialize(): Promise<void> {
     // Test the API key by making a simple request
     try {
+      if (!this.config) {
+        throw new Error('Configuration not provided');
+      }
       const response = await fetch(`${this.baseUrl}/v1/messages`, {
         method: 'POST',
         headers: {
@@ -94,6 +97,10 @@ export class AnthropicConnector extends BaseConnector<AnthropicConfig> {
   }
 
   private async createMessage(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const validated = completionSchema.parse(params);
     
     const requestBody = {

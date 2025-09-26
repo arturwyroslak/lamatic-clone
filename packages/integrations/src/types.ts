@@ -1,20 +1,12 @@
 import { z } from 'zod'
 
-export type IntegrationCategory = 
-  | 'ai-models'
-  | 'databases' 
-  | 'communication'
-  | 'storage'
-  | 'crm'
-  | 'payment'
-  | 'analytics'
-  | 'utilities'
+export type IntegrationCategory = string
 
-export type IntegrationType = 'connector' | 'app' | 'model' | 'tool'
+export type IntegrationType = string
 
 export type IntegrationStatus = 'active' | 'beta' | 'deprecated' | 'coming_soon'
 
-export type TriggerType = 'webhook' | 'polling' | 'event_trigger' | 'action'
+export type TriggerType = 'webhook' | 'polling' | 'event_trigger' | 'action' | 'sync_trigger'
 
 export interface SetupInstruction {
   step: number
@@ -47,20 +39,28 @@ export interface IntegrationConfig {
 export interface ModelProvider {
   id: string
   name: string
+  slug: string
   description: string
-  models: ModelConfig[]
-  authentication: AuthMethod
-  rateLimit?: RateLimit
+  icon: string
+  website?: string
+  apiKeyRequired?: boolean
+  setupInstructions: string[]
+  features: string[]
   pricing?: PricingInfo
+  models: ModelConfig[]
 }
 
 export interface ModelConfig {
   id: string
   name: string
   description: string
-  type: 'text' | 'image' | 'audio' | 'video' | 'embedding'
+  type: 'text' | 'image' | 'audio' | 'video' | 'embedding' | 'chat'
+  contextLength?: number
   maxTokens?: number
-  supportedFeatures: string[]
+  inputPricing?: number
+  outputPricing?: number
+  features: string[]
+  capabilities?: string[]
   pricing?: ModelPricing
 }
 
@@ -82,10 +82,12 @@ export interface RateLimit {
   burst?: number
 }
 
-export interface PricingInfo {
-  model: 'pay_per_use' | 'subscription' | 'free'
+export interface PricingPlan {
+  name: string
+  price: number
   currency: string
-  rates: PricingRate[]
+  interval: string
+  features: string[]
 }
 
 export interface PricingRate {
@@ -94,10 +96,18 @@ export interface PricingRate {
   unit: string
 }
 
+export interface PricingInfo {
+  type: string
+  model?: 'pay_per_use' | 'subscription' | 'free'
+  currency?: string
+  rates?: PricingRate[]
+  plans?: PricingPlan[]
+}
+
 export interface ModelPricing {
   input?: number
   output?: number
-  unit: string
+  unit?: string
 }
 
 // Connector specific interfaces
@@ -105,9 +115,10 @@ export interface ConnectorInstance {
   id: string
   integrationId: string
   name: string
+  workspaceId: string
   config: Record<string, any>
   credentials: Record<string, any>
-  status: 'active' | 'inactive' | 'error'
+  status: 'active' | 'inactive' | 'error' | 'connected' | 'disconnected'
   lastTested?: Date
   createdAt: Date
   updatedAt: Date
@@ -126,4 +137,50 @@ export interface ActionResult {
   data?: any
   error?: string
   metadata?: Record<string, any>
+}
+
+export interface ConfigFieldOption {
+  label: string
+  value: string
+}
+
+export interface ConfigField {
+  key: string
+  label: string
+  type: string
+  required: boolean
+  description?: string
+  defaultValue?: any
+  options?: ConfigFieldOption[]
+}
+
+export interface ConnectionConfig {
+  workspaceId?: string
+  [key: string]: any
+}
+
+export interface ConnectorConfigSchema {
+  fields: ConfigField[]
+}
+
+export interface ConnectorCapabilities {
+  supportsBatch?: boolean
+  supportsStreaming?: boolean
+  supportsFiles?: boolean
+  maxConcurrency?: number
+  rateLimits?: Record<string, any>
+  operations?: string[]
+  [key: string]: any
+}
+
+export interface IntegrationConnector {
+  readonly id: string
+  readonly name: string
+  readonly description: string
+  readonly category: string
+  readonly version: string
+  readonly config: ConnectorConfigSchema
+  validateConnection(config: ConnectionConfig): Promise<{ valid: boolean; error?: string }>
+  execute(input: any, config: ConnectionConfig, context: ExecutionContext): Promise<ActionResult | any>
+  getCapabilities(): ConnectorCapabilities
 }

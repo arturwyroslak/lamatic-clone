@@ -1,204 +1,52 @@
-// Complete integrations system based on Lamatic.ai documentation
+// Lamatic integrations public API
 
 export * from './types'
-export * from './registry'
-export * from './connectors'
-export * from './models'
-export * from './providers'
-export * from './validators'
-export * from './utils'
-
-// Main integration manager
+export { IntegrationRegistry } from './registry'
 export { IntegrationManager } from './manager'
+export { BaseConnector, type ConnectorConfig, type ConnectorAction, type ConnectorStatus } from './connectors/base'
 
-// Connector categories
-export * from './connectors/apps-data-sources'
-export * from './connectors/models'
-export * from './connectors/interfaces'
-export * from './connectors/developer-tools'
-
-// AI Model connectors
-export * from './connectors/ai-models/openai'
-export * from './connectors/ai-models/anthropic'
-export * from './connectors/ai-models/cohere'
-export * from './connectors/ai-models/mistral'
-export * from './connectors/ai-models/groq'
-export * from './connectors/ai-models/together-ai'
-export * from './connectors/ai-models/replicate'
-export * from './connectors/ai-models/perplexity'
-export * from './connectors/ai-models/xai'
-export * from './connectors/ai-models/huggingface'
-export * from './connectors/ai-models/google-palm'
-
-// Legacy model providers (deprecated - use ai-models connectors instead)
-export * from './models/openai'
-export * from './models/anthropic'
-export * from './models/cohere'
-export * from './models/huggingface'
-export * from './models/together-ai'
-export * from './models/fireworks-ai'
-export * from './models/bedrock'
-export * from './models/azure-openai'
-export * from './models/google-ai'
-export * from './models/xai'
-export * from './models/deepinfra'
-export * from './models/replicate'
-export * from './models/perplexity'
-export * from './models/mistral'
-export * from './models/groq'
-
-// Google Workspace connectors
-export * from './connectors/google-workspace/google-sheets'
-export * from './connectors/google-workspace/google-drive'
-export * from './connectors/google-workspace/google-calendar'
-
-// Project management connectors
-export * from './connectors/project-management/linear'
-export * from './connectors/project-management/jira'
-export * from './connectors/project-management/asana'
-export * from './connectors/project-management/trello'
-
-// E-commerce connectors  
-export * from './connectors/e-commerce/shopify'
-export * from './connectors/e-commerce/woocommerce'
-
-// Communication connectors
-export * from './connectors/communication/slack'
-export * from './connectors/communication/discord'
-export * from './connectors/communication/teams'
-export * from './connectors/communication/telegram'
-export * from './connectors/communication/whatsapp'
-
-// Productivity tool connectors
-export * from './connectors/productivity-tools/notion'
-export * from './connectors/productivity-tools/airtable'
-
-// Developer tool connectors
-export * from './connectors/developer-tools/github'
-export * from './connectors/developer-tools/gitlab'
-export * from './connectors/developer-tools/bitbucket'
-
-// Marketing & CRM connectors
-export * from './connectors/marketing/mailchimp'
-export * from './connectors/marketing/hubspot'
-export * from './connectors/marketing/convertkit'
-
-// Analytics connectors
-export * from './connectors/analytics/google-analytics'
-export * from './connectors/analytics/mixpanel'
-
-// Scheduling connectors
-export * from './connectors/scheduling/calendly'
-
-// Cloud services connectors
-export * from './connectors/cloud-services/aws-lambda'
-export * from './connectors/cloud-services/aws-s3'
-
-// Finance & accounting connectors
-export * from './connectors/finance/paypal'
-export * from './connectors/finance/square'
-export * from './connectors/finance/quickbooks'
-export * from './connectors/finance/xero'
-export * from './connectors/finance/wave'
-
-// Human resources connectors
-export * from './connectors/hr/bamboo-hr'
-export * from './connectors/hr/workday'
-
-// Legal & compliance connectors
-export * from './connectors/legal/docusign'
-export * from './connectors/legal/pandadoc'
-
-// Storage connectors
-export * from './connectors/storage/dropbox'
-
-// Monitoring & observability connectors
-export * from './connectors/monitoring/datadog'
-
-// Customer support & CRM connectors
-export * from './connectors/crm/zendesk'
-export * from './connectors/crm/pipedrive'
-
-// Identity & access management connectors
-export * from './connectors/identity/auth0'
-
-// Social media connectors
-export * from './connectors/social-media/twitter'
-export * from './connectors/social-media/linkedin'
-
-// Video conferencing connectors
-export * from './connectors/video-conferencing/zoom'
-export * from './connectors/video-conferencing/microsoft-teams'
-
-// Marketing connectors
-export * from './connectors/marketing/mailchimp'
-export * from './connectors/marketing/hubspot'
-export * from './connectors/marketing/convertkit'
-
-// Analytics connectors
-export * from './connectors/analytics/google-analytics'
-export * from './connectors/analytics/mixpanel'
-
-// Scheduling connectors
-export * from './connectors/scheduling/calendly'
-
-// CRM connectors
-export * from './connectors/crm/salesforce'
-export * from './connectors/crm/zendesk'
-
-// Cloud services connectors
-export * from './connectors/cloud-services/aws-lambda'
-export * from './connectors/cloud-services/aws-s3'
-
-// Finance connectors
-export * from './connectors/finance/quickbooks'
-export * from './connectors/finance/xero'
-
-// Social media connectors
-export * from './connectors/social-media/twitter'
-export * from './connectors/social-media/linkedin'
-
-// Video conferencing connectors
-export * from './connectors/video-conferencing/zoom'
-export * from './connectors/video-conferencing/microsoft-teams'
-
-// Business service connectors
-export * from './connectors/business-services/stripe'
-
-// CRM connectors
-export * from './connectors/crm/salesforce'
-
-// Database connectors
-export * from './connectors/databases/postgresql'
-export * from './connectors/databases/mongodb'
-export * from './connectors/databases/redis'
-export * from './connectors/databases/elasticsearch'
-export * from './connectors/databases/weaviate'
-export * from './connectors/databases/weaviate-enhanced'
-
-// Storage connectors
-export * from './connectors/storage/aws-s3'
-
-// Legacy app connectors (many not yet implemented)
-export * from './connectors/google-drive'
-export * from './connectors/google-sheets'
-export * from './connectors/microsoft-teams'
-export * from './connectors/onedrive'
-export * from './connectors/sharepoint'
-export * from './connectors/gitlab'
-export * from './connectors/linear'
-export * from './connectors/jira'
-export * from './connectors/asana'
-export * from './connectors/trello'
-export * from './connectors/whatsapp'
-export * from './connectors/email'
-export * from './connectors/calendly'
-export * from './connectors/hubspot'
-export * from './connectors/zendesk'
-export * from './connectors/intercom'
-export * from './connectors/shopify'
-export * from './connectors/woocommerce'
-export * from './connectors/zapier'
-export * from './connectors/n8n'
-export * from './connectors/firecrawl'
-export * from './connectors/web-search'
+// Selected first-party connectors
+export { GoogleCalendarConnector } from './connectors/google-workspace/google-calendar'
+export { GoogleDriveConnector } from './connectors/google-workspace/google-drive'
+export { GoogleSheetsConnector } from './connectors/google-workspace/google-sheets'
+export { LinearConnector } from './connectors/project-management/linear'
+export { JiraConnector } from './connectors/project-management/jira'
+export { AsanaConnector } from './connectors/project-management/asana'
+export { TrelloConnector } from './connectors/project-management/trello'
+export { SlackConnector } from './connectors/communication/slack'
+export { TeamsConnector } from './connectors/communication/teams'
+export { WhatsAppConnector } from './connectors/communication/whatsapp'
+export { NotionConnector } from './connectors/productivity-tools/notion'
+export { AirtableConnector } from './connectors/productivity-tools/airtable'
+export { GitHubConnector } from './connectors/developer-tools/github'
+export { GitLabConnector } from './connectors/developer-tools/gitlab'
+export { BitbucketConnector } from './connectors/developer-tools/bitbucket'
+export { MailchimpConnector } from './connectors/marketing/mailchimp'
+export { HubSpotConnector } from './connectors/marketing/hubspot'
+export { ConvertKitConnector } from './connectors/marketing/convertkit'
+export { ShopifyConnector } from './connectors/e-commerce/shopify'
+export { WooCommerceConnector } from './connectors/e-commerce/woocommerce'
+export { PayPalConnector } from './connectors/finance/paypal'
+export { QuickBooksConnector } from './connectors/finance/quickbooks'
+export { StripeConnector } from './connectors/business-services/stripe'
+export { ZendeskConnector } from './connectors/crm/zendesk'
+export { PipedriveConnector } from './connectors/crm/pipedrive'
+export { DropboxConnector } from './connectors/storage/dropbox'
+export { AWSLambdaConnector } from './connectors/cloud-services/aws-lambda'
+export { AWSS3Connector } from './connectors/cloud-services/aws-s3'
+export { DatadogConnector } from './connectors/monitoring/datadog'
+export { ZoomConnector } from './connectors/video-conferencing/zoom'
+export { MicrosoftTeamsConnector } from './connectors/video-conferencing/microsoft-teams'
+export { LinkedInConnector } from './connectors/social-media/linkedin'
+export { TwitterConnector } from './connectors/social-media/twitter'
+export { CalendlyConnector } from './connectors/scheduling/calendly'
+export { Auth0Connector } from './connectors/identity/auth0'
+export { BambooHRConnector } from './connectors/hr/bamboo-hr'
+export { WorkdayConnector } from './connectors/hr/workday'
+export { DocuSignConnector } from './connectors/legal/docusign'
+export { PandaDocConnector } from './connectors/legal/pandadoc'
+export { WeaviateConnector } from './connectors/databases/weaviate'
+export { WeaviateEnhancedConnector } from './connectors/databases/weaviate-enhanced'
+export { MongoDBConnector } from './connectors/databases/mongodb'
+export { RedisConnector } from './connectors/databases/redis'
+export { ElasticsearchConnector } from './connectors/databases/elasticsearch'

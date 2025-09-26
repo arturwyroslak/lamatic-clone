@@ -49,6 +49,10 @@ export class AWSS3Connector extends BaseConnector<AWSS3Config> {
   }
 
   async initialize(): Promise<void> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     try {
       // In a real implementation, you would use AWS SDK
       // This is a mock implementation for demonstration
@@ -132,6 +136,10 @@ export class AWSS3Connector extends BaseConnector<AWSS3Config> {
   }
 
   private async uploadFile(params: any): Promise<any> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     const validated = uploadFileSchema.parse(params);
     
     const uploadParams = {

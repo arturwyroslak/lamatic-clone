@@ -39,6 +39,10 @@ export class PostgreSQLConnector extends BaseConnector<PostgreSQLConfig> {
   }
 
   async initialize(): Promise<void> {
+    if (!this.config) {
+      throw new Error('Configuration not provided')
+    }
+
     try {
       // In a real implementation, you would use a library like 'pg'
       // This is a mock implementation for demonstration
