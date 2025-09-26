@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
 
-interface NodeData {
+export interface NodeData {
   type: 'trigger' | 'llm' | 'action' | 'data' | 'processor'
   title: string
   description: string
@@ -80,7 +80,7 @@ const statusColors = {
   error: 'text-red-500'
 }
 
-function FlowNode({ id, data, selected }: NodeProps<NodeData>) {
+export function FlowNode({ id, data, selected }: NodeProps<Node<NodeData>>) {
   const config = nodeTypeConfig[data.type]
   const IconComponent = data.icon
   const StatusIcon = data.status ? statusIcons[data.status] : null
@@ -232,4 +232,3 @@ function FlowNode({ id, data, selected }: NodeProps<NodeData>) {
 }
 
 export default memo(FlowNode)
-export { FlowNode }

@@ -1,6 +1,7 @@
 // Template System for AI Agents and Workflows
 export * from './agent-templates'
 export * from './workflow-templates'
+export * from './advanced-workflow-templates'
 export * from './prompt-templates'
 export * from './integration-templates'
 export * from './marketplace'
@@ -16,6 +17,9 @@ export {
   getTemplatesByDifficulty,
   searchTemplates
 } from './workflow-templates'
+
+// Re-export advanced workflow templates
+export { ADVANCED_WORKFLOW_TEMPLATES } from './advanced-workflow-templates'
 
 // Re-export industry template functions
 export {
