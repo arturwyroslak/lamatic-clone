@@ -17,7 +17,17 @@ export * from './connectors/models'
 export * from './connectors/interfaces'
 export * from './connectors/developer-tools'
 
-// Model providers
+// AI Model connectors
+export * from './connectors/ai-models/openai'
+export * from './connectors/ai-models/anthropic'
+export * from './connectors/ai-models/cohere'
+export * from './connectors/ai-models/mistral'
+export * from './connectors/ai-models/groq'
+export * from './connectors/ai-models/together-ai'
+export * from './connectors/ai-models/huggingface'
+export * from './connectors/ai-models/google-palm'
+
+// Legacy model providers (deprecated - use ai-models connectors instead)
 export * from './models/openai'
 export * from './models/anthropic'
 export * from './models/cohere'
@@ -34,34 +44,62 @@ export * from './models/perplexity'
 export * from './models/mistral'
 export * from './models/groq'
 
-// App connectors
-export * from './connectors/slack'
+// Google Workspace connectors
+export * from './connectors/google-workspace/google-sheets'
+
+// Project management connectors
+export * from './connectors/project-management/linear'
+
+// E-commerce connectors  
+export * from './connectors/e-commerce/shopify'
+
+// Communication connectors
+export * from './connectors/communication/slack'
+export * from './connectors/communication/discord'
+export * from './connectors/communication/teams'
+export * from './connectors/communication/telegram'
+
+// Productivity tool connectors
+export * from './connectors/productivity-tools/notion'
+export * from './connectors/productivity-tools/airtable'
+
+// Developer tool connectors
+export * from './connectors/developer-tools/github'
+
+// Business service connectors
+export * from './connectors/business-services/stripe'
+
+// CRM connectors
+export * from './connectors/crm/salesforce'
+
+// Database connectors
+export * from './connectors/databases/postgresql'
+export * from './connectors/databases/mongodb'
+export * from './connectors/databases/redis'
+export * from './connectors/databases/elasticsearch'
+export * from './connectors/databases/weaviate'
+export * from './connectors/databases/weaviate-enhanced'
+
+// Storage connectors
+export * from './connectors/storage/aws-s3'
+
+// Legacy app connectors (many not yet implemented)
 export * from './connectors/google-drive'
 export * from './connectors/google-sheets'
 export * from './connectors/microsoft-teams'
 export * from './connectors/onedrive'
 export * from './connectors/sharepoint'
-export * from './connectors/aws-s3'
-export * from './connectors/postgresql'
-export * from './connectors/mongodb'
-export * from './connectors/airtable'
-export * from './connectors/notion'
-export * from './connectors/github'
 export * from './connectors/gitlab'
 export * from './connectors/linear'
 export * from './connectors/jira'
 export * from './connectors/asana'
 export * from './connectors/trello'
-export * from './connectors/discord'
-export * from './connectors/telegram'
 export * from './connectors/whatsapp'
 export * from './connectors/email'
 export * from './connectors/calendly'
 export * from './connectors/hubspot'
-export * from './connectors/salesforce'
 export * from './connectors/zendesk'
 export * from './connectors/intercom'
-export * from './connectors/stripe'
 export * from './connectors/shopify'
 export * from './connectors/woocommerce'
 export * from './connectors/zapier'
