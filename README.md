@@ -1,12 +1,12 @@
 # Lamatic Clone - AI Agent Platform
 
-🚀 **Full-featured clone of Lamatic.ai** - Build, Connect and Deploy AI Agents on Edge with 100+ Professional Integrations
+🚀 **Full-featured clone of Lamatic.ai** - Build, Connect and Deploy AI Agents on Edge with 130+ Professional Integrations
 
 [![Next.js](https://img.shields.io/badge/Next.js-13-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)](https://docker.com/)
 [![GraphQL](https://img.shields.io/badge/GraphQL-API-E10098)](https://graphql.org/)
-[![Integrations](https://img.shields.io/badge/Integrations-100+-green)](https://github.com/arturwyroslak/lamatic-clone)
+[![Integrations](https://img.shields.io/badge/Integrations-130+-green)](https://github.com/arturwyroslak/lamatic-clone)
 
 ## 🎯 Overview
 
@@ -14,7 +14,7 @@ Complete implementation of Lamatic.ai's AI Agent platform featuring:
 
 - **Visual Flow Builder** - Drag & drop interface for AI workflows
 - **Edge Deployment** - Serverless hosting with global CDN  
-- **100+ Professional Integrations** - AI models, databases, APIs, and enterprise services
+- **130+ Professional Integrations** - AI models, databases, APIs, and enterprise services
 - **GraphQL API** - Single endpoint for all operations
 - **Vector Database** - Built-in Weaviate integration
 - **Real-time Monitoring** - Traces, logs, and analytics
@@ -65,19 +65,19 @@ open http://localhost:3000
 - Real-time collaboration
 - Version control integration
 
-### 🔌 Integrations Hub - 100+ Integrations
-- **AI Models** (8): OpenAI GPT-4, Anthropic Claude, Cohere, Mistral AI, Groq, Together AI, Hugging Face, Google PaLM
-- **Productivity Tools** (3): Notion, Airtable, Google Sheets
-- **Developer Tools** (1): GitHub (repositories, issues, PRs)
-- **Project Management** (1): Linear (GraphQL API, issues, teams)
-- **E-commerce** (1): Shopify (products, orders, customers)
-- **Communication** (4): Slack, Discord, Microsoft Teams, Telegram
+### 🔌 Integrations Hub - 130+ Integrations
+- **AI Models** (11): OpenAI GPT-4, Anthropic Claude, Cohere, Mistral AI, Groq, Together AI, Replicate, Perplexity AI, xAI (Grok), Hugging Face, Google PaLM
+- **Productivity Tools** (3): Notion, Airtable, Google Sheets, Google Drive
+- **Project Management** (3): Linear, Jira, Asana  
+- **Developer Tools** (2): GitHub, GitLab (repositories, issues, PRs, pipelines)
+- **E-commerce** (2): Shopify, WooCommerce (products, orders, customers)
+- **Communication** (5): Slack, Discord, Microsoft Teams, Telegram, WhatsApp Business
+- **Marketing** (2): Mailchimp, HubSpot (CRM, automation, campaigns)
 - **Databases** (6): PostgreSQL, MongoDB, Redis, Elasticsearch, Weaviate, Weaviate Enhanced
 - **Business Services** (1): Stripe (payments, subscriptions)
 - **CRM** (1): Salesforce
 - **Storage** (1): AWS S3
 - **Analytics** (1): Google Analytics 4
-- **Marketing** (1): Mailchimp
 - **Scheduling** (1): Calendly
 - **Legacy Integrations**: REST APIs, GraphQL, Webhooks, Zapier, N8N compatibility
 

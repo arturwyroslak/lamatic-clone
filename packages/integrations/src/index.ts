@@ -24,6 +24,9 @@ export * from './connectors/ai-models/cohere'
 export * from './connectors/ai-models/mistral'
 export * from './connectors/ai-models/groq'
 export * from './connectors/ai-models/together-ai'
+export * from './connectors/ai-models/replicate'
+export * from './connectors/ai-models/perplexity'
+export * from './connectors/ai-models/xai'
 export * from './connectors/ai-models/huggingface'
 export * from './connectors/ai-models/google-palm'
 
@@ -46,18 +49,23 @@ export * from './models/groq'
 
 // Google Workspace connectors
 export * from './connectors/google-workspace/google-sheets'
+export * from './connectors/google-workspace/google-drive'
 
 // Project management connectors
 export * from './connectors/project-management/linear'
+export * from './connectors/project-management/jira'
+export * from './connectors/project-management/asana'
 
 // E-commerce connectors  
 export * from './connectors/e-commerce/shopify'
+export * from './connectors/e-commerce/woocommerce'
 
 // Communication connectors
 export * from './connectors/communication/slack'
 export * from './connectors/communication/discord'
 export * from './connectors/communication/teams'
 export * from './connectors/communication/telegram'
+export * from './connectors/communication/whatsapp'
 
 // Productivity tool connectors
 export * from './connectors/productivity-tools/notion'
@@ -65,6 +73,17 @@ export * from './connectors/productivity-tools/airtable'
 
 // Developer tool connectors
 export * from './connectors/developer-tools/github'
+export * from './connectors/developer-tools/gitlab'
+
+// Marketing connectors
+export * from './connectors/marketing/mailchimp'
+export * from './connectors/marketing/hubspot'
+
+// Analytics connectors
+export * from './connectors/analytics/google-analytics'
+
+// Scheduling connectors
+export * from './connectors/scheduling/calendly'
 
 // Business service connectors
 export * from './connectors/business-services/stripe'
