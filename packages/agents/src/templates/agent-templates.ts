@@ -403,6 +403,258 @@ export const AGENT_TEMPLATES: AgentTemplate[] = [
     author: { name: 'Project Team', verified: true },
     createdAt: new Date('2024-01-24'),
     updatedAt: new Date('2024-01-31')
+  },
+
+  // Healthcare AI Agents
+  {
+    id: 'medical-diagnosis-assistant',
+    name: 'Medical Diagnosis Assistant',
+    description: 'AI-powered medical diagnosis support with symptom analysis and differential diagnosis suggestions',
+    category: 'healthcare',
+    tags: ['medical', 'diagnosis', 'symptoms', 'healthcare', 'clinical-decision-support'],
+    icon: 'medical-icon',
+    config: {
+      type: 'medical-ai',
+      name: 'Medical Diagnosis Assistant',
+      description: 'Provides clinical decision support for medical professionals',
+      model: 'gpt-4-medical',
+      temperature: 0.1,
+      maxTokens: 2000,
+      systemPrompt: 'You are a medical AI assistant designed to support healthcare professionals. Analyze symptoms, suggest differential diagnoses, and provide evidence-based medical information. Always emphasize the need for professional medical evaluation and never provide definitive diagnoses.',
+      capabilities: ['symptom-analysis', 'differential-diagnosis', 'medical-research', 'clinical-guidelines']
+    },
+    rating: 4.9,
+    downloads: 12500,
+    featured: true,
+    author: { name: 'Healthcare AI Team', verified: true },
+    createdAt: new Date('2024-01-10'),
+    updatedAt: new Date('2024-02-01')
+  },
+  {
+    id: 'pharmaceutical-research-agent',
+    name: 'Pharmaceutical Research Agent',
+    description: 'Specialized in drug discovery, clinical trial analysis, and pharmaceutical research',
+    category: 'healthcare',
+    tags: ['pharmaceutical', 'drug-discovery', 'clinical-trials', 'research', 'fda'],
+    icon: 'pharmacy-icon',
+    config: {
+      type: 'pharma-research',
+      name: 'Pharmaceutical Research Agent',
+      description: 'Advanced pharmaceutical and drug discovery research assistant',
+      model: 'gpt-4',
+      temperature: 0.2,
+      maxTokens: 3000,
+      systemPrompt: 'You are a pharmaceutical research specialist AI. Analyze drug compounds, clinical trial data, regulatory requirements, and provide insights on drug development, safety profiles, and market analysis.',
+      capabilities: ['drug-analysis', 'clinical-data-interpretation', 'regulatory-compliance', 'market-research']
+    },
+    rating: 4.8,
+    downloads: 8900,
+    featured: true,
+    author: { name: 'Pharma Research Team', verified: true },
+    createdAt: new Date('2024-01-12'),
+    updatedAt: new Date('2024-01-29')
+  },
+
+  // Financial AI Agents
+  {
+    id: 'quantitative-trading-agent',
+    name: 'Quantitative Trading Agent',
+    description: 'Advanced algorithmic trading strategies with risk management and market analysis',
+    category: 'finance',
+    tags: ['trading', 'quantitative-analysis', 'risk-management', 'algorithmic-trading', 'market-data'],
+    icon: 'trading-icon',
+    config: {
+      type: 'quant-trading',
+      name: 'Quantitative Trading Agent',
+      description: 'Sophisticated quantitative trading and market analysis',
+      model: 'gpt-4',
+      temperature: 0.1,
+      maxTokens: 2500,
+      systemPrompt: 'You are a quantitative trading specialist. Analyze market data, develop trading strategies, assess risk metrics, and provide algorithmic trading insights. Focus on data-driven decisions and risk management.',
+      capabilities: ['market-analysis', 'strategy-development', 'risk-assessment', 'backtesting', 'portfolio-optimization']
+    },
+    rating: 4.9,
+    downloads: 15600,
+    featured: true,
+    author: { name: 'FinTech Team', verified: true },
+    createdAt: new Date('2024-01-08'),
+    updatedAt: new Date('2024-02-02')
+  },
+  {
+    id: 'credit-risk-analyst',
+    name: 'Credit Risk Analyst',
+    description: 'AI-powered credit risk assessment with fraud detection and compliance monitoring',
+    category: 'finance',
+    tags: ['credit-risk', 'fraud-detection', 'compliance', 'banking', 'lending'],
+    icon: 'risk-icon',
+    config: {
+      type: 'credit-risk',
+      name: 'Credit Risk Analyst',
+      description: 'Advanced credit risk assessment and fraud detection',
+      model: 'gpt-4',
+      temperature: 0.1,
+      maxTokens: 2000,
+      systemPrompt: 'You are a credit risk specialist AI. Analyze creditworthiness, detect potential fraud patterns, ensure regulatory compliance, and provide risk scoring with detailed justifications.',
+      capabilities: ['credit-scoring', 'fraud-detection', 'compliance-checking', 'risk-modeling', 'regulatory-reporting']
+    },
+    rating: 4.8,
+    downloads: 11200,
+    featured: true,
+    author: { name: 'Risk Management Team', verified: true },
+    createdAt: new Date('2024-01-14'),
+    updatedAt: new Date('2024-01-30')
+  },
+
+  // Legal AI Agents
+  {
+    id: 'contract-analysis-specialist',
+    name: 'Contract Analysis Specialist',
+    description: 'Advanced contract review, clause extraction, and legal risk assessment',
+    category: 'legal',
+    tags: ['contract-analysis', 'legal-review', 'risk-assessment', 'compliance', 'clause-extraction'],
+    icon: 'legal-icon',
+    config: {
+      type: 'legal-contract',
+      name: 'Contract Analysis Specialist',
+      description: 'Expert contract analysis and legal document review',
+      model: 'gpt-4-legal',
+      temperature: 0.1,
+      maxTokens: 3000,
+      systemPrompt: 'You are a legal contract specialist AI. Analyze contracts, extract key clauses, identify potential risks, ensure compliance with relevant laws, and provide detailed legal insights. Always recommend human legal review for final decisions.',
+      capabilities: ['contract-parsing', 'clause-analysis', 'risk-identification', 'compliance-verification', 'legal-research']
+    },
+    rating: 4.9,
+    downloads: 13800,
+    featured: true,
+    author: { name: 'Legal Tech Team', verified: true },
+    createdAt: new Date('2024-01-09'),
+    updatedAt: new Date('2024-02-01')
+  },
+  {
+    id: 'ip-research-agent',
+    name: 'Intellectual Property Research Agent',
+    description: 'Patent research, trademark analysis, and IP portfolio management',
+    category: 'legal',
+    tags: ['intellectual-property', 'patent-research', 'trademark', 'ip-portfolio', 'prior-art'],
+    icon: 'ip-icon',
+    config: {
+      type: 'ip-research',
+      name: 'IP Research Agent',
+      description: 'Comprehensive intellectual property research and analysis',
+      model: 'gpt-4',
+      temperature: 0.2,
+      maxTokens: 2500,
+      systemPrompt: 'You are an intellectual property research specialist. Conduct patent searches, analyze trademark conflicts, assess IP portfolios, and provide strategic IP insights. Focus on prior art analysis and competitive intelligence.',
+      capabilities: ['patent-search', 'trademark-analysis', 'prior-art-research', 'ip-valuation', 'competitive-analysis']
+    },
+    rating: 4.7,
+    downloads: 7600,
+    featured: false,
+    author: { name: 'IP Law Team', verified: true },
+    createdAt: new Date('2024-01-16'),
+    updatedAt: new Date('2024-01-28')
+  },
+
+  // Real Estate AI Agents
+  {
+    id: 'property-valuation-agent',
+    name: 'Property Valuation Agent',
+    description: 'AI-powered property valuation with market analysis and investment insights',
+    category: 'real-estate',
+    tags: ['property-valuation', 'market-analysis', 'investment', 'appraisal', 'real-estate'],
+    icon: 'property-icon',
+    config: {
+      type: 'property-valuation',
+      name: 'Property Valuation Agent',
+      description: 'Advanced property valuation and market analysis',
+      model: 'gpt-4',
+      temperature: 0.3,
+      maxTokens: 2000,
+      systemPrompt: 'You are a real estate valuation specialist. Analyze property values using comparable sales, market trends, location factors, and investment metrics. Provide detailed valuation reports with supporting data.',
+      capabilities: ['market-analysis', 'comparable-sales', 'investment-analysis', 'location-assessment', 'trend-forecasting']
+    },
+    rating: 4.6,
+    downloads: 9400,
+    featured: false,
+    author: { name: 'Real Estate Team', verified: true },
+    createdAt: new Date('2024-01-18'),
+    updatedAt: new Date('2024-01-27')
+  },
+
+  // Manufacturing AI Agents
+  {
+    id: 'quality-control-inspector',
+    name: 'Quality Control Inspector',
+    description: 'AI-powered quality control with defect detection and process optimization',
+    category: 'manufacturing',
+    tags: ['quality-control', 'defect-detection', 'process-optimization', 'manufacturing', 'inspection'],
+    icon: 'quality-icon',
+    config: {
+      type: 'quality-control',
+      name: 'Quality Control Inspector',
+      description: 'Advanced quality control and manufacturing optimization',
+      model: 'gpt-4',
+      temperature: 0.1,
+      maxTokens: 2000,
+      systemPrompt: 'You are a quality control specialist AI. Analyze production data, detect defects, optimize manufacturing processes, and ensure compliance with quality standards. Provide actionable insights for process improvement.',
+      capabilities: ['defect-analysis', 'process-monitoring', 'quality-metrics', 'compliance-verification', 'optimization-recommendations']
+    },
+    rating: 4.8,
+    downloads: 6800,
+    featured: false,
+    author: { name: 'Manufacturing Team', verified: true },
+    createdAt: new Date('2024-01-19'),
+    updatedAt: new Date('2024-01-26')
+  },
+
+  // Technology AI Agents
+  {
+    id: 'code-security-auditor',
+    name: 'Code Security Auditor',
+    description: 'Advanced security code analysis with vulnerability detection and remediation suggestions',
+    category: 'technology',
+    tags: ['security', 'code-analysis', 'vulnerability-detection', 'penetration-testing', 'secure-coding'],
+    icon: 'security-icon',
+    config: {
+      type: 'security-audit',
+      name: 'Code Security Auditor',
+      description: 'Comprehensive security analysis and vulnerability assessment',
+      model: 'gpt-4-security',
+      temperature: 0.1,
+      maxTokens: 2500,
+      systemPrompt: 'You are a cybersecurity specialist focused on code security. Analyze code for vulnerabilities, security flaws, and compliance issues. Provide detailed remediation strategies and security best practices.',
+      capabilities: ['vulnerability-scanning', 'security-analysis', 'compliance-checking', 'threat-modeling', 'remediation-planning']
+    },
+    rating: 4.9,
+    downloads: 14200,
+    featured: true,
+    author: { name: 'Security Team', verified: true },
+    createdAt: new Date('2024-01-11'),
+    updatedAt: new Date('2024-02-03')
+  },
+  {
+    id: 'devops-automation-specialist',
+    name: 'DevOps Automation Specialist',
+    description: 'CI/CD pipeline optimization, infrastructure automation, and deployment strategies',
+    category: 'technology',
+    tags: ['devops', 'automation', 'ci-cd', 'infrastructure', 'deployment', 'monitoring'],
+    icon: 'devops-icon',
+    config: {
+      type: 'devops-automation',
+      name: 'DevOps Automation Specialist',
+      description: 'Advanced DevOps automation and infrastructure management',
+      model: 'gpt-4',
+      temperature: 0.2,
+      maxTokens: 2000,
+      systemPrompt: 'You are a DevOps automation expert. Design CI/CD pipelines, optimize infrastructure, implement monitoring solutions, and provide automation strategies for deployment and operations.',
+      capabilities: ['pipeline-design', 'infrastructure-automation', 'monitoring-setup', 'deployment-strategies', 'performance-optimization']
+    },
+    rating: 4.8,
+    downloads: 10600,
+    featured: true,
+    author: { name: 'DevOps Team', verified: true },
+    createdAt: new Date('2024-01-13'),
+    updatedAt: new Date('2024-01-31')
   }
 ]
 

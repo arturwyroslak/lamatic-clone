@@ -670,12 +670,431 @@ export const EDUCATION_WORKFLOW_TEMPLATES: IndustryWorkflowTemplate[] = [
   },
 ];
 
+// Real Estate Workflow Templates
+const REAL_ESTATE_WORKFLOW_TEMPLATES: IndustryWorkflowTemplate[] = [
+  {
+    id: 'property-listing-automation',
+    name: 'Automated Property Listing & Marketing',
+    description: 'Streamline property listing creation, pricing analysis, and multi-channel marketing',
+    industry: 'Real Estate',
+    category: 'Property Management',
+    difficulty: 'intermediate',
+    estimatedTime: '20 minutes',
+    compliance: ['MLS Standards', 'Fair Housing Act', 'State Disclosure Requirements'],
+    integrations: ['mls_systems', 'zillow_api', 'social_media_scheduler', 'email_marketing'],
+    useCases: [
+      'Automated property description generation',
+      'Competitive market analysis',
+      'Multi-platform listing distribution',
+      'Lead capture and nurturing',
+      'Virtual tour scheduling',
+    ],
+    nodes: [
+      {
+        id: 'property-data-input',
+        type: 'trigger',
+        position: { x: 100, y: 100 },
+        data: {
+          title: 'Property Information Uploaded',
+          description: 'New property details and photos uploaded by agent',
+          config: {
+            type: 'file_upload',
+            accepted_files: ['images', 'floor_plans', 'documents'],
+            required_fields: ['address', 'price', 'bedrooms', 'bathrooms', 'sqft'],
+          },
+        },
+      },
+      {
+        id: 'ai-description-generation',
+        type: 'agent',
+        position: { x: 300, y: 50 },
+        data: {
+          title: 'Generate Property Description',
+          description: 'AI-powered compelling property description creation',
+          agent: 'real_estate_copywriter',
+          config: {
+            style: 'compelling_marketing',
+            include_features: ['location_benefits', 'unique_selling_points', 'lifestyle_appeal'],
+            word_limit: 200,
+          },
+        },
+      },
+      {
+        id: 'market-analysis',
+        type: 'integration',
+        position: { x: 300, y: 150 },
+        data: {
+          title: 'Comparative Market Analysis',
+          description: 'Analyze comparable properties and suggest pricing',
+          integration: 'mls_comp_analysis',
+          config: {
+            radius_miles: 1,
+            time_range_months: 6,
+            property_type_match: true,
+          },
+        },
+      },
+      {
+        id: 'multi-platform-listing',
+        type: 'integration',
+        position: { x: 500, y: 100 },
+        data: {
+          title: 'Distribute to Multiple Platforms',
+          description: 'Automatically post to MLS, Zillow, Realtor.com, social media',
+          integration: 'listing_distributor',
+          config: {
+            platforms: ['mls', 'zillow', 'realtor_com', 'facebook', 'instagram'],
+            schedule_optimal_times: true,
+          },
+        },
+      },
+    ],
+    connections: [
+      { id: 'conn-1', source: 'property-data-input', target: 'ai-description-generation' },
+      { id: 'conn-2', source: 'property-data-input', target: 'market-analysis' },
+      { id: 'conn-3', source: 'ai-description-generation', target: 'multi-platform-listing' },
+      { id: 'conn-4', source: 'market-analysis', target: 'multi-platform-listing' },
+    ],
+    variables: [
+      { id: 'property_address', name: 'Property Address', type: 'string', required: true },
+      { id: 'listing_price', name: 'Listing Price', type: 'number', required: true },
+      { id: 'agent_contact', name: 'Agent Contact Info', type: 'object', required: true },
+    ],
+    triggers: [
+      {
+        id: 'property-upload',
+        type: 'file_upload',
+        config: {
+          webhook_endpoint: '/webhooks/property-upload',
+          authentication_required: true,
+        },
+      },
+    ],
+  },
+];
+
+// Manufacturing Workflow Templates
+const MANUFACTURING_WORKFLOW_TEMPLATES: IndustryWorkflowTemplate[] = [
+  {
+    id: 'quality-control-inspection',
+    name: 'Automated Quality Control & Inspection',
+    description: 'AI-powered quality control with predictive maintenance and compliance reporting',
+    industry: 'Manufacturing',
+    category: 'Quality Assurance',
+    difficulty: 'advanced',
+    estimatedTime: '35 minutes',
+    compliance: ['ISO 9001', 'ISO 14001', 'OSHA Standards', 'FDA Regulations'],
+    integrations: ['iot_sensors', 'computer_vision', 'erp_systems', 'maintenance_management'],
+    useCases: [
+      'Automated defect detection using computer vision',
+      'Predictive maintenance scheduling',
+      'Compliance documentation generation',
+      'Supply chain quality monitoring',
+      'Real-time production analytics',
+    ],
+    nodes: [
+      {
+        id: 'sensor-data-stream',
+        type: 'trigger',
+        position: { x: 100, y: 100 },
+        data: {
+          title: 'IoT Sensor Data Stream',
+          description: 'Continuous monitoring of production line sensors',
+          config: {
+            type: 'iot_stream',
+            sensors: ['temperature', 'pressure', 'vibration', 'speed'],
+            sampling_rate: '1_second',
+          },
+        },
+      },
+      {
+        id: 'computer-vision-inspection',
+        type: 'agent',
+        position: { x: 300, y: 50 },
+        data: {
+          title: 'Visual Quality Inspection',
+          description: 'AI-powered visual defect detection',
+          agent: 'quality_vision_inspector',
+          config: {
+            models: ['defect_detection_v3', 'dimensional_analysis_v2'],
+            confidence_threshold: 0.95,
+            inspection_types: ['surface_defects', 'dimensional_accuracy', 'assembly_completeness'],
+          },
+        },
+      },
+      {
+        id: 'predictive-maintenance',
+        type: 'agent',
+        position: { x: 300, y: 150 },
+        data: {
+          title: 'Predictive Maintenance Analysis',
+          description: 'Predict equipment maintenance needs using ML',
+          agent: 'maintenance_predictor',
+          config: {
+            algorithms: ['time_series_analysis', 'anomaly_detection', 'failure_prediction'],
+            maintenance_window: '7_days',
+          },
+        },
+      },
+      {
+        id: 'compliance-reporting',
+        type: 'integration',
+        position: { x: 500, y: 100 },
+        data: {
+          title: 'Generate Compliance Reports',
+          description: 'Automated quality and compliance documentation',
+          integration: 'compliance_reporter',
+          config: {
+            report_types: ['quality_metrics', 'maintenance_logs', 'incident_reports'],
+            schedule: 'daily',
+            distribution: ['quality_manager', 'compliance_officer'],
+          },
+        },
+      },
+    ],
+    connections: [
+      { id: 'conn-1', source: 'sensor-data-stream', target: 'computer-vision-inspection' },
+      { id: 'conn-2', source: 'sensor-data-stream', target: 'predictive-maintenance' },
+      { id: 'conn-3', source: 'computer-vision-inspection', target: 'compliance-reporting' },
+      { id: 'conn-4', source: 'predictive-maintenance', target: 'compliance-reporting' },
+    ],
+    variables: [
+      { id: 'production_line_id', name: 'Production Line ID', type: 'string', required: true },
+      { id: 'quality_standards', name: 'Quality Standards', type: 'object', required: true },
+      { id: 'maintenance_schedule', name: 'Maintenance Schedule', type: 'array', required: true },
+    ],
+    triggers: [
+      {
+        id: 'iot-data-stream',
+        type: 'iot_stream',
+        config: {
+          protocol: 'mqtt',
+          topics: ['sensors/temperature', 'sensors/pressure', 'cameras/quality'],
+        },
+      },
+    ],
+  },
+];
+
+// Retail & E-commerce Workflow Templates
+const RETAIL_WORKFLOW_TEMPLATES: IndustryWorkflowTemplate[] = [
+  {
+    id: 'customer-journey-optimization',
+    name: 'AI-Powered Customer Journey Optimization',
+    description: 'Personalize customer experience with AI-driven recommendations and automated support',
+    industry: 'Retail',
+    category: 'Customer Experience',
+    difficulty: 'intermediate',
+    estimatedTime: '25 minutes',
+    compliance: ['GDPR', 'CCPA', 'PCI DSS', 'Accessibility Standards'],
+    integrations: ['ecommerce_platform', 'customer_data_platform', 'email_marketing', 'analytics'],
+    useCases: [
+      'Personalized product recommendations',
+      'Abandoned cart recovery',
+      'Dynamic pricing optimization',
+      'Customer support automation',
+      'Inventory demand forecasting',
+    ],
+    nodes: [
+      {
+        id: 'customer-interaction',
+        type: 'trigger',
+        position: { x: 100, y: 100 },
+        data: {
+          title: 'Customer Interaction Detected',
+          description: 'Track customer behavior across all touchpoints',
+          config: {
+            type: 'behavioral_tracking',
+            events: ['page_view', 'product_view', 'cart_add', 'purchase', 'support_inquiry'],
+            real_time: true,
+          },
+        },
+      },
+      {
+        id: 'ai-personalization',
+        type: 'agent',
+        position: { x: 300, y: 50 },
+        data: {
+          title: 'Personalized Recommendations',
+          description: 'AI-driven product and content personalization',
+          agent: 'recommendation_engine',
+          config: {
+            algorithms: ['collaborative_filtering', 'content_based', 'deep_learning'],
+            recommendation_types: ['products', 'content', 'offers'],
+            real_time_scoring: true,
+          },
+        },
+      },
+      {
+        id: 'dynamic-pricing',
+        type: 'agent',
+        position: { x: 300, y: 150 },
+        data: {
+          title: 'Dynamic Pricing Optimization',
+          description: 'AI-powered price optimization based on demand and competition',
+          agent: 'pricing_optimizer',
+          config: {
+            factors: ['demand', 'competition', 'inventory', 'customer_segment'],
+            update_frequency: 'hourly',
+            profit_margin_protection: true,
+          },
+        },
+      },
+      {
+        id: 'automated-marketing',
+        type: 'integration',
+        position: { x: 500, y: 100 },
+        data: {
+          title: 'Trigger Automated Marketing',
+          description: 'Send personalized emails, push notifications, and ads',
+          integration: 'marketing_automation',
+          config: {
+            channels: ['email', 'sms', 'push_notification', 'social_ads'],
+            personalization_level: 'individual',
+            a_b_testing: true,
+          },
+        },
+      },
+    ],
+    connections: [
+      { id: 'conn-1', source: 'customer-interaction', target: 'ai-personalization' },
+      { id: 'conn-2', source: 'customer-interaction', target: 'dynamic-pricing' },
+      { id: 'conn-3', source: 'ai-personalization', target: 'automated-marketing' },
+      { id: 'conn-4', source: 'dynamic-pricing', target: 'automated-marketing' },
+    ],
+    variables: [
+      { id: 'customer_id', name: 'Customer ID', type: 'string', required: true },
+      { id: 'session_id', name: 'Session ID', type: 'string', required: true },
+      { id: 'product_catalog', name: 'Product Catalog', type: 'array', required: true },
+    ],
+    triggers: [
+      {
+        id: 'customer-behavior',
+        type: 'behavioral_tracking',
+        config: {
+          tracking_script: 'customer_journey_v2.js',
+          privacy_compliant: true,
+        },
+      },
+    ],
+  },
+];
+
+// Technology & SaaS Workflow Templates
+const TECHNOLOGY_WORKFLOW_TEMPLATES: IndustryWorkflowTemplate[] = [
+  {
+    id: 'devops-ci-cd-pipeline',
+    name: 'Intelligent DevOps CI/CD Pipeline',
+    description: 'AI-enhanced continuous integration and deployment with security scanning and performance monitoring',
+    industry: 'Technology',
+    category: 'Software Development',
+    difficulty: 'advanced',
+    estimatedTime: '45 minutes',
+    compliance: ['SOC 2', 'ISO 27001', 'GDPR', 'Security Standards'],
+    integrations: ['github', 'docker', 'kubernetes', 'security_scanners', 'monitoring_tools'],
+    useCases: [
+      'Automated code quality analysis',
+      'Security vulnerability scanning',
+      'Intelligent deployment decisions',
+      'Performance regression detection',
+      'Automated rollback on issues',
+    ],
+    nodes: [
+      {
+        id: 'code-commit',
+        type: 'trigger',
+        position: { x: 100, y: 100 },
+        data: {
+          title: 'Code Commit Detected',
+          description: 'New code pushed to repository triggers pipeline',
+          config: {
+            type: 'git_webhook',
+            branches: ['main', 'develop', 'feature/*'],
+            events: ['push', 'pull_request'],
+          },
+        },
+      },
+      {
+        id: 'ai-code-review',
+        type: 'agent',
+        position: { x: 300, y: 50 },
+        data: {
+          title: 'AI Code Quality Analysis',
+          description: 'Automated code review using AI',
+          agent: 'code_reviewer_ai',
+          config: {
+            analysis_types: ['code_quality', 'security_vulnerabilities', 'performance_issues'],
+            languages: ['typescript', 'python', 'go', 'java'],
+            quality_gate_threshold: 0.8,
+          },
+        },
+      },
+      {
+        id: 'security-scanning',
+        type: 'integration',
+        position: { x: 300, y: 150 },
+        data: {
+          title: 'Security Vulnerability Scan',
+          description: 'Comprehensive security analysis of code and dependencies',
+          integration: 'security_scanner',
+          config: {
+            scan_types: ['sast', 'dast', 'dependency_check', 'container_scan'],
+            severity_threshold: 'medium',
+            fail_on_critical: true,
+          },
+        },
+      },
+      {
+        id: 'intelligent-deployment',
+        type: 'agent',
+        position: { x: 500, y: 100 },
+        data: {
+          title: 'Intelligent Deployment Decision',
+          description: 'AI decides optimal deployment strategy and timing',
+          agent: 'deployment_strategist',
+          config: {
+            deployment_types: ['blue_green', 'canary', 'rolling_update'],
+            factors: ['code_quality', 'security_score', 'system_load', 'business_hours'],
+            rollback_triggers: ['error_rate_increase', 'performance_degradation'],
+          },
+        },
+      },
+    ],
+    connections: [
+      { id: 'conn-1', source: 'code-commit', target: 'ai-code-review' },
+      { id: 'conn-2', source: 'code-commit', target: 'security-scanning' },
+      { id: 'conn-3', source: 'ai-code-review', target: 'intelligent-deployment', condition: 'quality_score >= 0.8' },
+      { id: 'conn-4', source: 'security-scanning', target: 'intelligent-deployment', condition: 'security_score >= 0.9' },
+    ],
+    variables: [
+      { id: 'repository_url', name: 'Repository URL', type: 'string', required: true },
+      { id: 'deployment_environment', name: 'Deployment Environment', type: 'string', required: true },
+      { id: 'quality_thresholds', name: 'Quality Thresholds', type: 'object', required: true },
+    ],
+    triggers: [
+      {
+        id: 'git-webhook',
+        type: 'webhook',
+        config: {
+          endpoint: '/webhooks/git-commit',
+          authentication: 'token_based',
+          retry_policy: 'exponential_backoff',
+        },
+      },
+    ],
+  },
+];
+
 // Export all industry workflow templates
 export const INDUSTRY_WORKFLOW_TEMPLATES: IndustryWorkflowTemplate[] = [
   ...HEALTHCARE_WORKFLOW_TEMPLATES,
   ...FINANCE_WORKFLOW_TEMPLATES,
   ...LEGAL_WORKFLOW_TEMPLATES,
   ...EDUCATION_WORKFLOW_TEMPLATES,
+  ...REAL_ESTATE_WORKFLOW_TEMPLATES,
+  ...MANUFACTURING_WORKFLOW_TEMPLATES,
+  ...RETAIL_WORKFLOW_TEMPLATES,
+  ...TECHNOLOGY_WORKFLOW_TEMPLATES,
 ];
 
 export const WORKFLOW_INDUSTRY_CATEGORIES = [
