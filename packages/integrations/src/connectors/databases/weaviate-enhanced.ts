@@ -1,0 +1,504 @@
+import { IntegrationConnector, ConnectionConfig, ExecutionContext, ActionResult } from '../../types'
+import { BaseConnector } from '../base'
+
+export interface WeaviateConfig extends ConnectionConfig {
+  endpoint: string
+  apiKey?: string
+  scheme?: 'http' | 'https'
+  className?: string
+  vectorizer?: string
+  embeddingModel?: string
+}
+
+export interface VectorSearchOptions {
+  query: string
+  className: string
+  limit?: number
+  certainty?: number
+  distance?: number
+  where?: Record<string, any>
+  nearText?: {
+    concepts: string[]
+    certainty?: number
+    distance?: number
+  }
+  nearVector?: {
+    vector: number[]
+    certainty?: number
+    distance?: number
+  }
+  hybrid?: {
+    query: string
+    alpha?: number
+    vector?: number[]
+  }
+}
+
+export interface RAGContext {
+  documents: Array<{
+    content: string
+    metadata: Record<string, any>
+    score: number
+  }>
+  totalResults: number
+  searchQuery: string
+}
+
+export class WeaviateEnhancedConnector extends BaseConnector implements IntegrationConnector {
+  public readonly id = 'weaviate-enhanced'
+  public readonly name = 'Weaviate Vector Database (Enhanced)'
+  public readonly description = 'Advanced Weaviate integration with RAG, semantic search, and hybrid search capabilities'
+  public readonly category = 'databases'
+  public readonly version = '2.0.0'
+  
+  private client: any
+  private config: WeaviateConfig
+
+  constructor(config: WeaviateConfig) {
+    super()
+    this.config = config
+    this.initializeClient()
+  }
+
+  private async initializeClient(): Promise<void> {
+    // Initialize Weaviate client
+    try {
+      // This would use the actual Weaviate client library
+      this.client = {
+        // Mock client for now - would be real Weaviate client
+        endpoint: this.config.endpoint,
+        headers: this.config.apiKey ? { 'Authorization': `Bearer ${this.config.apiKey}` } : {}
+      }
+    } catch (error) {
+      throw new Error(`Failed to initialize Weaviate client: ${error}`)
+    }
+  }
+
+  async connect(): Promise<void> {
+    await this.initializeClient()
+    // Test connection
+    await this.testConnection()
+  }
+
+  async disconnect(): Promise<void> {
+    this.client = null
+  }
+
+  async testConnection(): Promise<boolean> {
+    try {
+      // Test connection by fetching schema
+      await this.getSchema()
+      return true
+    } catch (error) {
+      throw new Error(`Connection test failed: ${error}`)
+    }
+  }
+
+  // Core RAG functionality
+  async performRAGSearch(
+    query: string,
+    options: Partial<VectorSearchOptions> = {}
+  ): Promise<RAGContext> {
+    const searchOptions: VectorSearchOptions = {
+      query,
+      className: options.className || this.config.className || 'Document',
+      limit: options.limit || 10,
+      certainty: options.certainty || 0.7,
+      ...options
+    }
+
+    const results = await this.hybridSearch(searchOptions)
+    
+    return {
+      documents: results.map((result: any) => ({
+        content: result.content || result._additional?.generate?.singleResult || '',
+        metadata: {
+          id: result.id,
+          className: searchOptions.className,
+          certainty: result._additional?.certainty,
+          distance: result._additional?.distance,
+          ...result.properties
+        },
+        score: result._additional?.certainty || result._additional?.distance || 0
+      })),
+      totalResults: results.length,
+      searchQuery: query
+    }
+  }
+
+  // Hybrid search combining vector and keyword search
+  async hybridSearch(options: VectorSearchOptions): Promise<any[]> {
+    const {
+      query,
+      className,
+      limit = 10,
+      hybrid = { query, alpha: 0.5 }
+    } = options
+
+    // Mock implementation - would use real Weaviate hybrid search
+    const searchQuery = {
+      query: `{
+        Get {
+          ${className}(
+            hybrid: {
+              query: "${hybrid.query}"
+              alpha: ${hybrid.alpha}
+            }
+            limit: ${limit}
+          ) {
+            content
+            title
+            url
+            _additional {
+              id
+              certainty
+              distance
+            }
+          }
+        }
+      }`
+    }
+
+    return this.executeGraphQLQuery(searchQuery.query)
+  }
+
+  // Semantic search using vector similarity
+  async semanticSearch(options: VectorSearchOptions): Promise<any[]> {
+    const {
+      query,
+      className,
+      limit = 10,
+      certainty = 0.7,
+      nearText
+    } = options
+
+    const searchQuery = {
+      query: `{
+        Get {
+          ${className}(
+            nearText: {
+              concepts: ${JSON.stringify(nearText?.concepts || [query])}
+              certainty: ${nearText?.certainty || certainty}
+            }
+            limit: ${limit}
+          ) {
+            content
+            title
+            url
+            _additional {
+              id
+              certainty
+              distance
+            }
+          }
+        }
+      }`
+    }
+
+    return this.executeGraphQLQuery(searchQuery.query)
+  }
+
+  // Vector search with custom embeddings
+  async vectorSearch(vector: number[], options: Partial<VectorSearchOptions> = {}): Promise<any[]> {
+    const {
+      className = this.config.className || 'Document',
+      limit = 10,
+      certainty = 0.7
+    } = options
+
+    const searchQuery = {
+      query: `{
+        Get {
+          ${className}(
+            nearVector: {
+              vector: [${vector.join(', ')}]
+              certainty: ${certainty}
+            }
+            limit: ${limit}
+          ) {
+            content
+            title
+            url
+            _additional {
+              id
+              certainty
+              distance
+              vector
+            }
+          }
+        }
+      }`
+    }
+
+    return this.executeGraphQLQuery(searchQuery.query)
+  }
+
+  // Add documents for RAG
+  async addDocument(
+    document: {
+      content: string
+      metadata?: Record<string, any>
+    },
+    className?: string
+  ): Promise<string> {
+    const targetClass = className || this.config.className || 'Document'
+    
+    const properties = {
+      content: document.content,
+      ...document.metadata
+    }
+
+    // Mock implementation - would use real Weaviate batch import
+    const objectId = this.generateUUID()
+    
+    await this.createObject(targetClass, properties, objectId)
+    
+    return objectId
+  }
+
+  // Batch add documents
+  async addDocuments(
+    documents: Array<{
+      content: string
+      metadata?: Record<string, any>
+    }>,
+    className?: string
+  ): Promise<string[]> {
+    const targetClass = className || this.config.className || 'Document'
+    const objectIds: string[] = []
+
+    // Process in batches for better performance
+    const batchSize = 100
+    for (let i = 0; i < documents.length; i += batchSize) {
+      const batch = documents.slice(i, i + batchSize)
+      const batchIds = await Promise.all(
+        batch.map(doc => this.addDocument(doc, targetClass))
+      )
+      objectIds.push(...batchIds)
+    }
+
+    return objectIds
+  }
+
+  // Create object in Weaviate
+  async createObject(
+    className: string,
+    properties: Record<string, any>,
+    id?: string
+  ): Promise<ActionResult> {
+    try {
+      // Mock implementation
+      const objectId = id || this.generateUUID()
+      
+      const object = {
+        class: className,
+        id: objectId,
+        properties
+      }
+
+      // Would make actual API call to Weaviate
+      await this.makeAPICall('POST', `/v1/objects`, object)
+
+      return {
+        success: true,
+        data: { id: objectId },
+        metadata: { className, timestamp: new Date().toISOString() }
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to create object'
+      }
+    }
+  }
+
+  // Update object
+  async updateObject(
+    className: string,
+    id: string,
+    properties: Record<string, any>
+  ): Promise<ActionResult> {
+    try {
+      await this.makeAPICall('PUT', `/v1/objects/${className}/${id}`, {
+        properties
+      })
+
+      return {
+        success: true,
+        data: { id },
+        metadata: { className, updated: new Date().toISOString() }
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to update object'
+      }
+    }
+  }
+
+  // Delete object
+  async deleteObject(className: string, id: string): Promise<ActionResult> {
+    try {
+      await this.makeAPICall('DELETE', `/v1/objects/${className}/${id}`)
+
+      return {
+        success: true,
+        data: { id },
+        metadata: { className, deleted: new Date().toISOString() }
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to delete object'
+      }
+    }
+  }
+
+  // Get schema
+  async getSchema(): Promise<any> {
+    return this.makeAPICall('GET', '/v1/schema')
+  }
+
+  // Create class schema
+  async createClass(classDefinition: any): Promise<ActionResult> {
+    try {
+      await this.makeAPICall('POST', '/v1/schema', classDefinition)
+      
+      return {
+        success: true,
+        data: classDefinition,
+        metadata: { created: new Date().toISOString() }
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to create class'
+      }
+    }
+  }
+
+  // Execute GraphQL query
+  async executeGraphQLQuery(query: string): Promise<any> {
+    return this.makeAPICall('POST', '/v1/graphql', { query })
+  }
+
+  // Generate embeddings (if using custom vectorizer)
+  async generateEmbeddings(text: string): Promise<number[]> {
+    // This would integrate with embedding providers like OpenAI, Cohere, etc.
+    // Mock implementation for now
+    return new Array(1536).fill(0).map(() => Math.random() - 0.5)
+  }
+
+  // Semantic caching functionality
+  async getCachedResponse(
+    query: string,
+    threshold: number = 0.9
+  ): Promise<any | null> {
+    const cacheResults = await this.semanticSearch({
+      query,
+      className: 'SemanticCache',
+      limit: 1,
+      certainty: threshold
+    })
+
+    if (cacheResults.length > 0) {
+      return {
+        response: cacheResults[0].response,
+        cached: true,
+        similarity: cacheResults[0]._additional.certainty
+      }
+    }
+
+    return null
+  }
+
+  // Cache response for semantic caching
+  async cacheResponse(
+    query: string,
+    response: any,
+    metadata?: Record<string, any>
+  ): Promise<void> {
+    await this.createObject('SemanticCache', {
+      query,
+      response: JSON.stringify(response),
+      timestamp: new Date().toISOString(),
+      ...metadata
+    })
+  }
+
+  // Private helper methods
+  private async makeAPICall(method: string, endpoint: string, data?: any): Promise<any> {
+    // Mock implementation - would make actual HTTP calls
+    const url = `${this.config.endpoint}${endpoint}`
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 100))
+    
+    // Return mock data based on endpoint
+    if (endpoint.includes('graphql')) {
+      return {
+        data: {
+          Get: {
+            [data?.className || 'Document']: [
+              {
+                content: 'Sample document content',
+                title: 'Sample Document',
+                _additional: {
+                  id: this.generateUUID(),
+                  certainty: 0.85,
+                  distance: 0.15
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+
+    return { success: true }
+  }
+
+  private generateUUID(): string {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0
+      const v = c == 'x' ? r : (r & 0x3 | 0x8)
+      return v.toString(16)
+    })
+  }
+
+  // Implementation of base connector methods
+  async execute(action: string, params: Record<string, any>, context: ExecutionContext): Promise<ActionResult> {
+    switch (action) {
+      case 'search':
+        const results = await this.performRAGSearch(params.query, params.options)
+        return { success: true, data: results }
+        
+      case 'hybrid_search':
+        const hybridResults = await this.hybridSearch(params)
+        return { success: true, data: hybridResults }
+        
+      case 'semantic_search':
+        const semanticResults = await this.semanticSearch(params)
+        return { success: true, data: semanticResults }
+        
+      case 'add_document':
+        const docId = await this.addDocument(params.document, params.className)
+        return { success: true, data: { id: docId } }
+        
+      case 'create_object':
+        return await this.createObject(params.className, params.properties, params.id)
+        
+      case 'update_object':
+        return await this.updateObject(params.className, params.id, params.properties)
+        
+      case 'delete_object':
+        return await this.deleteObject(params.className, params.id)
+        
+      default:
+        return {
+          success: false,
+          error: `Unknown action: ${action}`
+        }
+    }
+  }
+}

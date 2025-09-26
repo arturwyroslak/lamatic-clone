@@ -544,5 +544,180 @@
     "setupInstructions": ["Get Airtable API key", "Find base and table IDs"],
     "documentation": "https://docs.lamatic.ai/integrations/airtable",
     "examples": []
+  },
+  {
+    "id": "aws-s3",
+    "name": "AWS S3",
+    "slug": "aws-s3", 
+    "description": "Automated file retrieval and synchronization from Amazon S3 buckets",
+    "icon": "/icons/aws-s3.svg",
+    "type": "connector",
+    "category": "storage",
+    "provider": "aws",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["File Sync", "Automated Retrieval", "Multiple File Types"],
+    "triggers": ["sync_trigger"],
+    "actions": ["upload_file", "download_file", "list_files"],
+    "configSchema": {
+      "properties": {
+        "bucketName": { "type": "string", "required": true, "description": "S3 Bucket Name" },
+        "region": { "type": "string", "required": true, "default": "us-east-1" },
+        "prefix": { "type": "string", "description": "File prefix filter" }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "accessKeyId": { "type": "string", "required": true, "sensitive": true },
+        "secretAccessKey": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": [
+      "Create IAM user with S3 permissions",
+      "Generate access key and secret",
+      "Configure bucket name and region"
+    ],
+    "documentation": "https://docs.lamatic.ai/integrations/aws-s3",
+    "examples": []
+  },
+  {
+    "id": "google-drive",
+    "name": "Google Drive",
+    "slug": "google-drive",
+    "description": "Access Google Docs, Slides, Word Documents, PDFs with regular file synchronization",
+    "icon": "/icons/google-drive.svg",
+    "type": "connector",
+    "category": "storage",
+    "provider": "google",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Document Access", "File Sync", "Multiple Formats"],
+    "triggers": ["sync_trigger", "event_trigger"],
+    "actions": ["read_file", "create_file", "update_file", "list_files"],
+    "configSchema": {
+      "properties": {
+        "folderId": { "type": "string", "description": "Specific folder ID to sync" },
+        "fileTypes": { "type": "array", "default": ["docs", "slides", "pdf", "docx"] }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "clientId": { "type": "string", "required": true, "sensitive": true },
+        "clientSecret": { "type": "string", "required": true, "sensitive": true },
+        "refreshToken": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": [
+      "Create Google Cloud project",
+      "Enable Drive API",
+      "Create OAuth credentials",
+      "Complete authorization flow"
+    ],
+    "documentation": "https://docs.lamatic.ai/integrations/google-drive",
+    "examples": []
+  },
+  {
+    "id": "microsoft-teams",
+    "name": "Microsoft Teams",
+    "slug": "microsoft-teams",
+    "description": "Automated data extraction, syncing and real-time triggers from Teams channels",
+    "icon": "/icons/microsoft-teams.svg",
+    "type": "connector",
+    "category": "communication",
+    "provider": "microsoft",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Message Sync", "Channel Integration", "Real-time Triggers"],
+    "triggers": ["event_trigger", "sync_trigger"],
+    "actions": ["send_message", "get_messages", "create_channel"],
+    "configSchema": {
+      "properties": {
+        "teamId": { "type": "string", "required": true, "description": "Microsoft Teams Team ID" },
+        "channelId": { "type": "string", "description": "Specific channel ID" }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "tenantId": { "type": "string", "required": true, "sensitive": true },
+        "clientId": { "type": "string", "required": true, "sensitive": true },
+        "clientSecret": { "type": "string", "required": true, "sensitive": true }
+      }
+    },
+    "setupInstructions": [
+      "Register app in Azure AD",
+      "Configure Microsoft Graph permissions",
+      "Get tenant and client credentials",
+      "Add app to Teams"
+    ],
+    "documentation": "https://docs.lamatic.ai/integrations/microsoft-teams",
+    "examples": []
+  },
+  {
+    "id": "github-actions",
+    "name": "GitHub Actions",
+    "slug": "github-actions",
+    "description": "Automated file monitoring and webhook triggering when files are modified in repository",
+    "icon": "/icons/github.svg",
+    "type": "connector",
+    "category": "development",
+    "provider": "github",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["File Monitoring", "Webhook Triggers", "Repository Integration"],
+    "triggers": ["event_trigger"],
+    "actions": ["trigger_workflow", "get_workflow_status"],
+    "configSchema": {
+      "properties": {
+        "owner": { "type": "string", "required": true, "description": "Repository owner" },
+        "repo": { "type": "string", "required": true, "description": "Repository name" },
+        "branch": { "type": "string", "default": "main", "description": "Branch to monitor" }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "token": { "type": "string", "required": true, "sensitive": true, "description": "GitHub Personal Access Token" }
+      }
+    },
+    "setupInstructions": [
+      "Create GitHub Personal Access Token",
+      "Configure repository access permissions",
+      "Set up webhook endpoints"
+    ],
+    "documentation": "https://docs.lamatic.ai/integrations/github-actions",
+    "examples": []
+  },
+  {
+    "id": "weaviate",
+    "name": "Weaviate Vector Database",
+    "slug": "weaviate",
+    "description": "Built-in vector database for RAG, semantic search, and hybrid search capabilities",
+    "icon": "/icons/weaviate.svg",
+    "type": "connector",
+    "category": "databases",
+    "provider": "weaviate",
+    "version": "1.0.0",
+    "status": "active",
+    "features": ["Vector Search", "RAG Support", "Hybrid Search", "Semantic Caching"],
+    "triggers": ["api_call"],
+    "actions": ["create_object", "search_vector", "hybrid_search", "delete_object"],
+    "configSchema": {
+      "properties": {
+        "host": { "type": "string", "required": true, "default": "http://localhost:8080" },
+        "className": { "type": "string", "required": true, "description": "Weaviate class name" },
+        "vectorizer": { "type": "string", "default": "text2vec-openai" }
+      }
+    },
+    "credentialsSchema": {
+      "properties": {
+        "apiKey": { "type": "string", "sensitive": true, "description": "Weaviate API Key (if required)" }
+      }
+    },
+    "setupInstructions": [
+      "Set up Weaviate instance",
+      "Configure schema and classes",
+      "Set up vectorizer module"
+    ],
+    "documentation": "https://docs.lamatic.ai/integrations/weaviate",
+    "examples": []
   }
 ]

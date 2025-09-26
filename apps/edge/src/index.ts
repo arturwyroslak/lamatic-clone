@@ -40,7 +40,7 @@ async function handleAnalytics(request: Request, env: WorkerEnv): Promise<Respon
 }
 
 // Router function
-async function route(request: Request, env: WorkerEnv): Promise<Response> {
+async function route(request: Request, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
   const url = new URL(request.url)
   const path = url.pathname
   
@@ -55,15 +55,15 @@ async function route(request: Request, env: WorkerEnv): Promise<Response> {
   }
   
   if (path.startsWith('/graphql')) {
-    return handleGraphQLProxy(request, env)
+    return handleGraphQLProxy(request, env, ctx)
   }
   
   if (path.startsWith('/webhooks/')) {
-    return handleWebhook(request, env)
+    return handleWebhook(request, env, ctx)
   }
   
   if (path.startsWith('/widgets/')) {
-    return handleWidget(request, env)
+    return handleWidget(request, env, ctx)
   }
   
   if (path.startsWith('/workflows/') && path.includes('/execute')) {
@@ -83,9 +83,9 @@ async function route(request: Request, env: WorkerEnv): Promise<Response> {
 
 // Worker entry point
 export default {
-  async fetch(request: Request, env: WorkerEnv): Promise<Response> {
+  async fetch(request: Request, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
     try {
-      return await route(request, env)
+      return await route(request, env, ctx)
     } catch (error) {
       console.error('Worker error:', error)
       return errorResponse('Internal server error', 500)

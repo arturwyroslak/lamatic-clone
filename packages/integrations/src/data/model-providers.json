@@ -513,5 +513,202 @@
         "capabilities": ["conversation", "reasoning", "instruction_following"]
       }
     ]
+  },
+  {
+    "id": "groq",
+    "name": "Groq",
+    "slug": "groq",
+    "description": "Extremely low latency LLM deployment with GroqChip processors",
+    "icon": "/icons/groq.svg",
+    "website": "https://groq.com",
+    "apiKeyRequired": true,
+    "setupInstructions": [
+      "Sign up at console.groq.com",
+      "Verify your account",
+      "Generate API key",
+      "Configure rate limits"
+    ],
+    "features": ["Ultra-low Latency", "Text Generation", "Real-time Inference"],
+    "pricing": {
+      "type": "freemium",
+      "plans": [
+        {
+          "name": "Free Tier",
+          "price": 0,
+          "currency": "USD",
+          "interval": "month",
+          "features": ["30 RPM", "6000 TPM", "No credit card required"]
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "llama-3.1-70b-versatile",
+        "name": "Llama 3.1 70B",
+        "type": "chat",
+        "contextLength": 131072,
+        "maxTokens": 8192,
+        "inputPricing": 0.00059,
+        "outputPricing": 0.00079,
+        "features": ["function_calling"],
+        "capabilities": ["reasoning", "coding", "analysis", "conversation"]
+      },
+      {
+        "id": "mixtral-8x7b-32768",
+        "name": "Mixtral 8x7B",
+        "type": "chat",
+        "contextLength": 32768,
+        "maxTokens": 32768,
+        "inputPricing": 0.00027,
+        "outputPricing": 0.00027,
+        "features": [],
+        "capabilities": ["multilingual", "coding", "reasoning"]
+      }
+    ]
+  },
+  {
+    "id": "mistral",
+    "name": "Mistral AI",
+    "slug": "mistral",
+    "description": "Frontier AI in your hands - powerful language models from Mistral AI",
+    "icon": "/icons/mistral.svg",
+    "website": "https://mistral.ai",
+    "apiKeyRequired": true,
+    "setupInstructions": [
+      "Sign up at console.mistral.ai",
+      "Complete verification",
+      "Create API key",
+      "Set usage limits"
+    ],
+    "features": ["Text Generation", "Code Generation", "Multilingual", "Function Calling"],
+    "pricing": {
+      "type": "paid",
+      "plans": [
+        {
+          "name": "Pay-per-use",
+          "price": 0,
+          "currency": "USD",
+          "interval": "usage",
+          "features": ["All models", "API access", "Rate limiting"]
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "mistral-large-latest",
+        "name": "Mistral Large",
+        "type": "chat",
+        "contextLength": 128000,
+        "maxTokens": 8192,
+        "inputPricing": 0.004,
+        "outputPricing": 0.012,
+        "features": ["function_calling", "json_mode"],
+        "capabilities": ["reasoning", "coding", "multilingual", "analysis"]
+      },
+      {
+        "id": "mistral-small-latest",
+        "name": "Mistral Small",
+        "type": "chat",
+        "contextLength": 128000,
+        "maxTokens": 8192,
+        "inputPricing": 0.001,
+        "outputPricing": 0.003,
+        "features": ["function_calling"],
+        "capabilities": ["conversation", "summarization", "translation"]
+      }
+    ]
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity AI",
+    "slug": "perplexity",
+    "description": "Modern search and information discovery with AI-powered search capabilities",
+    "icon": "/icons/perplexity.svg",
+    "website": "https://perplexity.ai",
+    "apiKeyRequired": true,
+    "setupInstructions": [
+      "Sign up at perplexity.ai",
+      "Navigate to API settings",
+      "Generate API key",
+      "Configure access permissions"
+    ],
+    "features": ["Search-Augmented Generation", "Real-time Information", "Citation"],
+    "pricing": {
+      "type": "paid",
+      "plans": [
+        {
+          "name": "API Access",
+          "price": 0,
+          "currency": "USD",
+          "interval": "usage",
+          "features": ["Search-augmented responses", "Citations", "Real-time data"]
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "llama-3.1-sonar-small-128k-online",
+        "name": "Llama 3.1 Sonar Small Online",
+        "type": "chat",
+        "contextLength": 127072,
+        "maxTokens": 8192,
+        "inputPricing": 0.0002,
+        "outputPricing": 0.0002,
+        "features": ["search_augmented", "citations"],
+        "capabilities": ["search", "real_time_information", "reasoning"]
+      },
+      {
+        "id": "llama-3.1-sonar-large-128k-online",
+        "name": "Llama 3.1 Sonar Large Online", 
+        "type": "chat",
+        "contextLength": 127072,
+        "maxTokens": 8192,
+        "inputPricing": 0.001,
+        "outputPricing": 0.001,
+        "features": ["search_augmented", "citations"],
+        "capabilities": ["search", "real_time_information", "advanced_reasoning"]
+      }
+    ]
+  },
+  {
+    "id": "xai",
+    "name": "xAI",
+    "slug": "xai",
+    "description": "Grok AI assistant with unique personality and X platform integration",
+    "icon": "/icons/xai.svg",
+    "website": "https://x.ai",
+    "apiKeyRequired": true,
+    "setupInstructions": [
+      "Apply for API access at x.ai",
+      "Complete verification process",
+      "Receive API credentials",
+      "Configure integration settings"
+    ],
+    "features": ["Personality-Driven", "Real-time Data", "X Integration"],
+    "pricing": {
+      "type": "paid",
+      "plans": [
+        {
+          "name": "API Access",
+          "price": 0,
+          "currency": "USD",
+          "interval": "usage",
+          "features": ["Grok model access", "Real-time responses", "X integration"]
+        }
+      ]
+    },
+    "models": [
+      {
+        "id": "grok-beta",
+        "name": "Grok Beta",
+        "type": "chat",
+        "contextLength": 8192,
+        "maxTokens": 4096,
+        "inputPricing": 0.01,
+        "outputPricing": 0.01,
+        "features": ["personality", "real_time"],
+        "capabilities": ["conversation", "humor", "real_time_information"]
+      }
+    ]
   }
 ]
