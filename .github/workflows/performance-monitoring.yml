@@ -1,0 +1,356 @@
+name: Performance Monitoring
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run performance tests daily at 3 AM UTC
+    - cron: '0 3 * * *'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '18.17.0'
+
+jobs:
+  lighthouse-audit:
+    name: Lighthouse Performance Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+
+      - name: Start application
+        run: |
+          npm run start &
+          sleep 30
+        env:
+          NODE_ENV: production
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            http://localhost:3000
+            http://localhost:3000/studio
+            http://localhost:3000/integrations
+          configPath: './.lighthouserc.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: Upload Lighthouse reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: |
+            .lighthouseci/
+            lhci_reports/
+
+  bundle-analysis:
+    name: Bundle Size Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Analyze bundle size
+        run: |
+          npm run build
+          npx webpack-bundle-analyzer --analyzer-mode json --analyzer-port 0 apps/web/.next/static/chunks/*.js > bundle-report.json || true
+
+      - name: Bundle size check
+        uses: andresz1/size-limit-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          skip_step: install
+
+      - name: Upload bundle analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-analysis
+          path: bundle-report.json
+
+  load-testing:
+    name: Load Testing
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Start application
+        run: |
+          npm run build
+          npm run start &
+          sleep 30
+        env:
+          NODE_ENV: production
+
+      - name: Install k6
+        run: |
+          sudo gpg -k
+          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install k6
+
+      - name: Run load tests
+        run: |
+          cat > load-test.js << 'EOF'
+          import http from 'k6/http';
+          import { check, sleep } from 'k6';
+          import { Rate } from 'k6/metrics';
+
+          export let errorRate = new Rate('errors');
+
+          export let options = {
+            stages: [
+              { duration: '2m', target: 10 },
+              { duration: '5m', target: 10 },
+              { duration: '2m', target: 20 },
+              { duration: '5m', target: 20 },
+              { duration: '2m', target: 0 },
+            ],
+            thresholds: {
+              http_req_duration: ['p(95)<500'],
+              errors: ['rate<0.1'],
+            },
+          };
+
+          export default function () {
+            const BASE_URL = 'http://localhost:3000';
+            
+            let response = http.get(BASE_URL);
+            check(response, {
+              'status is 200': (r) => r.status === 200,
+              'response time < 500ms': (r) => r.timings.duration < 500,
+            }) || errorRate.add(1);
+
+            response = http.get(`${BASE_URL}/studio`);
+            check(response, {
+              'studio page loads': (r) => r.status === 200,
+            }) || errorRate.add(1);
+
+            sleep(1);
+          }
+          EOF
+
+          k6 run load-test.js --out json=load-test-results.json
+
+      - name: Upload load test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: load-test-results
+          path: load-test-results.json
+
+  memory-profiling:
+    name: Memory Profiling
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Memory leak detection
+        run: |
+          npm install -g clinic
+          npm run build
+          timeout 300s clinic doctor --on-port 'curl http://localhost:3000' -- npm start || true
+
+      - name: Upload memory profiles
+        uses: actions/upload-artifact@v4
+        with:
+          name: memory-profiles
+          path: |
+            .clinic/
+            *.clinic*
+
+  api-performance:
+    name: API Performance Testing
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: lamatic_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Start API server
+        run: |
+          npm run build
+          npm run start:api &
+          sleep 30
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/lamatic_test
+          REDIS_URL: redis://localhost:6379
+
+      - name: Run API performance tests
+        run: |
+          cat > api-test.js << 'EOF'
+          import http from 'k6/http';
+          import { check } from 'k6';
+
+          export let options = {
+            vus: 10,
+            duration: '30s',
+            thresholds: {
+              http_req_duration: ['p(95)<200'],
+              http_req_failed: ['rate<0.05'],
+            },
+          };
+
+          export default function () {
+            const BASE_URL = 'http://localhost:4000/graphql';
+            
+            const query = `
+              {
+                workflows {
+                  id
+                  name
+                  status
+                }
+              }
+            `;
+
+            const response = http.post(BASE_URL, JSON.stringify({
+              query: query
+            }), {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+
+            check(response, {
+              'GraphQL query succeeds': (r) => r.status === 200,
+              'Response time < 200ms': (r) => r.timings.duration < 200,
+              'No GraphQL errors': (r) => !JSON.parse(r.body).errors,
+            });
+          }
+          EOF
+
+          k6 run api-test.js --out json=api-performance-results.json
+
+      - name: Upload API performance results
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-performance-results
+          path: api-performance-results.json
+
+  performance-report:
+    name: Generate Performance Report
+    runs-on: ubuntu-latest
+    needs: [lighthouse-audit, bundle-analysis, load-testing, memory-profiling, api-performance]
+    if: always()
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Generate performance report
+        run: |
+          echo "# Performance Test Report - $(date)" > performance-report.md
+          echo "" >> performance-report.md
+          echo "## Test Results Summary" >> performance-report.md
+          echo "- Lighthouse Audit: ${{ needs.lighthouse-audit.result }}" >> performance-report.md
+          echo "- Bundle Analysis: ${{ needs.bundle-analysis.result }}" >> performance-report.md
+          echo "- Load Testing: ${{ needs.load-testing.result }}" >> performance-report.md
+          echo "- Memory Profiling: ${{ needs.memory-profiling.result }}" >> performance-report.md
+          echo "- API Performance: ${{ needs.api-performance.result }}" >> performance-report.md
+          echo "" >> performance-report.md
+          
+          if [ -f "lighthouse-reports/manifest.json" ]; then
+            echo "## Lighthouse Results" >> performance-report.md
+            echo "Lighthouse reports generated and uploaded as artifacts." >> performance-report.md
+          fi
+
+      - name: Upload performance report
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-report
+          path: performance-report.md
+
+      - name: Comment PR with performance results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('performance-report.md', 'utf8');
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: report
+            });
