@@ -2,8 +2,15 @@
 import { Tool, ToolInput, ToolOutput } from '../types'
 
 export class DataTransformer implements Tool {
+  id = 'data_transformer'
   name = 'data_transformer'
   description = 'Transform and manipulate data structures with advanced operations'
+  category = 'utility' as const
+  inputSchema = {}
+  outputSchema = {}
+  config = {}
+  version = '1.0.0'
+  isBuiltin = true
 
   async execute(input: ToolInput): Promise<ToolOutput> {
     try {
@@ -477,7 +484,7 @@ export class EmailProcessor implements Tool {
   private extractEmailInfo(emailContent: string): any {
     // Simple email parsing (in production, use proper email parsing libraries)
     const lines = emailContent.split('\n')
-    const headers = {}
+    const headers: Record<string, string> = {}
     let bodyStart = 0
 
     for (let i = 0; i < lines.length; i++) {
@@ -596,8 +603,10 @@ export class EmailProcessor implements Tool {
       formal: "Dear sender, I acknowledge receipt of your email and will provide a response at my earliest convenience."
     }
 
+    const validTone = tone in templates ? tone : 'professional'
+
     return {
-      reply: templates[tone] || templates.professional,
+      reply: templates[validTone as keyof typeof templates],
       tone,
       includeOriginal,
       suggestedSubject: `Re: ${this.extractEmailInfo(emailContent).subject}`,

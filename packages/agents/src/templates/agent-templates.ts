@@ -1,5 +1,5 @@
 // Pre-built Agent Templates - Complete template marketplace
-import { AgentConfig, ModelConfig } from '../types'
+import { AgentConfig, ModelConfig, MemoryConfig, AgentSpecificConfig, PersonalityConfig } from '../types'
 
 export interface AgentTemplateConfig {
   type?: string

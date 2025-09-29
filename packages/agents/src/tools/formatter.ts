@@ -32,7 +32,7 @@ export class TextFormatter implements BaseTool {
           }
         
         case 'title_case':
-          const titleCase = text.replace(/\w\S*/g, (txt) => 
+          const titleCase = text.replace(/\w\S*/g, (txt: string) => 
             txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
           )
           return {
@@ -42,7 +42,7 @@ export class TextFormatter implements BaseTool {
         
         case 'camel_case':
           const camelCase = text
-            .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => 
+            .replace(/(?:^\w|[A-Z]|\b\w)/g, (word: string, index: number) => 
               index === 0 ? word.toLowerCase() : word.toUpperCase()
             )
             .replace(/\s+/g, '')
@@ -55,7 +55,7 @@ export class TextFormatter implements BaseTool {
           const snakeCase = text
             .replace(/\W+/g, ' ')
             .split(/ |\B(?=[A-Z])/)
-            .map(word => word.toLowerCase())
+            .map((word: string) => word.toLowerCase())
             .join('_')
           return {
             success: true,
@@ -66,7 +66,7 @@ export class TextFormatter implements BaseTool {
           const kebabCase = text
             .replace(/\W+/g, ' ')
             .split(/ |\B(?=[A-Z])/)
-            .map(word => word.toLowerCase())
+            .map((word: string) => word.toLowerCase())
             .join('-')
           return {
             success: true,

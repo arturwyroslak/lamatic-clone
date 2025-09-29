@@ -68,6 +68,14 @@ export interface WorkflowExecution {
   trace?: any[]
 }
 
+export interface WorkflowTrigger {
+  id: string
+  name?: string
+  type: 'webhook' | 'schedule' | 'event' | 'manual'
+  config?: Record<string, any>
+  enabled?: boolean
+}
+
 // Agent types
 export interface Agent {
   id: string
@@ -317,6 +325,7 @@ export interface AgentTemplate {
   version: string
   isOfficial: boolean
   featured: boolean
+  difficulty?: string
 }
 
 export interface AgentCollaboration {
