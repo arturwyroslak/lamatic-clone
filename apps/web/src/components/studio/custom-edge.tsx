@@ -48,7 +48,7 @@ export function CustomEdge({
             className="edge-label"
           >
             <div className="bg-white border border-gray-200 rounded-md px-2 py-1 text-xs font-medium shadow-sm">
-              {data.label}
+              {String(data?.label || '')}
             </div>
           </div>
         </EdgeLabelRenderer>

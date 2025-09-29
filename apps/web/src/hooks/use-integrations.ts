@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { IntegrationConfig, ModelProvider } from '@/types/integrations'
+import { IntegrationConfig, ModelProvider, IntegrationType, IntegrationCategory, TriggerType, ModelType, ModelFeature } from '@/types/integrations'
 
 export function useIntegrations() {
   const [integrations, setIntegrations] = useState<IntegrationConfig[]>([])
@@ -50,13 +50,13 @@ export function useIntegrations() {
           slug: 'slack',
           description: 'Connect with Slack workspaces for messaging and notifications',
           icon: '/icons/slack.svg',
-          type: 'app' as const,
-          category: 'communication' as const,
+          type: IntegrationType.APP,
+          category: IntegrationCategory.COMMUNICATION,
           provider: 'slack',
           version: '1.0.0',
           status: 'active' as const,
           features: ['Event Triggers', 'Message Sending', 'Channel Management'],
-          triggers: ['event_trigger', 'action'] as const,
+          triggers: [TriggerType.EVENT, TriggerType.ACTION],
           actions: ['send_message', 'create_channel'],
           configSchema: {} as any,
           credentialsSchema: {} as any,
@@ -70,13 +70,13 @@ export function useIntegrations() {
           slug: 'google-drive',
           description: 'Access and sync files from Google Drive for RAG workflows',
           icon: '/icons/google-drive.svg',
-          type: 'data_source' as const,
-          category: 'storage' as const,
+          type: IntegrationType.DATA_SOURCE,
+          category: IntegrationCategory.STORAGE,
           provider: 'google',
           version: '1.0.0',
           status: 'active' as const,
           features: ['File Sync', 'Document Processing', 'RAG Integration'],
-          triggers: ['sync_trigger', 'event_trigger'] as const,
+          triggers: [TriggerType.SYNC, TriggerType.EVENT],
           actions: ['upload_file', 'create_folder'],
           configSchema: {} as any,
           credentialsSchema: {} as any,
@@ -103,12 +103,12 @@ export function useIntegrations() {
             {
               id: 'gpt-4',
               name: 'GPT-4',
-              type: 'chat' as const,
+              type: ModelType.CHAT,
               contextLength: 8192,
               maxTokens: 4096,
               inputPricing: 0.03,
               outputPricing: 0.06,
-              features: ['function_calling'] as const,
+              features: [ModelFeature.FUNCTION_CALLING],
               capabilities: ['reasoning', 'coding']
             }
           ]

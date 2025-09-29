@@ -6,13 +6,6 @@ import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Settings, Play, Pause, MoreVertical, AlertCircle, CheckCircle } from 'lucide-react'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
 
 export interface NodeData {
@@ -26,6 +19,7 @@ export interface NodeData {
   lastRun?: Date
   executionTime?: number
   error?: string
+  [key: string]: any // Allow additional properties
 }
 
 const nodeTypeConfig = {
@@ -129,30 +123,9 @@ export function FlowNode({ id, data, selected }: NodeProps<Node<NodeData>>) {
               <StatusIcon className={cn('h-4 w-4', statusColors[data.status!])} />
             )}
             
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                  <MoreVertical className="h-3 w-3" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => handleNodeAction('test')}>
-                  <Play className="h-4 w-4 mr-2" />
-                  Test Node
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleNodeAction('configure')}>
-                  <Settings className="h-4 w-4 mr-2" />
-                  Configure
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem 
-                  onClick={() => handleNodeAction('delete')}
-                  className="text-destructive"
-                >
-                  Delete Node
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => handleNodeAction('configure')}>
+              <MoreVertical className="h-3 w-3" />
+            </Button>
           </div>
         </div>
       </div>

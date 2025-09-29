@@ -43,6 +43,20 @@ import {
 import { FlowNode } from './flow-node'
 import { CustomEdge } from './custom-edge'
 
+// Define proper types for our flow node data
+interface FlowNodeData {
+  title?: string
+  description?: string
+  config?: Record<string, any>
+  status?: string
+  [key: string]: any
+}
+
+// Extend the Node type with our specific data type
+type CustomNode = Node & {
+  data: FlowNodeData
+}
+
 // Enhanced node types with full Lamatic.ai functionality
 const nodeTypes: NodeTypes = {
   'ai-model': FlowNode,
@@ -220,9 +234,9 @@ const nodeTemplates = [
 
 interface AdvancedFlowBuilderProps {
   workflowId?: string
-  initialNodes?: Node[]
+  initialNodes?: CustomNode[]
   initialEdges?: Edge[]
-  onSave?: (nodes: Node[], edges: Edge[]) => void
+  onSave?: (nodes: CustomNode[], edges: Edge[]) => void
   onExecute?: (workflowData: any) => void
 }
 
@@ -235,7 +249,7 @@ export function AdvancedFlowBuilder({
 }: AdvancedFlowBuilderProps) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
-  const [selectedNode, setSelectedNode] = useState<Node | null>(null)
+  const [selectedNode, setSelectedNode] = useState<CustomNode | null>(null)
   const [isExecuting, setIsExecuting] = useState(false)
   const [executionResults, setExecutionResults] = useState<Map<string, any>>(new Map())
   const [workflowName, setWorkflowName] = useState('Untitled Workflow')
@@ -285,7 +299,7 @@ export function AdvancedFlowBuilder({
         y: event.clientY
       })
 
-      const newNode: Node = {
+      const newNode: CustomNode = {
         id: `${type}_${Date.now()}`,
         type: type,
         position,
@@ -303,7 +317,7 @@ export function AdvancedFlowBuilder({
     [screenToFlowPosition, setNodes]
   )
 
-  const onNodeClick = useCallback((event: React.MouseEvent, node: Node) => {
+  const onNodeClick = useCallback((event: React.MouseEvent, node: CustomNode) => {
     setSelectedNode(node)
   }, [])
 
@@ -312,8 +326,8 @@ export function AdvancedFlowBuilder({
     setEdges((eds) => eds.filter((edge) => edge.source !== nodeId && edge.target !== nodeId))
   }, [setNodes, setEdges])
 
-  const duplicateNode = useCallback((node: Node) => {
-    const newNode: Node = {
+  const duplicateNode = useCallback((node: CustomNode) => {
+    const newNode: CustomNode = {
       ...node,
       id: `${node.type}_${Date.now()}`,
       position: {
@@ -607,7 +621,7 @@ export function AdvancedFlowBuilder({
                 <label className="text-sm font-medium">Name</label>
                 <input
                   type="text"
-                  value={selectedNode.data.title}
+                  value={(selectedNode.data.title as string) || ''}
                   onChange={(e) => {
                     setNodes((nds) =>
                       nds.map((node) =>
@@ -624,7 +638,7 @@ export function AdvancedFlowBuilder({
               <div>
                 <label className="text-sm font-medium">Description</label>
                 <textarea
-                  value={selectedNode.data.description}
+                  value={(selectedNode.data.description as string) || ''}
                   onChange={(e) => {
                     setNodes((nds) =>
                       nds.map((node) =>

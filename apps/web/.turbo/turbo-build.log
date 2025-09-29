@@ -2,33 +2,29 @@
 > @lamatic/web@1.0.0 build
 > next build
 
-⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
-Attention: Next.js now collects completely anonymous telemetry regarding usage.
-This information is used to shape Next.js' roadmap and prioritize features.
-You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
-https://nextjs.org/telemetry
-
   ▲ Next.js 14.2.33
 
    Creating an optimized production build ...
  ✓ Compiled successfully
-Failed to compile.
+   Linting and checking validity of types     ✓ Linting and checking validity of types 
+   Collecting page data     ✓ Collecting page data 
+ ✓ Generating static pages (9/9)
+   Collecting build traces     ✓ Collecting build traces 
+   Finalizing page optimization     ✓ Finalizing page optimization 
 
-./src/components/studio/advanced-flow-builder.tsx:610:19
-Type error: Type 'unknown' is not assignable to type 'string | number | readonly string[] | undefined'.
+Route (app)                              Size     First Load JS
+┌ ○ /                                    178 B          96.2 kB
+├ ○ /_not-found                          873 B          88.2 kB
+├ ○ /analytics                           5.62 kB         130 kB
+├ ○ /deployments                         5.94 kB         110 kB
+├ ○ /integrations                        5.58 kB         110 kB
+├ ○ /studio                              97.2 kB         226 kB
+└ ○ /workflows                           178 B          96.2 kB
++ First Load JS shared by all            87.3 kB
+  ├ chunks/1dd3208c-3f1e854c38af7934.js  53.6 kB
+  ├ chunks/528-5a61245a1de293dc.js       31.7 kB
+  └ other shared chunks (total)          1.97 kB
 
-[0m [90m 608 |[39m                 [33m<[39m[33minput[39m[0m
-[0m [90m 609 |[39m                   type[33m=[39m[32m"text"[39m[0m
-[0m[31m[1m>[22m[39m[90m 610 |[39m                   value[33m=[39m{selectedNode[33m.[39mdata[33m.[39mtitle}[0m
-[0m [90m     |[39m                   [31m[1m^[22m[39m[0m
-[0m [90m 611 |[39m                   onChange[33m=[39m{(e) [33m=>[39m {[0m
-[0m [90m 612 |[39m                     setNodes((nds) [33m=>[39m[0m
-[0m [90m 613 |[39m                       nds[33m.[39mmap((node) [33m=>[39m[0m
-Next.js build worker exited with code: 1 and signal: null
-[1mnpm[22m [31merror[39m Lifecycle script `build` failed with error:
-[1mnpm[22m [31merror[39m [94mcode[39m [33m1[39m
-[1mnpm[22m [31merror[39m [94mpath[39m /home/runner/work/lamatic-clone/lamatic-clone/apps/web
-[1mnpm[22m [31merror[39m [94mworkspace[39m @lamatic/web@1.0.0
-[1mnpm[22m [31merror[39m [94mlocation[39m /home/runner/work/lamatic-clone/lamatic-clone/apps/web
-[1mnpm[22m [31merror[39m command failed
-[1mnpm[22m [31merror[39m [94mcommand[39m sh -c next build
+
+○  (Static)  prerendered as static content
+
