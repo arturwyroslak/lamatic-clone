@@ -7,8 +7,8 @@ export * from './integration-templates'
 export * from './marketplace'
 export * from './industry-templates'
 
-// Re-export key functions and types for workflow templates
-export type { WorkflowTemplate, WorkflowNode, WorkflowConnection, WorkflowVariable, WorkflowTrigger } from './workflow-templates'
+// Re-export key functions and types for workflow templates (avoiding conflicts)
+export type { WorkflowTemplate, WorkflowNode, WorkflowVariable, WorkflowTrigger } from './workflow-templates'
 export { 
   WORKFLOW_TEMPLATES, 
   WORKFLOW_CATEGORIES,

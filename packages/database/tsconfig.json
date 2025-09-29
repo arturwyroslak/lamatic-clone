@@ -2,21 +2,20 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "noEmit": false,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "prisma/**/*.ts"
+    "index.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "**/*.test.ts",
-    "**/*.test.tsx"
+    "**/*.test.tsx",
+    "prisma/seed.ts"
   ]
 }
