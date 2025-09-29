@@ -65,7 +65,7 @@ export class AgentEngine extends EventEmitter {
         sessionId: context?.sessionId || this.generateSessionId(),
         userId: context?.userId,
         metadata: context?.metadata || {},
-        tools: this.tools,
+        // tools: this.tools,  // TODO: Implement ToolRegistry
         memory: this.memory
       }
     }
