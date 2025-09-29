@@ -60,7 +60,7 @@ export class DataTransformer implements Tool {
     } catch (error) {
       return {
         success: false,
-        error: error.message,
+        error: error instanceof Error ? error.message : 'Unknown error',
         data: null
       }
     }
@@ -129,7 +129,7 @@ export class DataTransformer implements Tool {
   }
 
   private pivotData(data: any[], rows: string, cols: string, values: string): any {
-    const result = {}
+    const result: Record<string, Record<string, any>> = {}
     
     data.forEach(item => {
       const rowKey = item[rows]
@@ -147,7 +147,7 @@ export class DataTransformer implements Tool {
     const groups = this.groupData(data, groupBy)
     
     return Object.entries(groups).map(([key, items]) => {
-      const result = { [groupBy]: key }
+      const result: Record<string, any> = { [groupBy]: key }
       
       Object.entries(aggregations).forEach(([field, operation]) => {
         result[`${field}_${operation}`] = this.reduceData(items, operation as any, field)
@@ -180,8 +180,15 @@ export class DataTransformer implements Tool {
 }
 
 export class ImageProcessor implements Tool {
+  id = 'image_processor'
   name = 'image_processor'
   description = 'Process and analyze images with various operations'
+  category = 'vision' as const
+  inputSchema = {}
+  outputSchema = {}
+  config = {}
+  version = '1.0.0'
+  isBuiltin = true
 
   async execute(input: ToolInput): Promise<ToolOutput> {
     try {
@@ -227,7 +234,7 @@ export class ImageProcessor implements Tool {
     } catch (error) {
       return {
         success: false,
-        error: error.message,
+        error: error instanceof Error ? error.message : 'Unknown error',
         data: null
       }
     }
@@ -294,8 +301,15 @@ export class ImageProcessor implements Tool {
 }
 
 export class DocumentProcessor implements Tool {
+  id = 'document_processor'
   name = 'document_processor'
   description = 'Process and extract information from documents'
+  category = 'document' as const
+  inputSchema = {}
+  outputSchema = {}
+  config = {}
+  version = '1.0.0'
+  isBuiltin = true
 
   async execute(input: ToolInput): Promise<ToolOutput> {
     try {
@@ -339,7 +353,7 @@ export class DocumentProcessor implements Tool {
     } catch (error) {
       return {
         success: false,
-        error: error.message,
+        error: error instanceof Error ? error.message : 'Unknown error',
         data: null
       }
     }
@@ -430,8 +444,15 @@ export class DocumentProcessor implements Tool {
 }
 
 export class EmailProcessor implements Tool {
+  id = 'email_processor'
   name = 'email_processor'
   description = 'Process and analyze email content and metadata'
+  category = 'communication' as const
+  inputSchema = {}
+  outputSchema = {}
+  config = {}
+  version = '1.0.0'
+  isBuiltin = true
 
   async execute(input: ToolInput): Promise<ToolOutput> {
     try {
@@ -475,7 +496,7 @@ export class EmailProcessor implements Tool {
     } catch (error) {
       return {
         success: false,
-        error: error.message,
+        error: error instanceof Error ? error.message : 'Unknown error',
         data: null
       }
     }
