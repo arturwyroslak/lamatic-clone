@@ -109,24 +109,24 @@ export class WeaviateConnector extends BaseConnector implements IntegrationConne
           
         case 'search':
           // Vector search
-          const searchPayload = {
+          const fields = Object.keys(data || {}).concat(['_additional { id certainty distance }'])
+          
+          const searchPayload: any = {
             query: {
               Get: {
-                [targetClass]: [
-                  ...Object.keys(data || {}),
-                  '_additional { id certainty distance }'
-                ]
+                [targetClass]: fields
               }
             }
           }
           
           if (vector) {
-            searchPayload.query.Get[targetClass].push({
+            searchPayload.query.Get[targetClass] = {
               nearVector: {
                 vector: vector,
                 certainty: 0.7
-              }
-            })
+              },
+              fields: fields
+            }
           }
           
           const searchResponse = await fetch(`${config.endpoint}/v1/graphql`, {

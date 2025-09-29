@@ -134,7 +134,7 @@ export class LinkedInConnector extends BaseConnector implements IntegrationConne
   }
 
   private async createPost(config: LinkedInConfig, params: any): Promise<any> {
-    const postData = {
+    const postData: any = {
       author: `urn:li:person:${params.authorId || 'me'}`,
       lifecycleState: 'PUBLISHED',
       specificContent: {

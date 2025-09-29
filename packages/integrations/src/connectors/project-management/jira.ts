@@ -199,7 +199,7 @@ export class JiraConnector extends BaseConnector implements IntegrationConnector
             throw new Error('Issue ID or key is required')
           }
 
-          const requestBody = {}
+          const requestBody: any = {}
           if (fields) requestBody.fields = fields
           if (update) requestBody.update = update
 
@@ -227,7 +227,7 @@ export class JiraConnector extends BaseConnector implements IntegrationConnector
             throw new Error('Issue ID/key and comment body are required')
           }
 
-          const requestBody = {
+          const requestBody: any = {
             body: {
               type: 'doc',
               version: 1,
