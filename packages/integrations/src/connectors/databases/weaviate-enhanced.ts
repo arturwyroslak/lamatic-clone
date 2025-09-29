@@ -44,7 +44,7 @@ export interface RAGContext {
   searchQuery: string
 }
 
-export class WeaviateEnhancedConnector extends BaseConnector<WeaviateConfig> implements IntegrationConnector {
+export class WeaviateEnhancedConnector extends BaseConnector implements IntegrationConnector {
   public readonly id = 'weaviate-enhanced'
   public readonly name = 'Weaviate Vector Database (Enhanced)'
   public readonly description = 'Advanced Weaviate integration with RAG, semantic search, and hybrid search capabilities'
@@ -52,9 +52,9 @@ export class WeaviateEnhancedConnector extends BaseConnector<WeaviateConfig> imp
   public readonly version = '2.0.0'
   
   private client: any
-  private connectionConfig: WeaviateConfig
+  private connectionConfig: WeaviateConfig = {} as WeaviateConfig
 
-  public readonly configSchema = {
+  public readonly config = {
     fields: [
       {
         key: 'url',
@@ -78,7 +78,7 @@ export class WeaviateEnhancedConnector extends BaseConnector<WeaviateConfig> imp
   }
 
   private async initializeClient(): Promise<void> {
-    if (!this.config) {
+    if (!this.connectionConfig) {
       throw new Error('Configuration not provided')
     }
 
@@ -87,8 +87,8 @@ export class WeaviateEnhancedConnector extends BaseConnector<WeaviateConfig> imp
       // This would use the actual Weaviate client library
       this.client = {
         // Mock client for now - would be real Weaviate client
-        endpoint: this.config.endpoint,
-        headers: this.config.apiKey ? { 'Authorization': `Bearer ${this.config.apiKey}` } : {}
+        endpoint: this.connectionConfig.endpoint,
+        headers: this.connectionConfig.apiKey ? { 'Authorization': `Bearer ${this.connectionConfig.apiKey}` } : {}
       }
     } catch (error) {
       throw new Error(`Failed to initialize Weaviate client: ${error}`)
@@ -143,7 +143,7 @@ export class WeaviateEnhancedConnector extends BaseConnector<WeaviateConfig> imp
   ): Promise<RAGContext> {
     const searchOptions: VectorSearchOptions = {
       query,
-      className: options.className || this.config.className || 'Document',
+      className: options.className || this.connectionConfig.className || 'Document',
       limit: options.limit || 10,
       certainty: options.certainty || 0.7,
       ...options
@@ -243,7 +243,7 @@ export class WeaviateEnhancedConnector extends BaseConnector<WeaviateConfig> imp
   // Vector search with custom embeddings
   async vectorSearch(vector: number[], options: Partial<VectorSearchOptions> = {}): Promise<any[]> {
     const {
-      className = this.config.className || 'Document',
+      className = this.connectionConfig.className || 'Document',
       limit = 10,
       certainty = 0.7
     } = options
@@ -283,7 +283,7 @@ export class WeaviateEnhancedConnector extends BaseConnector<WeaviateConfig> imp
     },
     className?: string
   ): Promise<string> {
-    const targetClass = className || this.config.className || 'Document'
+    const targetClass = className || this.connectionConfig.className || 'Document'
     
     const properties = {
       content: document.content,
@@ -306,7 +306,7 @@ export class WeaviateEnhancedConnector extends BaseConnector<WeaviateConfig> imp
     }>,
     className?: string
   ): Promise<string[]> {
-    const targetClass = className || this.config.className || 'Document'
+    const targetClass = className || this.connectionConfig.className || 'Document'
     const objectIds: string[] = []
 
     // Process in batches for better performance
@@ -471,7 +471,7 @@ export class WeaviateEnhancedConnector extends BaseConnector<WeaviateConfig> imp
   // Private helper methods
   private async makeAPICall(method: string, endpoint: string, data?: any): Promise<any> {
     // Mock implementation - would make actual HTTP calls
-    const url = `${this.config.endpoint}${endpoint}`
+    const url = `${this.connectionConfig.endpoint}${endpoint}`
     
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 100))
@@ -516,11 +516,11 @@ export class WeaviateEnhancedConnector extends BaseConnector<WeaviateConfig> imp
         return { success: true, data: results }
         
       case 'hybrid_search':
-        const hybridResults = await this.hybridSearch(params)
+        const hybridResults = await this.hybridSearch(params as VectorSearchOptions)
         return { success: true, data: hybridResults }
         
       case 'semantic_search':
-        const semanticResults = await this.semanticSearch(params)
+        const semanticResults = await this.semanticSearch(params as VectorSearchOptions)
         return { success: true, data: semanticResults }
         
       case 'add_document':

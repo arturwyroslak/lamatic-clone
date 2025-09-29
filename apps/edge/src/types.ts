@@ -84,15 +84,8 @@ declare global {
     passThroughOnException(): void
   }
 
-  interface WebSocketPair {
-    0: WebSocket
-    1: WebSocket
-  }
-
-  var WebSocketPair: {
-    new (): WebSocketPair
-  }
-
+  // Remove conflicting WebSocketPair declaration - using Cloudflare types instead
+  
   interface KVNamespace {
     get(key: string, options?: { type?: 'text' | 'json' | 'arrayBuffer' | 'stream' }): Promise<string | null>
     put(key: string, value: string | ArrayBuffer | ArrayBufferView | ReadableStream, options?: { expirationTtl?: number; metadata?: object }): Promise<void>
@@ -100,8 +93,5 @@ declare global {
     list(options?: { prefix?: string; limit?: number; cursor?: string }): Promise<{ keys: { name: string }[]; list_complete: boolean; cursor?: string }>
   }
 
-  // Extend ResponseInit to include webSocket property for WebSocket responses
-  interface ResponseInit {
-    webSocket?: WebSocket
-  }
+  // Remove conflicting ResponseInit extension - using Cloudflare types instead
 }

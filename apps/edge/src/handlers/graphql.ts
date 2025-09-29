@@ -47,7 +47,7 @@ export async function handleGraphQLProxy(request: Request, env: WorkerEnv, ctx: 
     })
 
     // Cache successful queries for faster subsequent requests
-    if (response.ok && !result.errors) {
+    if (response.ok && !(result as any).errors) {
       const cacheKey = `graphql:${JSON.stringify(body)}`
       
       // Cache in Cloudflare KV (if available)

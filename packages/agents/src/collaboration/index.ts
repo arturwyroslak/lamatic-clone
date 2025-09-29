@@ -1,5 +1,6 @@
 // Multi-Agent Collaboration System
 export * from './coordinator'
-export * from './communication'
-export * from './shared-memory'
-export * from './task-distribution'
+// TODO: Add other collaboration modules when implemented
+// export * from './communication'
+// export * from './shared-memory'
+// export * from './task-distribution'

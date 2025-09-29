@@ -39,7 +39,7 @@ async function handleChatWidget(request: Request, widgetId: string, env: WorkerE
   } else if (method === 'POST') {
     // Handle chat message
     try {
-      const { message, sessionId, context } = await request.json()
+      const { message, sessionId, context } = await request.json() as { message: string; sessionId: string; context: any }
       
       // Get widget configuration
       const widgetConfig = await getWidgetConfig(widgetId, env)
@@ -97,7 +97,7 @@ async function handleSearchWidget(request: Request, widgetId: string, env: Worke
   } else if (request.method === 'POST') {
     // Handle search query
     try {
-      const { query, filters, limit = 10 } = await request.json()
+      const { query, filters, limit = 10 } = await request.json() as { query: string; filters: any; limit?: number }
       
       const widgetConfig = await getWidgetConfig(widgetId, env)
       if (!widgetConfig) {

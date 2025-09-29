@@ -1,21 +1,21 @@
 import { Agent, AgentConfig, AgentExecution, AgentContext } from './types'
 import { AgentExecutor } from './executor'
 import { MemoryManager } from './memory'
-import { ToolRegistry } from './tools'
+// import { ToolRegistry } from './tools'  // TODO: Implement ToolRegistry
 import { EventEmitter } from 'events'
 
 export class AgentEngine extends EventEmitter {
   private agents: Map<string, Agent> = new Map()
   private executor: AgentExecutor
   private memory: MemoryManager
-  private tools: ToolRegistry
+  // private tools: ToolRegistry  // TODO: Implement ToolRegistry
   private activeExecutions: Map<string, AgentExecution> = new Map()
 
   constructor() {
     super()
     this.executor = new AgentExecutor()
     this.memory = new MemoryManager()
-    this.tools = new ToolRegistry()
+    // this.tools = new ToolRegistry()  // TODO: Implement ToolRegistry
   }
 
   // Register agent
@@ -65,7 +65,7 @@ export class AgentEngine extends EventEmitter {
         sessionId: context?.sessionId || this.generateSessionId(),
         userId: context?.userId,
         metadata: context?.metadata || {},
-        tools: this.tools,
+        // tools: this.tools,  // TODO: Implement ToolRegistry
         memory: this.memory
       }
     }

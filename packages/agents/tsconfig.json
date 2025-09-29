@@ -1,0 +1,34 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "noEmit": false,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "src/workflows/workflow-engine.ts",
+    "src/workflows/executor.ts",
+    "src/tools/advanced-tools.ts",
+    "src/tools/document-processor.ts",
+    "src/tools/file-processor.ts",
+    "src/tools/formatter.ts",
+    "src/templates/advanced-workflow-templates.ts",
+    "src/templates/agent-templates.ts",
+    "src/templates/industry-templates.ts",
+    "src/templates/template-manager.ts",
+    "src/memory/manager.ts",
+    "src/agents/chat-agent.ts",
+    "src/agents/text-agent.ts"
+  ]
+}
