@@ -46,7 +46,13 @@ interface SelectedNode {
   properties: NodeProperty[]
 }
 
-export function PropertyPanel() {
+interface PropertyPanelProps {
+  node?: any
+  onNodeUpdate?: (updates: any) => void
+  onClose?: () => void
+}
+
+export function PropertyPanel({ node, onNodeUpdate, onClose }: PropertyPanelProps = {}) {
   const [selectedNode, setSelectedNode] = useState<SelectedNode | null>({
     id: 'llm-1',
     type: 'gpt-4',

@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client'
-import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
@@ -7,8 +6,6 @@ async function main() {
   console.log('🌱 Seeding database...')
 
   // Create default user
-  const hashedPassword = await bcrypt.hash('password123', 10)
-  
   const user = await prisma.user.upsert({
     where: { email: 'admin@lamatic.ai' },
     update: {},
@@ -129,63 +126,7 @@ async function main() {
 
   console.log('✅ Created workflow:', workflow.name)
 
-  // Create sample integrations
-  const integrations = [
-    {
-      name: 'Slack Integration',
-      slug: 'slack',
-      type: 'APP',
-      category: 'Communication',
-      description: 'Connect with Slack workspaces',
-      status: 'ACTIVE',
-      config: {
-        webhookUrl: 'https://hooks.slack.com/services/...',
-        channels: ['#general', '#random']
-      },
-      credentials: {
-        botToken: 'xoxb-your-bot-token',
-        signingSecret: 'your-signing-secret'
-      },
-      workspaceId: workspace.id,
-    },
-    {
-      name: 'OpenAI Integration',
-      slug: 'openai',
-      type: 'MODEL',
-      category: 'AI Models',
-      description: 'Access OpenAI models including GPT-4',
-      status: 'ACTIVE',
-      config: {
-        defaultModel: 'gpt-4',
-        maxTokens: 4000,
-        temperature: 0.7
-      },
-      credentials: {
-        apiKey: 'sk-your-openai-api-key'
-      },
-      workspaceId: workspace.id,
-    },
-    {
-      name: 'Google Drive Integration',
-      slug: 'google-drive',
-      type: 'SERVICE',
-      category: 'Storage',
-      description: 'Access and sync Google Drive files',
-      status: 'ACTIVE',
-      config: {
-        syncInterval: '5m',
-        fileTypes: ['pdf', 'docx', 'txt'],
-        folders: ['/AI Documents']
-      },
-      credentials: {
-        clientId: 'your-google-client-id',
-        clientSecret: 'your-google-client-secret',
-        refreshToken: 'your-refresh-token'
-      },
-      workspaceId: workspace.id,
-    }
-  ]
-
+  // Sample integrations data structure (for future implementation)
   // Note: Integration model not found in schema, skipping integration creation
   console.log('⚠️ Integration model not found, skipping integration seeding')
 

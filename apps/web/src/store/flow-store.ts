@@ -92,7 +92,7 @@ const initialState = {
   executionResults: {},
 }
 
-export const useFlowStore = create<FlowState>()()
+export const useFlowStore = create<FlowState>()(
   devtools(
     persist(
       (set, get) => ({
@@ -393,8 +393,8 @@ export const useFlowStore = create<FlowState>()()
               executionResults: execution.output || {},
             })
             
-            // Start polling for traces
-            get().pollExecutionTrace(execution.id)
+            // Get execution traces
+            get().getExecutionTrace(execution.id)
           } catch (error) {
             set({ error: error instanceof Error ? error.message : 'Execution failed' })
           }
@@ -508,3 +508,4 @@ export const useFlowStore = create<FlowState>()()
     ),
     { name: 'FlowStore' }
   )
+)

@@ -2,3 +2,7 @@
 > @lamatic/edge@1.0.0 build
 > tsc && esbuild src/index.ts --bundle --format=esm --outfile=dist/worker.js --target=es2020
 
+
+  [37mdist/[0m[1mworker.js[0m  [36m24.4kb[0m
+
+⚡ [32mDone in 4ms[0m
