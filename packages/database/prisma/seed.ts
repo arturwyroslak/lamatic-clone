@@ -30,6 +30,9 @@ async function main() {
       slug: 'default',
       description: 'Default workspace for development',
       plan: 'PRO',
+      owner: {
+        connect: { id: user.id }
+      }
     },
   })
 
@@ -38,10 +41,7 @@ async function main() {
   // Add user to workspace
   await prisma.workspaceMember.upsert({
     where: {
-      userId_workspaceId: {
-        userId: user.id,
-        workspaceId: workspace.id,
-      },
+      id: `${user.id}_${workspace.id}`
     },
     update: {},
     create: {
@@ -56,7 +56,7 @@ async function main() {
     data: {
       name: 'Sample Chat Workflow',
       description: 'A sample workflow that processes Slack messages with AI',
-      version: '1.0.0',
+      version: 1,
       status: 'DRAFT',
       definition: {
         nodes: [
@@ -118,8 +118,12 @@ async function main() {
         ]
       },
       tags: ['ai', 'chat', 'slack'],
-      userId: user.id,
-      workspaceId: workspace.id,
+      author: {
+        connect: { id: user.id }
+      },
+      workspace: {
+        connect: { id: workspace.id }
+      },
     },
   })
 
@@ -182,10 +186,8 @@ async function main() {
     }
   ]
 
-  for (const integration of integrations) {
-    await prisma.integration.create({ data: integration })
-    console.log('✅ Created integration:', integration.name)
-  }
+  // Note: Integration model not found in schema, skipping integration creation
+  console.log('⚠️ Integration model not found, skipping integration seeding')
 
   // Create sample templates
   const templates = [

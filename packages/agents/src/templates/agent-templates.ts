@@ -1,5 +1,21 @@
 // Pre-built Agent Templates - Complete template marketplace
-import { AgentConfig } from '../types'
+import { AgentConfig, ModelConfig } from '../types'
+
+export interface AgentTemplateConfig {
+  type?: string
+  name?: string
+  description?: string
+  model?: ModelConfig | string
+  temperature?: number
+  maxTokens?: number
+  systemPrompt?: string
+  tools?: string[]
+  memory?: MemoryConfig
+  config?: AgentSpecificConfig
+  metadata?: Record<string, any>
+  personality?: PersonalityConfig
+  capabilities?: string[]
+}
 
 export interface AgentTemplate {
   id: string
@@ -8,7 +24,7 @@ export interface AgentTemplate {
   category: string
   tags: string[]
   icon: string
-  config: AgentConfig
+  config: AgentTemplateConfig
   variables?: Record<string, any>
   examples?: Array<{ name: string; input: any; expectedOutput: string }>
   rating: number
@@ -676,7 +692,7 @@ export class AgentTemplateManager {
     if (category) {
       templates = templates.filter(t => t.category === category)
     }
-    return templates.sort((a, b) => b.rating - a.rating)
+    return templates
   }
 
   createAgentFromTemplate(templateId: string, customizations?: Record<string, any>): AgentConfig {
@@ -684,6 +700,7 @@ export class AgentTemplateManager {
     if (!template) {
       throw new Error(`Template ${templateId} not found`)
     }
-    return { ...template.config }
+    const config = { ...template.config, ...(customizations || {}) }
+    return config as AgentConfig
   }
 }

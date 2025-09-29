@@ -30,6 +30,13 @@ export interface WorkflowConnection {
   data?: Record<string, any>
 }
 
+export interface RetryPolicy {
+  maxRetries: number
+  backoffStrategy?: 'fixed' | 'exponential' | 'linear'
+  initialDelay?: number
+  maxDelay?: number
+}
+
 export interface WorkflowSettings {
   timeout?: number
   retryPolicy?: RetryPolicy
@@ -67,7 +74,7 @@ export interface Agent {
   name: string
   description: string
   type: AgentType
-  model: ModelConfig
+  model: ModelConfig | string
   systemPrompt: string
   tools: string[]
   memory?: MemoryConfig
@@ -96,6 +103,15 @@ export type AgentType =
   | 'data-processing'
   | 'devops-automation'
   | 'security-audit'
+  | 'content'
+  | 'medical-ai'
+  | 'pharma-research'
+  | 'quant-trading'
+  | 'credit-risk'
+  | 'legal-contract'
+  | 'ip-research'
+  | 'property-valuation'
+  | 'quality-control'
 
 export interface ModelConfig {
   provider: string
@@ -142,18 +158,37 @@ export interface AgentSpecificConfig {
   
   // Analysis agent config
   analyticsTypes?: string[]
-  outputFormat?: string
   dataVisualization?: boolean
   
   // Workflow agent config
   maxSteps?: number
   parallelExecution?: boolean
   errorHandling?: 'stop' | 'continue' | 'retry'
+
+  // Additional properties for specialized agents
+  capabilities?: string[]
+  personality?: {
+    tone?: string
+    style?: string
+    traits?: string[]
+  }
+}
+
+export interface PersonalityConfig {
+  tone?: string
+  style?: string
+  empathy?: string
+  confidence?: string
+  patience?: string
+  formality?: string
+  detail_orientation?: string
+  traits?: string[]
+  [key: string]: any  // Allow additional personality attributes
 }
 
 export interface AgentConfig {
   name: string
-  description: string
+  description?: string
   type: AgentType
   model: ModelConfig | string  // Allow both ModelConfig object and string model ID
   systemPrompt: string
@@ -163,6 +198,8 @@ export interface AgentConfig {
   memory?: MemoryConfig
   config?: AgentSpecificConfig
   metadata?: Record<string, any>
+  personality?: PersonalityConfig  // Agent personality configuration
+  capabilities?: string[]  // Agent capabilities list
 }
 
 export interface AgentExecution {
@@ -189,15 +226,17 @@ export interface AgentContext {
   memory: any
   environment?: 'development' | 'staging' | 'production'
   permissions?: string[]
+  // Optional input payload carried with context for certain agent implementations
+  input?: any
 }
 
 export interface ExecutionMetrics {
-  tokensUsed?: number
-  cost?: number
-  latency?: number
-  toolCalls?: number
-  memoryAccess?: number
-  errors?: number
+  tokensUsed: number
+  cost: number
+  latency: number
+  toolCalls: number
+  memoryAccess: number
+  errors: number
 }
 
 export interface Tool {
@@ -212,7 +251,7 @@ export interface Tool {
   isBuiltin: boolean
 }
 
-export type ToolCategory = 'search' | 'database' | 'api' | 'file' | 'code' | 'analysis' | 'communication' | 'utility'
+export type ToolCategory = 'search' | 'database' | 'api' | 'file' | 'code' | 'analysis' | 'communication' | 'utility' | 'document' | 'vision' | 'design'
 
 export interface ToolConfig {
   authentication?: {
@@ -227,8 +266,27 @@ export interface ToolConfig {
   retries?: number
 }
 
-export interface ConversationMessage {
+export interface ToolInput {
+  [key: string]: any
+}
+
+export interface ToolOutput {
+  success: boolean
+  data?: any
+  error?: string
+  metadata?: Record<string, any>
+}
+
+export interface BaseTool {
   id: string
+  name: string
+  description: string
+  category: ToolCategory
+  execute(input: ToolInput): Promise<ToolOutput>
+}
+
+export interface ConversationMessage {
+  id?: string
   role: 'user' | 'assistant' | 'system' | 'tool'
   content: string | any
   timestamp: Date
@@ -283,4 +341,23 @@ export interface CollaborationConfig {
     strategy: 'abort' | 'continue' | 'fallback'
     fallbackAgentId?: string
   }
+}
+
+// Base agent contract and result types used by concrete agent implementations
+export interface AgentResult {
+  success: boolean
+  content?: any
+  error?: string
+  metadata?: Record<string, any>
+  usage?: Record<string, any>
+}
+
+export abstract class BaseAgent {
+  protected readonly config: AgentConfig
+
+  constructor(config: AgentConfig) {
+    this.config = config
+  }
+
+  abstract execute(context: AgentContext): Promise<AgentResult>
 }

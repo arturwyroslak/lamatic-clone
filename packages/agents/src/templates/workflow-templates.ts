@@ -15,6 +15,19 @@ export interface WorkflowTemplate {
   connections: WorkflowConnection[]
   variables: WorkflowVariable[]
   triggers: WorkflowTrigger[]
+  stats?: {
+    downloads: number
+    rating: number
+    reviews: number
+    likes: number
+  }
+  metadata?: {
+    createdAt: Date
+    updatedAt: Date
+    featured: boolean
+    verified: boolean
+    [key: string]: any
+  }
 }
 
 export interface WorkflowNode {
@@ -51,7 +64,7 @@ export interface WorkflowVariable {
 
 export interface WorkflowTrigger {
   id: string
-  type: 'webhook' | 'schedule' | 'event' | 'manual'
+  type: 'webhook' | 'schedule' | 'event' | 'manual' | 'form' | 'file_upload' | 'form_submission' | 'iot_stream' | 'behavioral_tracking'
   config: Record<string, any>
 }
 

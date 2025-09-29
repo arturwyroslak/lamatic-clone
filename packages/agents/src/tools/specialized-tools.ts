@@ -1,103 +1,73 @@
 // Specialized advanced tools for complex tasks
-import { BaseTool, ToolConfig } from '../types'
+import { BaseTool, ToolConfig, ToolCategory } from '../types'
 
 // PDF Generator Tool
-export class PDFGenerator extends BaseTool {
-  constructor() {
-    super({
-      name: 'pdf_generator',
-      description: 'Generate PDF documents from HTML/Markdown content',
-      category: 'document',
-      inputs: [
-        { name: 'content', type: 'string', description: 'HTML or Markdown content' },
-        { name: 'format', type: 'string', description: 'Content format (html/markdown)', default: 'html' },
-        { name: 'options', type: 'object', description: 'PDF generation options' }
-      ],
-      outputs: [
-        { name: 'pdf', type: 'buffer', description: 'Generated PDF buffer' },
-        { name: 'url', type: 'string', description: 'PDF download URL' }
-      ]
-    })
-  }
+export class PDFGenerator implements BaseTool {
+  readonly id = 'pdf_generator'
+  readonly name = 'PDF Generator'
+  readonly description = 'Generate PDF documents from HTML, Markdown, or plain text'
+  readonly category: ToolCategory = 'document'
 
-  async execute(inputs: any): Promise<any> {
-    const { content, format = 'html', options = {} } = inputs
-
+  async execute(input: any): Promise<any> {
     try {
-      // Convert markdown to HTML if needed
-      let htmlContent = content
-      if (format === 'markdown') {
-        htmlContent = this.markdownToHtml(content)
+      const { content, format = 'html', options = {} } = input
+
+      if (!content) {
+        return {
+          success: false,
+          error: 'Content is required for PDF generation'
+        }
       }
 
-      // Generate PDF with options
-      const pdfBuffer = await this.generatePDF(htmlContent, options)
-      const downloadUrl = await this.uploadPDF(pdfBuffer)
+      // Mock PDF generation - in reality would use libraries like puppeteer, jsPDF, etc.
+      const defaultOptions = {
+        format: 'A4',
+        margin: { top: '20px', right: '20px', bottom: '20px', left: '20px' },
+        displayHeaderFooter: false,
+        printBackground: true,
+        ...options
+      }
+
+      // Simulate PDF generation based on format
+      let processedContent = content
+      if (format === 'markdown') {
+        // Convert markdown to HTML (would use marked or similar)
+        processedContent = `<html><body>${content.replace(/\n/g, '<br>')}</body></html>`
+      } else if (format === 'text') {
+        processedContent = `<html><body><pre>${content}</pre></body></html>`
+      }
+
+      // Mock PDF buffer generation
+      const pdfBuffer = Buffer.from(`PDF_CONTENT_${Date.now()}`, 'utf8')
 
       return {
         success: true,
         data: {
-          pdf: pdfBuffer,
-          url: downloadUrl,
+          pdf: pdfBuffer.toString('base64'),
           size: pdfBuffer.length,
-          pages: await this.countPages(pdfBuffer)
+          pages: Math.ceil(content.length / 2000), // Rough estimation
+          format: defaultOptions.format,
+          metadata: {
+            createdAt: new Date().toISOString(),
+            contentType: format,
+            options: defaultOptions
+          }
         }
       }
-    } catch (error) {
+    } catch (error: any) {
       return {
         success: false,
-        error: `PDF generation failed: ${error.message}`
+        error: `PDF generation failed: ${error.message || 'Unknown error'}`
       }
     }
   }
-
-  private markdownToHtml(markdown: string): string {
-    // Basic markdown to HTML conversion
-    return markdown
-      .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-      .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-      .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
-      .replace(/\*(.*)\*/gim, '<em>$1</em>')
-      .replace(/\n/g, '<br>')
   }
-
-  private async generatePDF(html: string, options: any): Promise<Buffer> {
-    // Mock PDF generation (in real implementation use puppeteer or similar)
-    const mockPDF = Buffer.from(`PDF Content: ${html}`)
-    return mockPDF
-  }
-
-  private async uploadPDF(buffer: Buffer): Promise<string> {
-    // Mock upload (in real implementation upload to cloud storage)
-    return `https://storage.example.com/pdfs/${Date.now()}.pdf`
-  }
-
-  private async countPages(buffer: Buffer): Promise<number> {
-    // Mock page counting
-    return Math.ceil(buffer.length / 2000)
-  }
-}
-
 // QR Code Generator Tool
-export class QRCodeGenerator extends BaseTool {
-  constructor() {
-    super({
-      name: 'qr_generator',
-      description: 'Generate QR codes for various data types',
-      category: 'utility',
-      inputs: [
-        { name: 'data', type: 'string', description: 'Data to encode in QR code', required: true },
-        { name: 'type', type: 'string', description: 'QR code type (url/text/vcard/wifi)', default: 'text' },
-        { name: 'size', type: 'number', description: 'QR code size in pixels', default: 200 },
-        { name: 'options', type: 'object', description: 'Additional QR code options' }
-      ],
-      outputs: [
-        { name: 'qr_code', type: 'string', description: 'Base64 encoded QR code image' },
-        { name: 'url', type: 'string', description: 'QR code image URL' }
-      ]
-    })
-  }
+export class QRCodeGenerator implements BaseTool {
+  readonly id = 'qr_generator'
+  readonly name = 'QR Code Generator'
+  readonly description = 'Generate QR codes for various data types'
+  readonly category: ToolCategory = 'utility'
 
   async execute(inputs: any): Promise<any> {
     const { data, type = 'text', size = 200, options = {} } = inputs
@@ -123,7 +93,7 @@ export class QRCodeGenerator extends BaseTool {
     } catch (error) {
       return {
         success: false,
-        error: `QR code generation failed: ${error.message}`
+        error: `QR code generation failed: ${(error as any).message || 'Unknown error'}`
       }
     }
   }
@@ -155,22 +125,11 @@ export class QRCodeGenerator extends BaseTool {
 }
 
 // Barcode Scanner Tool
-export class BarcodeScanner extends BaseTool {
-  constructor() {
-    super({
-      name: 'barcode_scanner',
-      description: 'Scan and decode barcodes from images',
-      category: 'vision',
-      inputs: [
-        { name: 'image', type: 'string', description: 'Image URL or base64 string', required: true },
-        { name: 'types', type: 'array', description: 'Barcode types to scan for', default: ['code128', 'ean13', 'qr'] }
-      ],
-      outputs: [
-        { name: 'codes', type: 'array', description: 'Detected barcodes' },
-        { name: 'count', type: 'number', description: 'Number of codes found' }
-      ]
-    })
-  }
+export class BarcodeScanner implements BaseTool {
+  readonly id = 'barcode_scanner'
+  readonly name = 'Barcode Scanner'
+  readonly description = 'Scan and decode barcodes from images'
+  readonly category: ToolCategory = 'vision'
 
   async execute(inputs: any): Promise<any> {
     const { image, types = ['code128', 'ean13', 'qr'] } = inputs
@@ -194,7 +153,7 @@ export class BarcodeScanner extends BaseTool {
     } catch (error) {
       return {
         success: false,
-        error: `Barcode scanning failed: ${error.message}`
+        error: `Barcode scanning failed: ${(error as any).message || 'Unknown error'}`
       }
     }
   }
@@ -230,24 +189,11 @@ export class BarcodeScanner extends BaseTool {
 }
 
 // Color Palette Extractor Tool
-export class ColorPaletteExtractor extends BaseTool {
-  constructor() {
-    super({
-      name: 'color_palette',
-      description: 'Extract color palettes from images',
-      category: 'design',
-      inputs: [
-        { name: 'image', type: 'string', description: 'Image URL or base64 string', required: true },
-        { name: 'colors', type: 'number', description: 'Number of colors to extract', default: 5 },
-        { name: 'format', type: 'string', description: 'Color format (hex/rgb/hsl)', default: 'hex' }
-      ],
-      outputs: [
-        { name: 'palette', type: 'array', description: 'Extracted color palette' },
-        { name: 'dominant_color', type: 'string', description: 'Most dominant color' },
-        { name: 'color_analysis', type: 'object', description: 'Color analysis data' }
-      ]
-    })
-  }
+export class ColorPaletteExtractor implements BaseTool {
+  readonly id = 'color_palette'
+  readonly name = 'Color Palette Extractor'
+  readonly description = 'Extract color palettes from images'
+  readonly category: ToolCategory = 'design'
 
   async execute(inputs: any): Promise<any> {
     const { image, colors = 5, format = 'hex' } = inputs
@@ -276,7 +222,7 @@ export class ColorPaletteExtractor extends BaseTool {
     } catch (error) {
       return {
         success: false,
-        error: `Color extraction failed: ${error.message}`
+        error: `Color extraction failed: ${(error as any).message || 'Unknown error'}`
       }
     }
   }
@@ -373,23 +319,11 @@ export class ColorPaletteExtractor extends BaseTool {
 }
 
 // Font Identifier Tool
-export class FontIdentifier extends BaseTool {
-  constructor() {
-    super({
-      name: 'font_identifier',
-      description: 'Identify fonts from images or text samples',
-      category: 'design',
-      inputs: [
-        { name: 'image', type: 'string', description: 'Image containing text', required: true },
-        { name: 'text_region', type: 'object', description: 'Specific text region to analyze' }
-      ],
-      outputs: [
-        { name: 'fonts', type: 'array', description: 'Identified font matches' },
-        { name: 'confidence', type: 'number', description: 'Overall confidence score' },
-        { name: 'characteristics', type: 'object', description: 'Font characteristics' }
-      ]
-    })
-  }
+export class FontIdentifier implements BaseTool {
+  readonly id = 'font_identifier'
+  readonly name = 'Font Identifier'
+  readonly description = 'Identify fonts from images or text samples'
+  readonly category: ToolCategory = 'design'
 
   async execute(inputs: any): Promise<any> {
     const { image, text_region } = inputs
@@ -416,7 +350,7 @@ export class FontIdentifier extends BaseTool {
     } catch (error) {
       return {
         success: false,
-        error: `Font identification failed: ${error.message}`
+        error: `Font identification failed: ${(error as any).message || 'Unknown error'}`
       }
     }
   }
@@ -486,35 +420,40 @@ export class FontIdentifier extends BaseTool {
 }
 
 // Export all specialized tools
-export const specializedTools: ToolConfig[] = [
+export const SPECIALIZED_TOOLS = [
   {
-    name: 'pdf_generator',
+    id: 'pdf_generator',
+    name: 'PDF Generator',
     description: 'Generate PDF documents from HTML/Markdown content',
-    category: 'document',
+    category: 'document' as const,
     tool: PDFGenerator
   },
   {
-    name: 'qr_generator',
+    id: 'qr_generator',
+    name: 'QR Code Generator',
     description: 'Generate QR codes for various data types',
-    category: 'utility',
+    category: 'utility' as const,
     tool: QRCodeGenerator
   },
   {
-    name: 'barcode_scanner',
+    id: 'barcode_scanner',
+    name: 'Barcode Scanner',
     description: 'Scan and decode barcodes from images',
-    category: 'vision',
+    category: 'vision' as const,
     tool: BarcodeScanner
   },
   {
-    name: 'color_palette',
+    id: 'color_palette',
+    name: 'Color Palette Extractor',
     description: 'Extract color palettes from images',
-    category: 'design',
+    category: 'design' as const,
     tool: ColorPaletteExtractor
   },
   {
-    name: 'font_identifier',
+    id: 'font_identifier',
+    name: 'Font Identifier',
     description: 'Identify fonts from images or text samples',
-    category: 'design',
+    category: 'design' as const,
     tool: FontIdentifier
   }
 ]

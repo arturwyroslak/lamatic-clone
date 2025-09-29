@@ -48,10 +48,14 @@ export class AWSS3Connector extends BaseConnector<AWSS3Config> {
     super('aws-s3', 'Amazon S3', config);
   }
 
-  async initialize(): Promise<void> {
+  private validateConfig(): void {
     if (!this.config) {
-      throw new Error('Configuration not provided')
+      throw new Error('AWS S3 connector is not properly configured');
     }
+  }
+
+  async initialize(): Promise<void> {
+    this.validateConfig();
 
     try {
       // In a real implementation, you would use AWS SDK
@@ -66,7 +70,7 @@ export class AWSS3Connector extends BaseConnector<AWSS3Config> {
       };
 
       // Test bucket access
-      await this.s3Client.headBucket({ Bucket: this.config.bucket });
+      await this.s3Client.headBucket({ Bucket: this.config!.bucket });
       
       this.status = 'connected';
     } catch (error) {
@@ -167,6 +171,10 @@ export class AWSS3Connector extends BaseConnector<AWSS3Config> {
   private async downloadFile(params: any): Promise<any> {
     const validated = downloadFileSchema.parse(params);
     
+    if (!this.config) {
+      throw new Error('AWS S3 connector is not properly configured');
+    }
+    
     const downloadParams = {
       Bucket: this.config.bucket,
       Key: validated.key,
@@ -190,9 +198,9 @@ export class AWSS3Connector extends BaseConnector<AWSS3Config> {
 
   private async deleteFile(params: any): Promise<any> {
     const validated = deleteFileSchema.parse(params);
-    
+    this.validateConfig();
     const deleteParams = {
-      Bucket: this.config.bucket,
+      Bucket: this.config!.bucket,
       Key: validated.key,
       VersionId: validated.versionId,
     };
@@ -212,9 +220,9 @@ export class AWSS3Connector extends BaseConnector<AWSS3Config> {
 
   private async listObjects(params: any): Promise<any> {
     const validated = listObjectsSchema.parse(params);
-    
+    this.validateConfig();
     const listParams = {
-      Bucket: this.config.bucket,
+      Bucket: this.config!.bucket,
       Prefix: validated.prefix,
       Delimiter: validated.delimiter,
       MaxKeys: validated.maxKeys,
@@ -242,9 +250,9 @@ export class AWSS3Connector extends BaseConnector<AWSS3Config> {
 
   private async generatePresignedUrl(params: any): Promise<any> {
     const validated = generatePresignedUrlSchema.parse(params);
-    
+    this.validateConfig();
     const urlParams = {
-      Bucket: this.config.bucket,
+      Bucket: this.config!.bucket,
       Key: validated.key,
       Expires: validated.expiresIn || 3600, // Default 1 hour
     };
@@ -262,8 +270,9 @@ export class AWSS3Connector extends BaseConnector<AWSS3Config> {
   }
 
   private async copyObject(params: any): Promise<any> {
-    const sourceBucket = params.sourceBucket || this.config.bucket;
-    const destinationBucket = params.destinationBucket || this.config.bucket;
+  this.validateConfig();
+  const sourceBucket = params.sourceBucket || this.config!.bucket;
+  const destinationBucket = params.destinationBucket || this.config!.bucket;
     
     const copyParams = {
       Bucket: destinationBucket,
@@ -287,8 +296,9 @@ export class AWSS3Connector extends BaseConnector<AWSS3Config> {
   }
 
   private async getObjectMetadata(params: any): Promise<any> {
+    this.validateConfig();
     const metadataParams = {
-      Bucket: this.config.bucket,
+      Bucket: this.config!.bucket,
       Key: params.key,
     };
 
@@ -311,7 +321,8 @@ export class AWSS3Connector extends BaseConnector<AWSS3Config> {
 
   async testConnection(): Promise<boolean> {
     try {
-      await this.s3Client.headBucket({ Bucket: this.config.bucket });
+      this.validateConfig();
+      await this.s3Client.headBucket({ Bucket: this.config!.bucket });
       return true;
     } catch (error) {
       console.error('S3 connection test failed:', error);
