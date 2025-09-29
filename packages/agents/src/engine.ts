@@ -65,7 +65,7 @@ export class AgentEngine extends EventEmitter {
         sessionId: context?.sessionId || this.generateSessionId(),
         userId: context?.userId,
         metadata: context?.metadata || {},
-        // tools: this.tools,  // TODO: Implement ToolRegistry
+        tools: [], // TODO: Implement ToolRegistry
         memory: this.memory
       }
     }
@@ -127,7 +127,7 @@ export class AgentEngine extends EventEmitter {
     const agent: Agent = {
       id: this.generateAgentId(),
       name: config.name,
-      description: config.description,
+      description: config.description || '',
       type: config.type,
       model: config.model,
       systemPrompt: config.systemPrompt,
@@ -299,7 +299,8 @@ export class AgentEngine extends EventEmitter {
 
     return this.createAgent({
       ...template,
-      ...config
+      ...config,
+      model: config.model || 'gpt-3.5-turbo'
     })
   }
 

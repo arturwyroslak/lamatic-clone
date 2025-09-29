@@ -98,14 +98,14 @@ export class TextProcessor implements BaseTool {
           }
         
         case 'extract_keywords':
-          const words = text.toLowerCase().split(/\W+/).filter(w => w.length > 3)
-          const wordCount = words.reduce((acc, word) => {
+          const words = text.toLowerCase().split(/\W+/).filter((w: string) => w.length > 3)
+          const wordCount = words.reduce((acc: Record<string, number>, word: string) => {
             acc[word] = (acc[word] || 0) + 1
             return acc
           }, {} as Record<string, number>)
           
           const keywords = Object.entries(wordCount)
-            .sort(([,a], [,b]) => b - a)
+            .sort(([,a], [,b]) => (b as number) - (a as number))
             .slice(0, options.limit || 10)
             .map(([word, count]) => ({ word, count }))
           

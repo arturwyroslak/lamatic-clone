@@ -64,8 +64,10 @@ export interface WorkflowVariable {
 
 export interface WorkflowTrigger {
   id: string
+  name?: string
   type: 'webhook' | 'schedule' | 'event' | 'manual' | 'form' | 'file_upload' | 'form_submission' | 'iot_stream' | 'behavioral_tracking'
   config: Record<string, any>
+  enabled?: boolean
 }
 
 export const WORKFLOW_TEMPLATES: WorkflowTemplate[] = [

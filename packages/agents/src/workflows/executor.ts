@@ -78,11 +78,11 @@ export class WorkflowExecutor {
 
     // Simple sequential execution for demo
     for (const node of workflow.nodes) {
-      const traceEntry = {
+      const traceEntry: any = {
         nodeId: node.id,
         type: node.type,
         startTime: new Date(),
-        status: 'running' as const,
+        status: 'running',
         input: execution.input
       }
 

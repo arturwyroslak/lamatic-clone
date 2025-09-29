@@ -40,8 +40,13 @@ export class TextAgent {
     // Build prompt based on configuration
     const prompt = this.buildPrompt(agent, input, context)
     
+    // Convert string model to ModelConfig if needed
+    const modelConfig = typeof agent.model === 'string' 
+      ? { provider: 'default', model: agent.model } 
+      : agent.model
+    
     // Call the model (mock implementation)
-    const response = await this.callModel(agent.model, prompt)
+    const response = await this.callModel(modelConfig, prompt)
     
     // Format output based on configuration
     return this.formatOutput(response, agent.config.outputFormat)

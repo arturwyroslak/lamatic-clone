@@ -27,10 +27,7 @@ export class ChatAgent extends BaseAgent {
     this.persona = config.persona || 'A helpful and knowledgeable assistant'
     this.style = config.conversationStyle || 'professional'
     this.maxContextLength = config.maxContextLength || 4000
-    this.conversationMemory = new ConversationMemory({
-      retention: config.memoryRetention || 'session',
-      maxMessages: 50
-    })
+    this.conversationMemory = new ConversationMemory()
   }
 
   async execute(context: AgentContext): Promise<AgentResult> {

@@ -1,5 +1,5 @@
 // Pre-built Agent Templates - Complete template marketplace
-import { AgentConfig, ModelConfig } from '../types'
+import { AgentConfig, ModelConfig, MemoryConfig, AgentSpecificConfig, PersonalityConfig } from '../types'
 
 export interface AgentTemplateConfig {
   type?: string
@@ -23,16 +23,21 @@ export interface AgentTemplate {
   description: string
   category: string
   tags: string[]
-  icon: string
+  icon?: string
   config: AgentTemplateConfig
   variables?: Record<string, any>
   examples?: Array<{ name: string; input: any; expectedOutput: string }>
-  rating: number
-  downloads: number
-  featured: boolean
-  author: { name: string; verified: boolean }
-  createdAt: Date
-  updatedAt: Date
+  rating?: number
+  downloads?: number
+  featured?: boolean
+  author?: { name: string; verified: boolean }
+  createdAt?: Date
+  updatedAt?: Date
+  difficulty?: string
+  estimatedSetupTime?: string
+  useCases?: string[]
+  integrations?: string[]
+  requiredSkills?: string[]
 }
 
 export const AGENT_TEMPLATES: AgentTemplate[] = [
