@@ -6,11 +6,15 @@
 
    Creating an optimized production build ...
  ✓ Compiled successfully
-   Linting and checking validity of types     ✓ Linting and checking validity of types 
-   Collecting page data     ✓ Collecting page data 
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/9) ...
+   Generating static pages (2/9) 
+   Generating static pages (4/9) 
+   Generating static pages (6/9) 
  ✓ Generating static pages (9/9)
-   Collecting build traces     ✓ Collecting build traces 
-   Finalizing page optimization     ✓ Finalizing page optimization 
+   Finalizing page optimization ...
+   Collecting build traces ...
 
 Route (app)                              Size     First Load JS
 ┌ ○ /                                    178 B          96.2 kB
