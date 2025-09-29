@@ -32,16 +32,26 @@ export async function handleWebhook(request: Request, env: WorkerEnv, ctx: Execu
       payload = await request.json()
     } else if (contentType?.includes('application/x-www-form-urlencoded')) {
       const formData = await request.formData()
-      payload = Object.fromEntries(formData)
+      payload = {}
+      // Type assertion for FormData iteration
+      for (const [key, value] of (formData as any)) {
+        payload[key] = value
+      }
     } else {
       payload = { body: await request.text() }
     }
 
     // Add request metadata
+    const headers: Record<string, string> = {}
+    // Type assertion for Headers iteration
+    for (const [key, value] of (request.headers as any)) {
+      headers[key] = value
+    }
+    
     const executionData = {
       webhookId,
       timestamp: new Date().toISOString(),
-      headers: Object.fromEntries(request.headers),
+      headers,
       method: request.method,
       url: request.url,
       payload
